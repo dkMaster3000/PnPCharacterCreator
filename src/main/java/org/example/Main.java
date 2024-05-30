@@ -17,7 +17,7 @@ public class Main {
         Sheet sheet = workbook.getSheet("Rassen");
 
         Map<Integer, List<String>> data = new HashMap<>();
-        int i = 0;
+        int hashRow = 0;
         for (Row row : sheet) {
             List<String> cellStrings = new ArrayList<String>();
             for (Cell cell : row) {
@@ -42,8 +42,8 @@ public class Main {
             }
 
             if (!cellStrings.isEmpty()) {
-                data.put(i, cellStrings);
-                i++;
+                data.put(hashRow, cellStrings);
+                hashRow++;
             }
 
         }
@@ -55,10 +55,34 @@ public class Main {
 
         for (List<String> list : data.values()) {
             String identifier = list.getFirst();
-            if (Objects.equals(identifier, "Name")) {
-                Race newRace = new Race(list.get(1));
-                races.add(newRace);
-                activeRace = races.size() - 1;
+            switch (identifier) {
+                case "Name" -> {
+                    Race newRace = new Race(list.get(1));
+                    races.add(newRace);
+                    activeRace = races.size() - 1;
+                }
+                case "Größe" -> races.get(activeRace).setHeight(list.get(1));
+                case "Gewicht" -> races.get(activeRace).setWeight(list.get(1));
+                case "HP" -> races.get(activeRace).setHp(list.get(1));
+                case "Bewegungsreichweite" -> races.get(activeRace).setMovement(list.get(1));
+                case "Effekte" -> {
+                    for (int i = 1; i < list.size(); i++) {
+                        races.get(activeRace).addBuffs(list.get(i));
+                    }
+                }
+                case "Debuffs" -> {
+                    for (int i = 1; i < list.size(); i++) {
+                        races.get(activeRace).addDebuffs(list.get(i));
+                    }
+                }
+                case "Auswahl" -> {
+                    List<String> choices = new ArrayList<>();
+                    for (int i = 1; i < list.size(); i++) {
+                        choices.add(list.get(i));
+                    }
+                    races.get(activeRace).addChoices((choices));
+                }
+               
             }
         }
 

@@ -1,25 +1,28 @@
 package org.example;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Race {
 
     private String name;
-    private String height;
-    private String weight;
-    private String movement;
-    private List<String> buffs;
-    private List<String> debuffs;
-    private List<List<String>> choices;
+    private String height = "";
+    private String weight = "";
+    private String hp = "";
+    private String movement = "";
+    private List<String> buffs = new ArrayList<>();
+    private List<String> debuffs = new ArrayList<>();
+    private List<List<String>> choices = new ArrayList<>();
 
     public Race(String name) {
         this.name = name;
     }
 
-    public Race(String name, String height, String weight, String movement, List<String> buffs, List<String> debuffs, List<List<String>> choices) {
+    public Race(String name, String height, String weight, String hp, String movement, List<String> buffs, List<String> debuffs, List<List<String>> choices) {
         this.name = name;
         this.height = height;
         this.weight = weight;
+        this.hp = hp;
         this.movement = movement;
         this.buffs = buffs;
         this.debuffs = debuffs;
@@ -66,12 +69,20 @@ public class Race {
         this.buffs = buffs;
     }
 
+    public void addBuffs(String buff) {
+        buffs.add(buff);
+    }
+
     public List<String> getDebuffs() {
         return debuffs;
     }
 
     public void setDebuffs(List<String> debuffs) {
         this.debuffs = debuffs;
+    }
+
+    public void addDebuffs(String debuff) {
+        debuffs.add(debuff);
     }
 
     public List<List<String>> getChoices() {
@@ -82,10 +93,27 @@ public class Race {
         this.choices = choices;
     }
 
+    public void addChoices(List<String> choice) {
+        choices.add(choice);
+    }
+
+    public String getHp() {
+        return hp;
+    }
+
+    public void setHp(String hp) {
+        this.hp = hp;
+    }
+
     @Override
     public String toString() {
-        return "Race{" +
-                "name='" + name + '\'' +
-                '}';
+        return "\n\n Race: " + name +
+                "\n height=" + height +
+                "\n weight=" + weight +
+                "\n HP=" + hp +
+                "\n movement=" + movement +
+                "\n buffs=" + buffs +
+                "\n debuffs=" + debuffs +
+                "\n choices=" + choices;
     }
 }
