@@ -7,50 +7,61 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
 
         FileInputStream file = new FileInputStream(new File("C:\\Users\\kunzd\\IdeaProjects\\PnPCharacterCreator\\src\\main\\resources\\PnPCharacterCreator.xlsx"));
         Workbook workbook = new XSSFWorkbook(file);
-
         Sheet sheet = workbook.getSheet("Rassen");
 
         Map<Integer, List<String>> data = new HashMap<>();
         int i = 0;
         for (Row row : sheet) {
-            data.put(i, new ArrayList<String>());
+            List<String> cellStrings = new ArrayList<String>();
             for (Cell cell : row) {
-
                 switch (cell.getCellType()) {
                     case STRING:
-                        data.get(i).add(cell.getRichStringCellValue().getString());
+                        cellStrings.add(cell.getRichStringCellValue().getString());
                         break;
                     case NUMERIC:
                         if (DateUtil.isCellDateFormatted(cell)) {
-                            data.get(i).add(cell.getDateCellValue() + "");
+                            cellStrings.add(cell.getDateCellValue() + "");
                         } else {
-                            data.get(i).add(cell.getNumericCellValue() + "");
+                            cellStrings.add(cell.getNumericCellValue() + "");
                         }
                         break;
                     case BOOLEAN:
-                        data.get(i).add(cell.getBooleanCellValue() + "");
+                        cellStrings.add(cell.getBooleanCellValue() + "");
                         break;
                     case FORMULA:
-                        data.get(i).add(cell.getCellFormula() + "");
+                        cellStrings.add(cell.getCellFormula() + "");
                         break;
-                    default:
-                        data.get(i).add(" ");
                 }
-
             }
-            i++;
+
+            if (!cellStrings.isEmpty()) {
+                data.put(i, cellStrings);
+                i++;
+            }
+
         }
 
         System.out.println(data);
+
+        List<Race> races = new ArrayList<>();
+        int activeRace = 0;
+
+        for (List<String> list : data.values()) {
+            String identifier = list.getFirst();
+            if (Objects.equals(identifier, "Name")) {
+                Race newRace = new Race(list.get(1));
+                races.add(newRace);
+                activeRace = races.size() - 1;
+            }
+        }
+
+        System.out.println(races);
     }
 }
