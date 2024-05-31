@@ -1,32 +1,33 @@
 package org.example;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.Objects;
 
 public class RaceComboBox extends JComboBox<String> {
 
-    public interface RaceComboBoxFunc {
+    private final UpdatePanels updatePanels;
 
-        void chooseRace(String raceName);
+    RaceComboBox(UpdatePanels updatePanels) {
+        this.updatePanels = updatePanels;
     }
 
-    RaceComboBox() {
-    }
-
-    public void updateRaceComboBox(String[] raceNames, RaceComboBoxFunc raceComboBoxFunc) {
+    public void updateRaceComboBox() {
+        String[] raceNames = MainFrame.races.stream().map(Race::getName).toArray(String[]::new);
         DefaultComboBoxModel<String> raceNamesModel = new DefaultComboBoxModel<>(raceNames);
         this.setModel(raceNamesModel);
         setSelectedIndex(0);
 
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        addActionListener(e -> updateRaceOfCharacter());
 
-                raceComboBoxFunc.chooseRace((String) getSelectedItem());
+        updateRaceOfCharacter();
+    }
+
+    private void updateRaceOfCharacter() {
+        for (Race race : MainFrame.races) {
+            if (Objects.equals(race.getName(), getSelectedItem())) {
+                MainFrame.character.setRace(race);
             }
-        });
-
-        raceComboBoxFunc.chooseRace((String) getSelectedItem());
+        }
+        updatePanels.updatePanels();
     }
 }

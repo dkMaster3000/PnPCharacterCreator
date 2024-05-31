@@ -9,19 +9,18 @@ import java.awt.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class MainFrame extends JFrame {
 
-    Workbook workbook = null;
+    public static Workbook workbook = null;
 
     CharacterPreviewPanel characterPreviewPanel;
     JPanel characterPreviewBox;
     RaceComboBox raceJComboBox;
     ChoicesPanel choicesPanel;
 
-    Character character = new Character();
-    List<Race> races = new ArrayList<>();
+    public static Character character = new Character();
+    public static List<Race> races = new ArrayList<>();
 
     MainFrame() {
 
@@ -38,12 +37,12 @@ public class MainFrame extends JFrame {
         uploadPanel.setBackground(Color.lightGray);
         add(uploadPanel);
 
-        raceJComboBox = new RaceComboBox();
+        raceJComboBox = new RaceComboBox(this::updatePanels);
         raceJComboBox.setBounds(5, 60, 150, 40);
         raceJComboBox.setVisible(false);
         add(raceJComboBox);
 
-        choicesPanel = new ChoicesPanel(this::updatePreviewPanel);
+        choicesPanel = new ChoicesPanel(this::updatePanels);
         choicesPanel.setBounds(0, 105, 300, 40);
         choicesPanel.setBackground(Color.orange);
         choicesPanel.setVisible(false);
@@ -74,12 +73,21 @@ public class MainFrame extends JFrame {
         new MainFrame();
     }
 
+    private void updatePanels() {
+        updateMainFrame();
+        updatePreviewPanel();
+    }
+
+    private void updateMainFrame() {
+        choicesPanel.InstantiateChoicesComboBoxes();
+    }
+
     private void updatePreviewPanel() {
         characterPreviewPanel.updateCharacter(character);
     }
 
     private void onUpload(Workbook workbook) {
-        this.workbook = workbook;
+        MainFrame.workbook = workbook;
 
         Sheet raceSheet = workbook.getSheet("Rassen");
 
@@ -92,27 +100,14 @@ public class MainFrame extends JFrame {
 
     //load RaceComboBox and make it visible
     private void chooseRace() {
-        String[] racesForComboBox = races.stream().map(Race::getName).toArray(String[]::new);
-
-        raceJComboBox.updateRaceComboBox(racesForComboBox, this::onRaceComboBoxChange);
+        raceJComboBox.updateRaceComboBox();
         raceJComboBox.setVisible(true);
 
-        choicesPanel.InstantiateChoicesComboBoxes(character);
+        choicesPanel.InstantiateChoicesComboBoxes();
         choicesPanel.setVisible(true);
 
         raceJComboBox.repaint();
     }
 
-    private void onRaceComboBoxChange(String newRaceName) {
-        for (Race race : races) {
-            if (Objects.equals(race.getName(), newRaceName)) {
-                character.setRace(race);
-            }
-        }
-        character.removeChosenBuffs();
-        choicesPanel.InstantiateChoicesComboBoxes(character);
-
-        updatePreviewPanel();
-    }
 
 }

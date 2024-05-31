@@ -3,37 +3,48 @@ package org.example;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.util.List;
+import java.util.Objects;
 
 public class ChoicesPanel extends JPanel {
 
-    private UpdatePreview updatePreview;
+    private final UpdatePanels updatePanels;
+    private String previousRaceName = "";
 
-    public ChoicesPanel(UpdatePreview updatePreview) {
-        this.updatePreview = updatePreview;
+    public ChoicesPanel(UpdatePanels updatePanels) {
+        this.updatePanels = updatePanels;
     }
 
+    public void InstantiateChoicesComboBoxes() {
 
-    public void InstantiateChoicesComboBoxes(Character character) {
+        //update checker to prevent constantly updating
+        String newRaceName = MainFrame.character.getRace().getName();
+        if (Objects.equals(newRaceName, previousRaceName)) {
+            return;
+        } else {
+            previousRaceName = newRaceName;
+        }
+
         removeAll();
 
-        List<List<String>> choices = character.getRace().getChoices();
+        List<List<String>> choices = MainFrame.character.getRace().getChoices();
 
         for (int i = 0; i < choices.size(); i++) {
             String[] choicePossibilities = choices.get(i).toArray(String[]::new);
             JComboBox<String> choiceComboBox = new JComboBox<>(choicePossibilities);
             choiceComboBox.setSelectedIndex(0);
-            choiceComboBox.addActionListener(new NumberedActionListener(i) {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    character.updateChosenBuffs(number, (String) choiceComboBox.getSelectedItem());
-                    updatePreview.updatePreview();
-                }
-            });
+
+            int chosenBuffNumber = i;
+            choiceComboBox.addActionListener(e -> updateChosenBuffsOfCharacter(chosenBuffNumber, (String) choiceComboBox.getSelectedItem()));
             add(choiceComboBox);
-            character.updateChosenBuffs(i, (String) choiceComboBox.getSelectedItem());
-            updatePreview.updatePreview();
+
+            updateChosenBuffsOfCharacter(chosenBuffNumber, (String) choiceComboBox.getSelectedItem());
         }
 
         revalidate();
+    }
+
+    private void updateChosenBuffsOfCharacter(int chosenBuffNumber, String buff) {
+        MainFrame.character.updateChosenBuffs(chosenBuffNumber, buff);
+        updatePanels.updatePanels();
     }
 }

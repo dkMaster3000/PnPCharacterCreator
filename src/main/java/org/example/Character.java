@@ -17,6 +17,7 @@ public class Character {
 
     public void setRace(Race race) {
         this.race = race;
+        removeChosenBuffs();
     }
 
     public List<String> getChosenBuffs() {
@@ -29,8 +30,6 @@ public class Character {
         } else {
             chosenBuffs.add(choiceNumber, newChosenBuff);
         }
-
-        System.out.println(chosenBuffs);
     }
 
     public void removeChosenBuffs() {
