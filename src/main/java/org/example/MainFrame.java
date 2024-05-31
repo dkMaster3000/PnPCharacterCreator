@@ -22,7 +22,7 @@ public class MainFrame extends JFrame implements ActionListener {
     JLabel uploadedLabel;
     CharacterPreviewPanel characterPreviewPanel;
     JPanel characterPreviewBox;
-    JComboBox<String> raceJComboBox = new JComboBox<>();
+    RaceComboBox raceJComboBox = new RaceComboBox();
 
 
     Character character = new Character();
@@ -48,6 +48,12 @@ public class MainFrame extends JFrame implements ActionListener {
         uploadedLabel.setForeground(Color.RED);
         add(uploadedLabel);
 
+        raceJComboBox = new RaceComboBox();
+        raceJComboBox.setBounds(10, 60, 150, 40);
+        raceJComboBox.setVisible(false);
+        add(raceJComboBox);
+
+        // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
         characterPreviewBox = new JPanel();
         characterPreviewBox.setLayout(null);
         characterPreviewBox.setBounds(880, 0, 400, 800);
@@ -99,42 +105,29 @@ public class MainFrame extends JFrame implements ActionListener {
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
-
             }
         }
-
     }
 
-    //after actionPerformed
-    private void chooseRace() {
-        String[] racesForComboBox = races.stream().map(Race::getName).toArray(String[]::new);
-        raceJComboBox = new JComboBox<>(racesForComboBox);
-        raceJComboBox.setBounds(10, 60, 150, 40);
-        raceJComboBox.setSelectedIndex(0);
-
-        raceJComboBox.setVisible(true);
-        raceJComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                onRaceComboBoxChange();
-            }
-        });
-        add(raceJComboBox);
-
-        onRaceComboBoxChange();
-
-        raceJComboBox.repaint();
-    }
 
     private void updatePreviewPanel() {
         characterPreviewPanel.updateCharacter(character);
     }
 
-    private void onRaceComboBoxChange() {
-        String raceName = (String) raceJComboBox.getSelectedItem();
+
+    //load RaceComboBox and make it visible
+    private void chooseRace() {
+        String[] racesForComboBox = races.stream().map(Race::getName).toArray(String[]::new);
+
+        raceJComboBox.updateRaceComboBox(racesForComboBox, this::onRaceComboBoxChange);
+        raceJComboBox.setVisible(true);
+
+        raceJComboBox.repaint();
+    }
+
+    private void onRaceComboBoxChange(String newRaceName) {
         for (Race race : races) {
-            if (Objects.equals(race.getName(), raceName)) {
+            if (Objects.equals(race.getName(), newRaceName)) {
                 character.setRace(race);
             }
         }
