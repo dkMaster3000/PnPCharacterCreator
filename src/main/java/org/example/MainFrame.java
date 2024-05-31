@@ -14,12 +14,16 @@ import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class MainFrame extends JFrame implements ActionListener {
 
     JButton loadButton;
     JLabel uploadedLabel;
-    JPanel characterPreview;
+    CharacterPreviewPanel characterPreviewPanel;
+    JPanel characterPreviewBox;
+    JComboBox<String> raceJComboBox = new JComboBox<>();
+
 
     Character character = new Character();
     List<Race> races = new ArrayList<>();
@@ -44,16 +48,21 @@ public class MainFrame extends JFrame implements ActionListener {
         uploadedLabel.setForeground(Color.RED);
         add(uploadedLabel);
 
-        characterPreview = new JPanel(new GridLayout(10, 1, 10, 10));
-        characterPreview = new JPanel();
-        characterPreview.setBounds(880, 0, 400, 800);
-        characterPreview.setBackground(Color.lightGray);
-        add(characterPreview);
+        characterPreviewBox = new JPanel();
+        characterPreviewBox.setLayout(null);
+        characterPreviewBox.setBounds(880, 0, 400, 800);
+        characterPreviewBox.setBackground(Color.lightGray);
+        add(characterPreviewBox);
+
         JLabel characterPreviewLabel = new JLabel("Charakter Vorschau");
-        characterPreviewLabel.setBounds(10, 10, 250, 40);
+        characterPreviewLabel.setBounds(5, 5, 400, 10);
+        characterPreviewBox.add(characterPreviewLabel);
 
-        characterPreview.add(characterPreviewLabel);
+        characterPreviewPanel = new CharacterPreviewPanel(character);
+        characterPreviewPanel.setBounds(5, 20, 400, 700);
+        characterPreviewBox.add(characterPreviewPanel);
 
+        characterPreviewBox.validate();
     }
 
     public static void main(String[] args) {
@@ -93,26 +102,43 @@ public class MainFrame extends JFrame implements ActionListener {
 
             }
         }
-//      /*  else if(e.getSource() == raceJComboBox){
-//
-//        }*/
 
     }
 
     //after actionPerformed
     private void chooseRace() {
         String[] racesForComboBox = races.stream().map(Race::getName).toArray(String[]::new);
-        JComboBox<String> raceJComboBox = new JComboBox<>(racesForComboBox);
+        raceJComboBox = new JComboBox<>(racesForComboBox);
         raceJComboBox.setBounds(10, 60, 150, 40);
         raceJComboBox.setSelectedIndex(0);
+
         raceJComboBox.setVisible(true);
         raceJComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                onRaceComboBoxChange();
             }
         });
         add(raceJComboBox);
+
+        onRaceComboBoxChange();
+
         raceJComboBox.repaint();
     }
+
+    private void updatePreviewPanel() {
+        characterPreviewPanel.updateCharacter(character);
+    }
+
+    private void onRaceComboBoxChange() {
+        String raceName = (String) raceJComboBox.getSelectedItem();
+        for (Race race : races) {
+            if (Objects.equals(race.getName(), raceName)) {
+                character.setRace(race);
+            }
+        }
+        updatePreviewPanel();
+    }
+
 }
