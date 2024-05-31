@@ -16,14 +16,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class MainFrame extends JFrame implements ActionListener {
+public class MainFrame extends JFrame {
 
-    JButton loadButton;
-    JLabel uploadedLabel;
+    Workbook workbook = null;
+
     CharacterPreviewPanel characterPreviewPanel;
     JPanel characterPreviewBox;
     RaceComboBox raceJComboBox = new RaceComboBox();
-
 
     Character character = new Character();
     List<Race> races = new ArrayList<>();
@@ -38,15 +37,10 @@ public class MainFrame extends JFrame implements ActionListener {
 
         setLayout(null);
 
-        loadButton = new JButton("Excel Datei Upload");
-        loadButton.setBounds(10, 10, 150, 40);
-        loadButton.addActionListener(this);
-        add(loadButton);
-
-        uploadedLabel = new JLabel("Excel Datei noch nicht hochgeladen");
-        uploadedLabel.setBounds(170, 10, 250, 40);
-        uploadedLabel.setForeground(Color.RED);
-        add(uploadedLabel);
+        UploadPanel uploadPanel = new UploadPanel(this::onUpload);
+        uploadPanel.setBounds(0, 0, 400, 60);
+        uploadPanel.setBackground(Color.lightGray);
+        add(uploadPanel);
 
         raceJComboBox = new RaceComboBox();
         raceJComboBox.setBounds(10, 60, 150, 40);
@@ -75,43 +69,19 @@ public class MainFrame extends JFrame implements ActionListener {
         new MainFrame();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == loadButton) {
-            FileSystemView fsv = FileSystemView.getFileSystemView();
-            JFileChooser fileChooser = new JFileChooser(fsv.getHomeDirectory());
-            fileChooser.setPreferredSize(new Dimension(1000, 600));
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                    "Excel file", "xls", "xlsx");
-            fileChooser.setFileFilter(filter);
-            int returnVal = fileChooser.showOpenDialog(null);
-
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-
-                try {
-                    FileInputStream file = new FileInputStream(fileChooser.getSelectedFile());
-                    Workbook workbook = new XSSFWorkbook(file);
-
-                    uploadedLabel.setText("Excel Datei hochgeladen");
-                    uploadedLabel.setForeground(Color.GREEN);
-
-
-                    Sheet raceSheet = workbook.getSheet("Rassen");
-
-                    races = LoadRaces.getRacesFromMap(LoadRaces.getMap(raceSheet));
-
-                    chooseRace();
-                    System.out.println(races);
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        }
-    }
-
-
     private void updatePreviewPanel() {
         characterPreviewPanel.updateCharacter(character);
+    }
+
+    private void onUpload(Workbook workbook) {
+        this.workbook = workbook;
+
+        Sheet raceSheet = workbook.getSheet("Rassen");
+
+        races = LoadRaces.getRacesFromMap(LoadRaces.getMap(raceSheet));
+
+        chooseRace();
+        System.out.println(races);
     }
 
 
