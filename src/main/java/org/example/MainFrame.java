@@ -2,16 +2,11 @@ package org.example;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import javax.swing.*;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.filechooser.FileSystemView;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-import java.io.FileInputStream;
+import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -22,7 +17,8 @@ public class MainFrame extends JFrame {
 
     CharacterPreviewPanel characterPreviewPanel;
     JPanel characterPreviewBox;
-    RaceComboBox raceJComboBox = new RaceComboBox();
+    RaceComboBox raceJComboBox;
+    ChoicesPanel choicesPanel;
 
     Character character = new Character();
     List<Race> races = new ArrayList<>();
@@ -43,14 +39,21 @@ public class MainFrame extends JFrame {
         add(uploadPanel);
 
         raceJComboBox = new RaceComboBox();
-        raceJComboBox.setBounds(10, 60, 150, 40);
+        raceJComboBox.setBounds(5, 60, 150, 40);
         raceJComboBox.setVisible(false);
         add(raceJComboBox);
+
+        choicesPanel = new ChoicesPanel();
+        choicesPanel.setBounds(0, 105, 300, 40);
+        choicesPanel.setBackground(Color.orange);
+        choicesPanel.setVisible(false);
+        add(choicesPanel);
+
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
         characterPreviewBox = new JPanel();
         characterPreviewBox.setLayout(null);
-        characterPreviewBox.setBounds(880, 0, 400, 800);
+        characterPreviewBox.setBounds(860, 0, 400, 750);
         characterPreviewBox.setBackground(Color.lightGray);
         add(characterPreviewBox);
 
@@ -59,10 +62,12 @@ public class MainFrame extends JFrame {
         characterPreviewBox.add(characterPreviewLabel);
 
         characterPreviewPanel = new CharacterPreviewPanel(character);
-        characterPreviewPanel.setBounds(5, 20, 400, 700);
+        characterPreviewPanel.setBounds(5, 20, 390, 700);
         characterPreviewBox.add(characterPreviewPanel);
 
         characterPreviewBox.validate();
+
+        repaint();
     }
 
     public static void main(String[] args) {
@@ -92,6 +97,9 @@ public class MainFrame extends JFrame {
         raceJComboBox.updateRaceComboBox(racesForComboBox, this::onRaceComboBoxChange);
         raceJComboBox.setVisible(true);
 
+        choicesPanel.InstantiateChoicesComboBoxes(character);
+        choicesPanel.setVisible(true);
+
         raceJComboBox.repaint();
     }
 
@@ -101,6 +109,9 @@ public class MainFrame extends JFrame {
                 character.setRace(race);
             }
         }
+        character.removeChosenBuffs();
+        choicesPanel.InstantiateChoicesComboBoxes(character);
+
         updatePreviewPanel();
     }
 
