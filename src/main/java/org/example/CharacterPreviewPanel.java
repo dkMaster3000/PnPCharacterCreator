@@ -14,7 +14,7 @@ public class CharacterPreviewPanel extends JPanel {
 
         setLayout(new GridLayout(0, 1, 10, 10));
 
-        racePanel = new RacePanel(characterToDisplay.getRace());
+        racePanel = new RacePanel(characterToDisplay);
         add(racePanel);
 
         setBackground(Color.ORANGE);
@@ -25,13 +25,9 @@ public class CharacterPreviewPanel extends JPanel {
     public void updateCharacter(Character newCharacter) {
         characterToDisplay = newCharacter;
 
-        updateRacePanel(characterToDisplay.getRace());
+        racePanel.updateRace(characterToDisplay);
 
         repaint();
-    }
-
-    private void updateRacePanel(Race newRace) {
-        racePanel.updateRace(newRace);
     }
 
 }

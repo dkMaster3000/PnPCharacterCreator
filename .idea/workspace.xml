@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added upload pannel kontaining the upload button">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added choice panel to wrtite choices in character">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CharacterPreviewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/CharacterPreviewPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/ChoicesPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RacePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/RacePanel.java" afterDir="false" />
     </list>
@@ -18,8 +19,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -148,7 +149,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717167526119</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added choice panel to wrtite choices in character">
+      <option name="closed" value="true" />
+      <created>1717173521130</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1717173521130</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -161,6 +170,7 @@
     <MESSAGE value="choosing and displaying race working" />
     <MESSAGE value="make RaceComboBox own class" />
     <MESSAGE value="added upload pannel kontaining the upload button" />
-    <option name="LAST_COMMIT_MESSAGE" value="added upload pannel kontaining the upload button" />
+    <MESSAGE value="added choice panel to wrtite choices in character" />
+    <option name="LAST_COMMIT_MESSAGE" value="added choice panel to wrtite choices in character" />
   </component>
 </project>

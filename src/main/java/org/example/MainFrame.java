@@ -43,7 +43,7 @@ public class MainFrame extends JFrame {
         raceJComboBox.setVisible(false);
         add(raceJComboBox);
 
-        choicesPanel = new ChoicesPanel();
+        choicesPanel = new ChoicesPanel(this::updatePreviewPanel);
         choicesPanel.setBounds(0, 105, 300, 40);
         choicesPanel.setBackground(Color.orange);
         choicesPanel.setVisible(false);

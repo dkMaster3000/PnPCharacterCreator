@@ -6,9 +6,12 @@ import java.util.List;
 
 public class ChoicesPanel extends JPanel {
 
-    public ChoicesPanel() {
+    private UpdatePreview updatePreview;
 
+    public ChoicesPanel(UpdatePreview updatePreview) {
+        this.updatePreview = updatePreview;
     }
+
 
     public void InstantiateChoicesComboBoxes(Character character) {
         removeAll();
@@ -23,10 +26,12 @@ public class ChoicesPanel extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     character.updateChosenBuffs(number, (String) choiceComboBox.getSelectedItem());
+                    updatePreview.updatePreview();
                 }
             });
             add(choiceComboBox);
             character.updateChosenBuffs(i, (String) choiceComboBox.getSelectedItem());
+            updatePreview.updatePreview();
         }
 
         revalidate();

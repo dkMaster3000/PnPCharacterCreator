@@ -1,34 +1,82 @@
 package org.example;
 
 import javax.swing.*;
+import java.awt.*;
+import java.util.stream.Stream;
+import java.util.List;
 
 public class RacePanel extends JPanel {
 
-    private Race raceToDisplay;
-    private JLabel raceName;
+    private Character character;
+    private Race race;
 
-    RacePanel(Race raceToDisplay) {
+
+    RacePanel(Character character) {
         super(true);
-        this.raceToDisplay = raceToDisplay;
+        this.character = character;
+        this.race = character.getRace();
 
-        raceName = new JLabel("Rasse: " + raceToDisplay.getName());
-        raceName.setSize(raceName.getPreferredSize());
-        raceName.setLocation(10, 10);
+        setLayout(new GridLayout(0, 1, 10, 10));
 
-        add(raceName);
+        setNewRaceValues();
 
         setSize(getPreferredSize());
-
     }
 
-    public Race getRaceToDisplay() {
-        return raceToDisplay;
+    //parent passes the new race
+    //here the data must be updated
+    public void updateRace(Character character) {
+        this.character = character;
+        race = character.getRace();
+
+        setNewRaceValues();
     }
 
-    public void updateRace(Race newRaceToDisplay) {
-        raceToDisplay = newRaceToDisplay;
+    private void setNewRaceValues() {
 
-        raceName.setText("Rasse: " + raceToDisplay.getName());
+        removeAll();
 
+        JLabel raceName = new JLabel();
+        raceName.setText("Rasse: " + race.getName());
+        add(raceName);
+
+        JLabel raceHeight = new JLabel();
+        raceHeight.setText("Größe: " + race.getHeight());
+        add(raceHeight);
+
+        JLabel raceWeight = new JLabel();
+        raceWeight.setText("Gewicht: " + race.getWeight());
+        add(raceWeight);
+
+        JLabel raceHP = new JLabel();
+        raceHP.setText("HP: " + race.getHp());
+        add(raceHP);
+
+        JLabel raceMovement = new JLabel();
+        raceMovement.setText("Bewegungsreichweite: " + race.getMovement());
+        add(raceMovement);
+
+        List<String> allBuffs = Stream.concat(race.getBuffs().stream(), character.getChosenBuffs().stream()).toList();
+
+        if (!allBuffs.isEmpty()) {
+            JLabel buffNotifyerLabel = new JLabel("Buffs:");
+            add(buffNotifyerLabel);
+
+            for (String buff : allBuffs) {
+                JLabel newBuff = new JLabel(buff);
+                add(newBuff);
+            }
+        }
+
+        if (!race.getDebuffs().isEmpty()) {
+            JLabel debuffNotifyerLabel = new JLabel("Debuffs:");
+            add(debuffNotifyerLabel);
+            for (String debuff : race.getDebuffs()) {
+                JLabel newDebuff = new JLabel(debuff);
+                add(newDebuff);
+            }
+        }
+
+        revalidate();
     }
 }
