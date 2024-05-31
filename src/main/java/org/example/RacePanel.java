@@ -59,6 +59,12 @@ public class RacePanel extends JPanel {
         List<String> allBuffs = Stream.concat(race.getBuffs().stream(), character.getChosenBuffs().stream()).toList();
 
         if (!allBuffs.isEmpty()) {
+            JLabel spaceLabel = new JLabel(" ");
+            add(spaceLabel);
+
+            JLabel seperatorLabel = new JLabel("----------------------");
+            add(seperatorLabel);
+
             JLabel buffNotifyerLabel = new JLabel("Buffs:");
             add(buffNotifyerLabel);
 
@@ -69,6 +75,12 @@ public class RacePanel extends JPanel {
         }
 
         if (!race.getDebuffs().isEmpty()) {
+            JLabel spaceLabel = new JLabel(" ");
+            add(spaceLabel);
+
+            JLabel seperatorLabel = new JLabel("----------------------");
+            add(seperatorLabel);
+
             JLabel debuffNotifyerLabel = new JLabel("Debuffs:");
             add(debuffNotifyerLabel);
             for (String debuff : race.getDebuffs()) {
