@@ -15,6 +15,18 @@ public class Character {
     private Race race = new Race("");
     private List<String> chosenBuffs = new ArrayList<>();
 
+    public enum STATNAMES {
+        HP,
+        STRENGTH,
+        INTELLIGENCE,
+        DEXTERITY
+    }
+
+    public interface SetStat {
+
+        void setStat(int stat);
+    }
+
     public Character() {
         lvl = 1;
         statPoints = calculateStatPoints();
@@ -68,12 +80,20 @@ public class Character {
         this.addedHP = addedHP;
     }
 
+    public void modifyAddedHPValue(int modifyValue) {
+        setAddedHP(modifyStatValue(addedHP, modifyValue));
+    }
+
     public int getStrength() {
         return strength;
     }
 
     public void setStrength(int strength) {
         this.strength = strength;
+    }
+
+    public void modifyStrengthValue(int modifyValue) {
+        setStrength(modifyStatValue(strength, modifyValue));
     }
 
     public int getIntelligence() {
@@ -84,6 +104,10 @@ public class Character {
         this.intelligence = intelligence;
     }
 
+    public void modifyIntelligenceValue(int modifyValue) {
+        setIntelligence(modifyStatValue(intelligence, modifyValue));
+    }
+
     public int getDexterity() {
         return dexterity;
     }
@@ -92,12 +116,27 @@ public class Character {
         this.dexterity = dexterity;
     }
 
-    public void setChosenBuffs(List<String> chosenBuffs) {
-        this.chosenBuffs = chosenBuffs;
+    public void modifyDexterityValue(int modifyValue) {
+        setDexterity(modifyStatValue(dexterity, modifyValue));
     }
 
-    private int calculateStatPoints() {
-        return 2 + (lvl * 3);
+    private int modifyStatValue(int statToModify, int modifyValue) {
+
+        if (modifyValue > 0) {
+            if (statPoints > 0) {
+                statToModify += modifyValue;
+                statPoints -= 1;
+            }
+        }
+
+        if (modifyValue < 0) {
+            if (statToModify > 0) {
+                statToModify += modifyValue;
+                statPoints += 1;
+            }
+        }
+
+        return statToModify;
     }
 
     public int getStatPoints() {
@@ -106,5 +145,34 @@ public class Character {
 
     public void setStatPoints(int statPoints) {
         this.statPoints = statPoints;
+    }
+
+    private int calculateStatPoints() {
+        return 2 + (lvl * 3);
+    }
+
+    public String getStringToEnum(STATNAMES statname) {
+        return switch (statname) {
+            case STATNAMES.HP -> "HP";
+            case STATNAMES.STRENGTH -> "Stärke";
+            case STATNAMES.DEXTERITY -> "Geschick";
+            case STATNAMES.INTELLIGENCE -> "Intelligence";
+        };
+    }
+
+    public SetStat getSetterByEnum(STATNAMES statname) {
+        return switch (statname) {
+            case STATNAMES.HP -> this::modifyAddedHPValue;
+            case STATNAMES.STRENGTH -> this::modifyStrengthValue;
+            case STATNAMES.DEXTERITY -> this::modifyDexterityValue;
+            case STATNAMES.INTELLIGENCE -> this::modifyIntelligenceValue;
+        };
+    }
+
+    public int getModifyValueByEnum(STATNAMES statname) {
+        return switch (statname) {
+            case STATNAMES.HP -> 10;
+            case STATNAMES.STRENGTH, STATNAMES.DEXTERITY, STATNAMES.INTELLIGENCE -> 1;
+        };
     }
 }

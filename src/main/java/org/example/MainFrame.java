@@ -44,14 +44,14 @@ public class MainFrame extends JFrame {
         add(raceJComboBox);
 
         lvlPanel = new LvlPanel(this::updatePanels);
-        lvlPanel.setBounds(160, 65, 400, 40);
+        lvlPanel.setBounds(0, 110, 855, 45);
         lvlPanel.setBackground(Color.magenta);
         lvlPanel.setVisible(false);
         add(lvlPanel);
 
 
         choicesPanel = new ChoicesPanel(this::updatePanels);
-        choicesPanel.setBounds(0, 110, 300, 40);
+        choicesPanel.setBounds(0, 160, 300, 40);
         choicesPanel.setBackground(Color.orange);
         choicesPanel.setVisible(false);
         add(choicesPanel);
@@ -88,6 +88,7 @@ public class MainFrame extends JFrame {
 
     private void updateMainFrame() {
         choicesPanel.InstantiateChoicesComboBoxes();
+        lvlPanel.UpdateLvlPanel();
     }
 
     private void updatePreviewPanel() {

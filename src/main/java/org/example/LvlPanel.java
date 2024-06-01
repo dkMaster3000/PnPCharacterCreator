@@ -21,20 +21,25 @@ public class LvlPanel extends JPanel {
         lvlComboBox.addActionListener(e -> updateChracterLvl(Integer.parseInt((String) Objects.requireNonNull(lvlComboBox.getSelectedItem()))));
         add(lvlComboBox);
 
-        pointsToSpentLabel = new JLabel("Punkte zu vergeben: " + MainFrame.character.getStatPoints());
+        pointsToSpentLabel = new JLabel();
+        UpdateLvlPanel();
         add(pointsToSpentLabel);
 
-        JButton minusStrengthB = new JButton("-");
-        add(minusStrengthB);
-        JLabel StrengthLabel = new JLabel("Stärke");
-        add(StrengthLabel);
-        JButton plusStrengthB = new JButton("+");
-        add(plusStrengthB);
+        for (Character.STATNAMES statname : Character.STATNAMES.values()) {
+            StatModifierButtons statModifierButtons = new StatModifierButtons(updatePanels, statname);
+            add(statModifierButtons);
+        }
+
     }
 
+    //invoked by a function in MainFrame, if the chracter has been modified
+    public void UpdateLvlPanel() {
+        pointsToSpentLabel.setText("Punkte zu vergeben: " + MainFrame.character.getStatPoints());
+    }
+
+    //modify character, tells mainframe to update the other frames
     private void updateChracterLvl(int level) {
         MainFrame.character.setLvl(level);
-        pointsToSpentLabel.setText("Punkte zu vergeben: " + MainFrame.character.getStatPoints());
 
         updatePanels.updatePanels();
     }
