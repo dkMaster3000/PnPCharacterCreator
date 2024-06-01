@@ -2,6 +2,7 @@ package org.example;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.List;
 
@@ -11,16 +12,12 @@ public class RacePanel extends JPanel {
     private Race race;
 
 
-    RacePanel(Character character) {
+    RacePanel() {
         super(true);
-        this.character = character;
+        this.character = MainFrame.character;
         this.race = character.getRace();
 
         setLayout(new GridLayout(0, 1, 10, 10));
-
-        setNewRaceValues();
-
-        setSize(getPreferredSize());
     }
 
     //parent passes the new race
@@ -48,9 +45,22 @@ public class RacePanel extends JPanel {
         raceWeight.setText("Gewicht: " + race.getWeight());
         add(raceWeight);
 
-        JLabel raceHP = new JLabel();
-        raceHP.setText("HP: " + race.getHp());
-        add(raceHP);
+        JLabel characterHP = new JLabel();
+        int totalHP = character.getAddedHP() + Integer.parseInt(race.getHp());
+        characterHP.setText("HP: " + totalHP);
+        add(characterHP);
+
+        JLabel characterStrength = new JLabel();
+        characterStrength.setText("Stärke: " + character.getStrength());
+        add(characterStrength);
+
+        JLabel characterIntelligence = new JLabel();
+        characterIntelligence.setText("Intelligenz: " + character.getIntelligence());
+        add(characterIntelligence);
+
+        JLabel characterDex = new JLabel();
+        characterDex.setText("Geschick: " + character.getDexterity());
+        add(characterDex);
 
         JLabel raceMovement = new JLabel();
         raceMovement.setText("Bewegungsreichweite: " + race.getMovement());

@@ -17,6 +17,7 @@ public class MainFrame extends JFrame {
     CharacterPreviewPanel characterPreviewPanel;
     JPanel characterPreviewBox;
     RaceComboBox raceJComboBox;
+    LvlPanel lvlPanel;
     ChoicesPanel choicesPanel;
 
     public static Character character = new Character();
@@ -38,12 +39,19 @@ public class MainFrame extends JFrame {
         add(uploadPanel);
 
         raceJComboBox = new RaceComboBox(this::updatePanels);
-        raceJComboBox.setBounds(5, 60, 150, 40);
+        raceJComboBox.setBounds(5, 65, 150, 40);
         raceJComboBox.setVisible(false);
         add(raceJComboBox);
 
+        lvlPanel = new LvlPanel(this::updatePanels);
+        lvlPanel.setBounds(160, 65, 400, 40);
+        lvlPanel.setBackground(Color.magenta);
+        lvlPanel.setVisible(false);
+        add(lvlPanel);
+
+
         choicesPanel = new ChoicesPanel(this::updatePanels);
-        choicesPanel.setBounds(0, 105, 300, 40);
+        choicesPanel.setBounds(0, 110, 300, 40);
         choicesPanel.setBackground(Color.orange);
         choicesPanel.setVisible(false);
         add(choicesPanel);
@@ -60,7 +68,7 @@ public class MainFrame extends JFrame {
         characterPreviewLabel.setBounds(5, 5, 400, 10);
         characterPreviewBox.add(characterPreviewLabel);
 
-        characterPreviewPanel = new CharacterPreviewPanel(character);
+        characterPreviewPanel = new CharacterPreviewPanel();
         characterPreviewPanel.setBounds(5, 20, 390, 700);
         characterPreviewBox.add(characterPreviewPanel);
 
@@ -86,6 +94,7 @@ public class MainFrame extends JFrame {
         characterPreviewPanel.updateCharacter(character);
     }
 
+    //invoked by upload button
     private void onUpload(Workbook workbook) {
         MainFrame.workbook = workbook;
 
@@ -98,13 +107,15 @@ public class MainFrame extends JFrame {
     }
 
 
-    //load RaceComboBox and make it visible
+    //load Recources and make it visible
     private void chooseRace() {
         raceJComboBox.updateRaceComboBox();
         raceJComboBox.setVisible(true);
 
         choicesPanel.InstantiateChoicesComboBoxes();
         choicesPanel.setVisible(true);
+
+        lvlPanel.setVisible(true);
 
         raceJComboBox.repaint();
     }

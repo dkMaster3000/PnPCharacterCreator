@@ -8,13 +8,13 @@ public class CharacterPreviewPanel extends JPanel {
     private Character characterToDisplay;
     private RacePanel racePanel;
 
-    CharacterPreviewPanel(Character characterToDisplay) {
+    CharacterPreviewPanel() {
         super(true);
         this.characterToDisplay = characterToDisplay;
 
         setLayout(new GridLayout(0, 1, 10, 10));
 
-        racePanel = new RacePanel(characterToDisplay);
+        racePanel = new RacePanel();
         add(racePanel);
 
         setBackground(Color.ORANGE);

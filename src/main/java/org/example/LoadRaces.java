@@ -24,7 +24,8 @@ public class LoadRaces {
                         if (DateUtil.isCellDateFormatted(cell)) {
                             cellStrings.add(cell.getDateCellValue() + "");
                         } else {
-                            cellStrings.add(cell.getNumericCellValue() + "");
+                            int doubleValueToInt = (int) cell.getNumericCellValue();
+                            cellStrings.add(doubleValueToInt + "");
                         }
                         break;
                     case BOOLEAN:
@@ -81,6 +82,7 @@ public class LoadRaces {
 
             }
         }
+
         return races;
     }
 }
