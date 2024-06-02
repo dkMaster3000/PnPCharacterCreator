@@ -1,8 +1,8 @@
 package org.example.loaders;
 
 import org.apache.poi.ss.usermodel.Sheet;
-import org.example.MainFrame;
-import org.example.Race;
+import org.example.mainframe.MainFrame;
+import org.example.models.Race;
 
 import java.util.ArrayList;
 import java.util.List;

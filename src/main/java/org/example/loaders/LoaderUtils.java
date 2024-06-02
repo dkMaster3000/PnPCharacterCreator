@@ -15,8 +15,7 @@ public class LoaderUtils {
     public static Map<Integer, List<String>> getMap(Sheet raceSheet) {
         Map<Integer, List<String>> data = new HashMap<>();
         int hashRow = 0;
-        for (
-                Row row : raceSheet) {
+        for (Row row : raceSheet) {
             List<String> cellStrings = new ArrayList<String>();
             for (Cell cell : row) {
                 switch (cell.getCellType()) {

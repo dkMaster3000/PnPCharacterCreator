@@ -1,4 +1,6 @@
-package org.example;
+package org.example.mainframe;
+
+import org.example.models.Character;
 
 import javax.swing.*;
 import java.util.Objects;

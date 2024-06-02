@@ -1,4 +1,4 @@
-package org.example;
+package org.example.mainframe;
 
 import javax.swing.*;
 import java.util.List;

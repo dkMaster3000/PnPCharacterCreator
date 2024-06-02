@@ -1,4 +1,6 @@
-package org.example;
+package org.example.preview;
+
+import org.example.models.Character;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +10,7 @@ public class CharacterPreviewPanel extends JPanel {
     private Character characterToDisplay;
     private RacePanel racePanel;
 
-    CharacterPreviewPanel() {
+    public CharacterPreviewPanel() {
         super(true);
         this.characterToDisplay = characterToDisplay;
 

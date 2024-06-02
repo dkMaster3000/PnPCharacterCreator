@@ -1,8 +1,11 @@
-package org.example;
+package org.example.preview;
+
+import org.example.mainframe.MainFrame;
+import org.example.models.Character;
+import org.example.models.Race;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Objects;
 import java.util.stream.Stream;
 import java.util.List;
 

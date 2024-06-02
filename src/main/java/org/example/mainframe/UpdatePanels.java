@@ -1,4 +1,4 @@
-package org.example;
+package org.example.mainframe;
 
 public interface UpdatePanels {
 
