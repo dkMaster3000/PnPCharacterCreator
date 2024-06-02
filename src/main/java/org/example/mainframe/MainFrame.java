@@ -2,8 +2,11 @@ package org.example.mainframe;
 
 import org.apache.poi.ss.usermodel.Workbook;
 import org.example.loaders.RaceLoader;
+import org.example.loaders.TalentLoader;
 import org.example.models.Character;
 import org.example.models.Race;
+import org.example.models.Talent;
+import org.example.models.TalentMatrix;
 import org.example.preview.CharacterPreviewPanel;
 
 import javax.swing.*;
@@ -25,6 +28,8 @@ public class MainFrame extends JFrame {
 
     public static Character character = new Character();
     public static List<Race> races = new ArrayList<>();
+    public static List<Talent> talents = new ArrayList<>();
+    public static TalentMatrix talentMatrix = null;
 
     MainFrame() {
 
@@ -103,9 +108,10 @@ public class MainFrame extends JFrame {
         MainFrame.workbook = workbook;
 
         races = RaceLoader.getRaces();
+        talentMatrix = TalentLoader.getTalentMatrix();
 
         chooseRace();
-        System.out.println(races);
+        System.out.println(talentMatrix);
     }
 
 

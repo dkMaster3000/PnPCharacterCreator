@@ -35,4 +35,13 @@ public class Talent {
     public void setUnique(boolean unique) {
         this.unique = unique;
     }
+
+    @Override
+    public String toString() {
+        return "\nTalent{" +
+                "\nname='" + name + '\'' +
+                ", \ndescription='" + description + '\'' +
+                ", \nunique=" + unique +
+                '}';
+    }
 }

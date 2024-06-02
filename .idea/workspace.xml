@@ -4,22 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="improved loader structure">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="organize project into packages">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/CharacterPreviewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/ChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ChoicesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/Race.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Race.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RaceComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceComboBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/RacePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/preview/RacePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/StatModifierButtons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/StatModifierButtons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/UpdatePanels.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UpdatePanels.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/UploadPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/loaders/LoaderUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/loaders/LoaderUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/loaders/RaceLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/loaders/RaceLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/loaders/TalentLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/loaders/TalentLoader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Talent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Talent.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +204,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717304274605</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="organize project into packages">
+      <option name="closed" value="true" />
+      <created>1717305409918</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1717305409918</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -235,6 +232,7 @@
     <MESSAGE value="added lvl panel" />
     <MESSAGE value="added statchanging pannels" />
     <MESSAGE value="improved loader structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved loader structure" />
+    <MESSAGE value="organize project into packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="organize project into packages" />
   </component>
 </project>
