@@ -1,51 +1,23 @@
-package org.example;
+package org.example.loaders;
 
-import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.example.MainFrame;
+import org.example.Race;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class LoadRaces {
+public class RaceLoader {
 
-    public static Map<Integer, List<String>> getMap(Sheet raceSheet) {
-        Map<Integer, List<String>> data = new HashMap<>();
-        int hashRow = 0;
-        for (
-                Row row : raceSheet) {
-            List<String> cellStrings = new ArrayList<String>();
-            for (Cell cell : row) {
-                switch (cell.getCellType()) {
-                    case STRING:
-                        cellStrings.add(cell.getRichStringCellValue().getString());
-                        break;
-                    case NUMERIC:
-                        if (DateUtil.isCellDateFormatted(cell)) {
-                            cellStrings.add(cell.getDateCellValue() + "");
-                        } else {
-                            int doubleValueToInt = (int) cell.getNumericCellValue();
-                            cellStrings.add(doubleValueToInt + "");
-                        }
-                        break;
-                    case BOOLEAN:
-                        cellStrings.add(cell.getBooleanCellValue() + "");
-                        break;
-                    case FORMULA:
-                        cellStrings.add(cell.getCellFormula() + "");
-                        break;
-                }
-            }
+    //to simplify MainFrame and improve its readability
+    public static List<Race> getRaces() {
+        Sheet raceSheet = MainFrame.workbook.getSheet("Rassen");
 
-            if (!cellStrings.isEmpty()) {
-                data.put(hashRow, cellStrings);
-                hashRow++;
-            }
-
-        }
-        return data;
+        return getRacesFromMap(LoaderUtils.getMap(raceSheet));
     }
 
+    //main function
     public static List<Race> getRacesFromMap(Map<Integer, List<String>> raceData) {
         List<Race> races = new ArrayList<>();
         int activeRace = 0;

@@ -2,6 +2,8 @@ package org.example;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
+import org.example.loaders.RaceLoader;
+import org.example.loaders.LoaderUtils;
 
 import javax.swing.*;
 
@@ -99,9 +101,7 @@ public class MainFrame extends JFrame {
     private void onUpload(Workbook workbook) {
         MainFrame.workbook = workbook;
 
-        Sheet raceSheet = workbook.getSheet("Rassen");
-
-        races = LoadRaces.getRacesFromMap(LoadRaces.getMap(raceSheet));
+        races = RaceLoader.getRaces();
 
         chooseRace();
         System.out.println(races);
