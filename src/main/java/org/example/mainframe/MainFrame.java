@@ -25,10 +25,10 @@ public class MainFrame extends JFrame {
     RaceComboBox raceJComboBox;
     LvlPanel lvlPanel;
     ChoicesPanel choicesPanel;
+    TalentsPanel talentsPanel;
 
     public static Character character = new Character();
     public static List<Race> races = new ArrayList<>();
-    public static List<Talent> talents = new ArrayList<>();
     public static TalentMatrix talentMatrix = null;
 
     MainFrame() {
@@ -64,6 +64,12 @@ public class MainFrame extends JFrame {
         choicesPanel.setVisible(false);
         add(choicesPanel);
 
+        talentsPanel = new TalentsPanel(this::updatePanels);
+        talentsPanel.setBounds(0, 205, 855, 40);
+        talentsPanel.setBackground(Color.cyan);
+        talentsPanel.setVisible(false);
+        add(talentsPanel);
+
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
         characterPreviewBox = new JPanel();
@@ -97,6 +103,7 @@ public class MainFrame extends JFrame {
     private void updateMainFrame() {
         choicesPanel.InstantiateChoicesComboBoxes();
         lvlPanel.UpdateLvlPanel();
+        talentsPanel.UpdateTalentsPanel();
     }
 
     private void updatePreviewPanel() {
@@ -111,7 +118,6 @@ public class MainFrame extends JFrame {
         talentMatrix = TalentLoader.getTalentMatrix();
 
         chooseRace();
-        System.out.println(talentMatrix);
     }
 
 
@@ -120,10 +126,10 @@ public class MainFrame extends JFrame {
         raceJComboBox.updateRaceComboBox();
         raceJComboBox.setVisible(true);
 
-        choicesPanel.InstantiateChoicesComboBoxes();
         choicesPanel.setVisible(true);
 
         lvlPanel.setVisible(true);
+        talentsPanel.setVisible(true);
 
         raceJComboBox.repaint();
     }

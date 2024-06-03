@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Character {
 
-    private int lvl;
+    private int lvl = 0;
     private int addedHP = 0;
     private int strength = 0;
     private int intelligence = 0;
@@ -14,6 +14,8 @@ public class Character {
 
     private Race race = new Race("");
     private List<String> chosenBuffs = new ArrayList<>();
+
+    private List<Talent> talents = new ArrayList<>();
 
     public enum STATNAMES {
         HP,
@@ -70,6 +72,8 @@ public class Character {
         setStrength(0);
 
         setStatPoints(calculateStatPoints());
+
+        removeTalents();
     }
 
     public int getAddedHP() {
@@ -149,6 +153,22 @@ public class Character {
 
     private int calculateStatPoints() {
         return 2 + (lvl * 3);
+    }
+
+    public List<Talent> getTalents() {
+        return talents;
+    }
+
+    public void updateTalents(int choiceNumber, Talent newTalent) {
+        if (!talents.isEmpty() && talents.size() - 1 >= choiceNumber) {
+            talents.set(choiceNumber, newTalent);
+        } else {
+            talents.add(choiceNumber, newTalent);
+        }
+    }
+
+    public void removeTalents() {
+        talents = new ArrayList<>();
     }
 
     public String getStringToEnum(STATNAMES statname) {
