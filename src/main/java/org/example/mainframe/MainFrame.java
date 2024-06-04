@@ -1,6 +1,7 @@
 package org.example.mainframe;
 
 import org.apache.poi.ss.usermodel.Workbook;
+import org.example.loaders.RPGClassLoader;
 import org.example.loaders.RaceLoader;
 import org.example.loaders.TalentLoader;
 import org.example.models.Character;
@@ -114,6 +115,7 @@ public class MainFrame extends JFrame {
 
         races = RaceLoader.getRaces();
         talentMatrix = TalentLoader.getTalentMatrix();
+        RPGClassLoader.getRPGClass();
 
         chooseRace();
     }
