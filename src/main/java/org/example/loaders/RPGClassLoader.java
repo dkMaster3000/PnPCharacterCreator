@@ -14,8 +14,7 @@ public class RPGClassLoader {
     //to simplify MainFrame and improve its readability
     public static List<RPGClass> getRPGClass() {
         Sheet rpgClassSheet = MainFrame.workbook.getSheet("Klassen");
-
-        System.out.println(LoaderUtils.getMap(rpgClassSheet));
+        
         return getRPGClassFromMap(LoaderUtils.getMap(rpgClassSheet));
     }
 
@@ -61,7 +60,6 @@ public class RPGClassLoader {
             }
 
         }
-        System.out.println(rpgClasses);
         return rpgClasses;
     }
 

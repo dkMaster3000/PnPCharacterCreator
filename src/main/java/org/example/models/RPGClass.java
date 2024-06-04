@@ -12,6 +12,10 @@ public class RPGClass {
         Name = name;
     }
 
+    public String getName() {
+        return Name;
+    }
+
     public List<RPGClassLevel> getClassLvls() {
         return classLvls;
     }
