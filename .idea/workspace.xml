@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="creating talentmatrix and talentloader">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="start creating talentpanel and combobox">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/TalentMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/TalentMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717307402264</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="start creating talentpanel and combobox">
+      <option name="closed" value="true" />
+      <created>1717438489760</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1717438489760</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -242,7 +250,8 @@
     <MESSAGE value="improved loader structure" />
     <MESSAGE value="organize project into packages" />
     <MESSAGE value="creating talentmatrix and talentloader" />
-    <option name="LAST_COMMIT_MESSAGE" value="creating talentmatrix and talentloader" />
+    <MESSAGE value="start creating talentpanel and combobox" />
+    <option name="LAST_COMMIT_MESSAGE" value="start creating talentpanel and combobox" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -65,7 +65,7 @@ public class MainFrame extends JFrame {
         add(choicesPanel);
 
         talentsPanel = new TalentsPanel(this::updatePanels);
-        talentsPanel.setBounds(0, 205, 855, 40);
+        talentsPanel.setBounds(0, 205, 855, 45);
         talentsPanel.setBackground(Color.cyan);
         talentsPanel.setVisible(false);
         add(talentsPanel);

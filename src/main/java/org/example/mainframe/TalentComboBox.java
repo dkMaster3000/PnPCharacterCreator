@@ -3,89 +3,79 @@ package org.example.mainframe;
 import org.example.models.Talent;
 
 import javax.swing.*;
+import java.awt.event.ActionListener;
 import java.util.List;
-import java.util.Objects;
 import java.util.stream.Collectors;
-
-import static java.util.stream.Collectors.toList;
 
 public class TalentComboBox extends JComboBox<String> {
 
     private final UpdatePanels updatePanels;
     private final int talentNumber;
 
+    //important, because al must be removed if we modify the list of choices
+    //because if we modify the list it will be triggered
+    ActionListener updateCharacterTalentAL = _ -> updateCharacterTalent();
 
     public TalentComboBox(UpdatePanels updatePanels, int talentNumber) {
         this.updatePanels = updatePanels;
 
         this.talentNumber = talentNumber;
 
-        updateTalentChoices(true);
+        System.out.println("Create Talent Combo Box: " + talentNumber);
+        updateTalentChoices();
+
+        updateCharacterTalent();
     }
 
-    public void updateTalentChoices(boolean triggerReUpdate) {
+    //invoked by other TalentComboBoxes
+    public void updateTalentChoices() {
         System.out.println("Update Talent Combo Box: " + talentNumber);
 
-//        if (TalentsPanel.usedTalents.size() - 1 >= talentNumber) {
-//            if (Objects.equals(TalentsPanel.usedTalents.get(talentNumber), (String) getSelectedItem())) {
-//                System.out.println("SKIPPED: Update Talent Combo Box: " + talentNumber);
-//                return;
-//            }
-//        }
+        removeActionListener(updateCharacterTalentAL);
 
         DefaultComboBoxModel<String> talentNamesModel = new DefaultComboBoxModel<>(getTalents());
         this.setModel(talentNamesModel);
 
         setSelectedIndex(0);
-        addActionListener(e -> updateCharacterTalent(true));
+        addActionListener(updateCharacterTalentAL);
 
-        if (triggerReUpdate) {
-            System.out.println("Retrigger after creation!");
-            updateCharacterTalent(talentNumber > 0);
-        }
+        System.out.println("Finish: Update Talent Combo Box: " + talentNumber);
     }
 
-    private void updateCharacterTalent(boolean triggerReUpdate) {
-
+    //modify character talents, modify other TalentComboBoxes, tells mainframe to update the other frames
+    private void updateCharacterTalent() {
         String talentName = (String) getSelectedItem();
+
+        //modify character talents
         MainFrame.character.updateTalents(talentNumber, MainFrame.talentMatrix.getTalentByName(talentName));
 
-        System.out.println("----------------------------------------------");
+        //update list that contains all used talents
+        TalentsPanel.setUsedTalentName(talentNumber, talentName);
 
-        System.out.println("triggeReUpdate: " + triggerReUpdate);
-        System.out.println("Before change: " + talentNumber + ": " + TalentsPanel.usedTalents);
-
-        if (TalentsPanel.usedTalents.size() - 1 >= talentNumber) {
-            TalentsPanel.usedTalents.set(talentNumber, talentName);
-        } else {
-            TalentsPanel.usedTalents.add(talentNumber, talentName);
+        //update the other TalentComboBoxes
+        for (int i = 0; i < TalentsPanel.talentComboBoxes.size(); i++) {
+            if (i != talentNumber) {
+                TalentsPanel.talentComboBoxes.get(i).updateTalentChoices();
+            }
         }
 
-        System.out.println("After change: " + talentNumber + ": " + TalentsPanel.usedTalents);
-
-
-        if (triggerReUpdate) {
-            System.out.println("Theoretical Reupdate");
-            updatePanels.updatePanels();
-        }
-        System.out.println("----------------------------------------------");
+        //tells mainframe to update the other frames
+        updatePanels.updatePanels();
     }
 
     private String[] getTalents() {
         List<String> talentsChoices = MainFrame.talentMatrix.getTalents().stream().map(Talent::getName).toList();
 
-        List<String> talentChoicesWithoutUsedTalents = talentsChoices.stream().filter(talentChoice -> {
-            boolean talentUnused = true;
-            for (String usedTalent : TalentsPanel.usedTalents) {
-                talentUnused = !Objects.equals(talentChoice, usedTalent);
-            }
-            return talentUnused;
-        }).collect(toList());
+        //filter out all usedTalents
+        List<String> talentChoicesWithoutUsedTalents =
+                talentsChoices
+                        .stream()
+                        .filter(talentChoice -> !TalentsPanel.usedTalents.contains(talentChoice))
+                        .collect(Collectors.toList());
 
         //add its own choice if exists
-        if (TalentsPanel.usedTalents.size() - 1 >= talentNumber) {
-            talentChoicesWithoutUsedTalents.addFirst(TalentsPanel.usedTalents.get(talentNumber));
-        }
+        String ownChoice = TalentsPanel.getUsedTalentName(talentNumber);
+        if (ownChoice != null) talentChoicesWithoutUsedTalents.addFirst(ownChoice);
 
         return talentChoicesWithoutUsedTalents.toArray(String[]::new);
     }
