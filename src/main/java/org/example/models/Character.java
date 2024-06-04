@@ -12,7 +12,7 @@ public class Character {
     private int dexterity = 0;
     private int statPoints = 0;
 
-    private Race race = new Race("");
+    private Race race = null;
     private List<String> chosenRaceBuffs = new ArrayList<>();
 
     private RPGClass rpgClass = new RPGClass("");

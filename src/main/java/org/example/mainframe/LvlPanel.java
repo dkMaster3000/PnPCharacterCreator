@@ -20,7 +20,7 @@ public class LvlPanel extends JPanel {
         add(lvlComboBoxLabel);
 
         lvlComboBox.setSelectedIndex(0);
-        lvlComboBox.addActionListener(e -> updateChracterLvl(Integer.parseInt((String) Objects.requireNonNull(lvlComboBox.getSelectedItem()))));
+        lvlComboBox.addActionListener(_ -> updateChracterLvl(Integer.parseInt((String) Objects.requireNonNull(lvlComboBox.getSelectedItem()))));
         add(lvlComboBox);
 
         pointsToSpentLabel = new JLabel();
@@ -42,6 +42,8 @@ public class LvlPanel extends JPanel {
     //modify character, tells mainframe to update the other frames
     private void updateChracterLvl(int level) {
         MainFrame.character.setLvl(level);
+
+        UpdateLvlPanel();
 
         updatePanels.updatePanels();
     }

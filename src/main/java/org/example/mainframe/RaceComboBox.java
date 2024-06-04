@@ -7,22 +7,23 @@ import java.util.Objects;
 
 public class RaceComboBox extends JComboBox<String> {
 
-    private final UpdatePanels updatePanels;
-
     RaceComboBox(UpdatePanels updatePanels) {
-        this.updatePanels = updatePanels;
-    }
 
-    public void updateRaceComboBox() {
         String[] raceNames = MainFrame.races.stream().map(Race::getName).toArray(String[]::new);
         DefaultComboBoxModel<String> raceNamesModel = new DefaultComboBoxModel<>(raceNames);
         this.setModel(raceNamesModel);
         setSelectedIndex(0);
 
-        addActionListener(e -> updateRaceOfCharacter());
+        addActionListener(_ -> {
+            //modify character
+            updateRaceOfCharacter();
+            //tell MainFrame to update the panels
+            updatePanels.updatePanels();
+        });
 
         updateRaceOfCharacter();
     }
+
 
     private void updateRaceOfCharacter() {
         for (Race race : MainFrame.races) {
@@ -30,6 +31,5 @@ public class RaceComboBox extends JComboBox<String> {
                 MainFrame.character.setRace(race);
             }
         }
-        updatePanels.updatePanels();
     }
 }

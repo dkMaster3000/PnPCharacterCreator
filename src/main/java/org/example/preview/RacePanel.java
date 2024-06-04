@@ -27,6 +27,8 @@ public class RacePanel extends JPanel {
     //parent passes the new race
     //here the data must be updated
     public void updateRace(Character character) {
+        if (character.getRace() == null) return;
+
         this.character = character;
         race = character.getRace();
 
@@ -70,7 +72,7 @@ public class RacePanel extends JPanel {
         raceMovement.setText("Bewegungsreichweite: " + race.getMovement());
         add(raceMovement);
 
-        List<String> allBuffs = Stream.concat(race.getBuffs().stream(), character.getChosenBuffs().stream()).toList();
+        List<String> allBuffs = Stream.concat(race.getBuffs().stream(), character.getChosenRaceBuffs().stream()).toList();
 
         if (!allBuffs.isEmpty()) {
             JLabel spaceLabel = new JLabel(" ");

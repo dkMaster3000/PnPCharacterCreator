@@ -5,6 +5,7 @@ import org.example.loaders.RPGClassLoader;
 import org.example.loaders.RaceLoader;
 import org.example.loaders.TalentLoader;
 import org.example.models.Character;
+import org.example.models.RPGClass;
 import org.example.models.Race;
 import org.example.models.TalentMatrix;
 import org.example.preview.CharacterPreviewPanel;
@@ -26,13 +27,15 @@ public class MainFrame extends JFrame {
     LvlPanel lvlPanel;
     RaceChoicesPanel raceChoicesPanel;
     TalentsPanel talentsPanel;
+    RPGClassPanel rpgClassPanel;
 
     public static Character character = new Character();
     public static List<Race> races = new ArrayList<>();
     public static TalentMatrix talentMatrix = null;
+    public static List<RPGClass> rpgClasses = null;
 
+    //STEP: 1
     MainFrame() {
-
         setTitle("PnP Character Creator");
         setSize(1280, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -46,31 +49,8 @@ public class MainFrame extends JFrame {
         uploadPanel.setBackground(Color.lightGray);
         add(uploadPanel);
 
-        raceJComboBox = new RaceComboBox(this::updatePanels);
-        raceJComboBox.setBounds(5, 65, 150, 40);
-        raceJComboBox.setVisible(false);
-        add(raceJComboBox);
-
-        lvlPanel = new LvlPanel(this::updatePanels);
-        lvlPanel.setBounds(0, 110, 855, 45);
-        lvlPanel.setBackground(Color.magenta);
-        lvlPanel.setVisible(false);
-        add(lvlPanel);
-
-        raceChoicesPanel = new RaceChoicesPanel(this::updatePanels);
-        raceChoicesPanel.setBounds(0, 160, 855, 45);
-        raceChoicesPanel.setBackground(Color.orange);
-        raceChoicesPanel.setVisible(false);
-        add(raceChoicesPanel);
-
-        talentsPanel = new TalentsPanel(this::updatePanels);
-        talentsPanel.setBounds(0, 210, 855, 45);
-        talentsPanel.setBackground(Color.cyan);
-        talentsPanel.setVisible(false);
-        add(talentsPanel);
-
-
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
+
         characterPreviewBox = new JPanel();
         characterPreviewBox.setLayout(null);
         characterPreviewBox.setBounds(860, 0, 400, 750);
@@ -88,6 +68,54 @@ public class MainFrame extends JFrame {
         characterPreviewBox.validate();
 
         repaint();
+    }
+
+    //STEP: 2
+    //invoked by upload button
+    private void onUpload(Workbook workbook) {
+        MainFrame.workbook = workbook;
+
+        races = RaceLoader.getRaces();
+        talentMatrix = TalentLoader.getTalentMatrix();
+        rpgClasses = RPGClassLoader.getRPGClass();
+
+        createPanelsAfterUpload();
+    }
+
+    //STEP: 3
+    private void createPanelsAfterUpload() {
+        raceJComboBox = new RaceComboBox(this::updatePanels);
+        raceJComboBox.setBounds(5, 65, 150, 40);
+        raceJComboBox.setVisible(true);
+        add(raceJComboBox);
+
+        lvlPanel = new LvlPanel(this::updatePanels);
+        lvlPanel.setBounds(0, 110, 855, 45);
+        lvlPanel.setBackground(Color.magenta);
+        lvlPanel.setVisible(true);
+        add(lvlPanel);
+
+        raceChoicesPanel = new RaceChoicesPanel(this::updatePanels);
+        raceChoicesPanel.setBounds(0, 160, 855, 45);
+        raceChoicesPanel.setBackground(Color.orange);
+        raceChoicesPanel.setVisible(true);
+        add(raceChoicesPanel);
+
+        talentsPanel = new TalentsPanel(this::updatePanels);
+        talentsPanel.setBounds(0, 210, 855, 45);
+        talentsPanel.setBackground(Color.cyan);
+        talentsPanel.setVisible(true);
+        add(talentsPanel);
+
+        rpgClassPanel = new RPGClassPanel(this::updatePanels);
+        rpgClassPanel.setBounds(0, 260, 855, 45);
+        rpgClassPanel.setBackground(Color.green);
+        rpgClassPanel.setVisible(true);
+        add(rpgClassPanel);
+
+        repaint();
+
+        updatePanels();
     }
 
     public static void main(String[] args) {
@@ -108,31 +136,4 @@ public class MainFrame extends JFrame {
     private void updatePreviewPanel() {
         characterPreviewPanel.updateCharacter(character);
     }
-
-    //invoked by upload button
-    private void onUpload(Workbook workbook) {
-        MainFrame.workbook = workbook;
-
-        races = RaceLoader.getRaces();
-        talentMatrix = TalentLoader.getTalentMatrix();
-        RPGClassLoader.getRPGClass();
-
-        chooseRace();
-    }
-
-
-    //load Recources and make it visible
-    private void chooseRace() {
-        raceJComboBox.updateRaceComboBox();
-        raceJComboBox.setVisible(true);
-
-        raceChoicesPanel.setVisible(true);
-
-        lvlPanel.setVisible(true);
-        talentsPanel.setVisible(true);
-
-        raceJComboBox.repaint();
-    }
-
-
 }

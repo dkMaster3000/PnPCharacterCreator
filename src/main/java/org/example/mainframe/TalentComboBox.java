@@ -10,16 +10,21 @@ import java.util.stream.Collectors;
 
 public class TalentComboBox extends JComboBox<String> {
 
-    private final UpdatePanels updatePanels;
     private final int talentNumber;
 
     //important, because al must be removed if we modify the list of choices
     //because if we modify the list it will be triggered
-    ActionListener updateCharacterTalentAL = _ -> updateCharacterTalent();
+    ActionListener updateCharacterTalentAL;
 
     public TalentComboBox(UpdatePanels updatePanels, int talentNumber) {
-        this.updatePanels = updatePanels;
         this.talentNumber = talentNumber;
+
+        this.updateCharacterTalentAL = _ -> {
+            updateCharacterTalent();
+
+            //tells mainframe to update the other frames
+            updatePanels.updatePanels();
+        };
 
         updateTalentChoices();
 
@@ -37,7 +42,7 @@ public class TalentComboBox extends JComboBox<String> {
         addActionListener(updateCharacterTalentAL);
     }
 
-    //modify character talents, modify all TalentComboBoxes, tells mainframe to update the other frames
+    //modify character talents, modify all TalentComboBoxes
     private void updateCharacterTalent() {
         String talentName = (String) getSelectedItem();
 
@@ -51,9 +56,6 @@ public class TalentComboBox extends JComboBox<String> {
         for (int i = 0; i < TalentsPanel.talentComboBoxes.size(); i++) {
             TalentsPanel.talentComboBoxes.get(i).updateTalentChoices();
         }
-
-        //tells mainframe to update the other frames
-        updatePanels.updatePanels();
     }
 
     private String[] getTalents() {
@@ -92,6 +94,4 @@ public class TalentComboBox extends JComboBox<String> {
 
         return talentChoicesWithoutUsedTalents.toArray(String[]::new);
     }
-
-
 }

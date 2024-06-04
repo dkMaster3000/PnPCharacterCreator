@@ -1,5 +1,7 @@
 package org.example.mainframe;
 
+import org.example.models.Race;
+
 import javax.swing.*;
 import java.util.List;
 import java.util.Objects;
@@ -16,11 +18,13 @@ public class RaceChoicesPanel extends JPanel {
     public RaceChoicesPanel(UpdatePanels updatePanels) {
         this.updatePanels = updatePanels;
 
-        JLabel talentsLabel = new JLabel("Auswahl: ");
+        JLabel talentsLabel = new JLabel("Auswahl Rassen Talente: ");
         add(talentsLabel);
 
         comboboxHolder = new JPanel();
         add(comboboxHolder);
+
+        InstantiateChoicesComboBoxes();
     }
 
     //invoked by a function in MainFrame, if the chracter has been modified
@@ -44,7 +48,12 @@ public class RaceChoicesPanel extends JPanel {
             choiceComboBox.setSelectedIndex(0);
 
             int chosenBuffNumber = i;
-            choiceComboBox.addActionListener(e -> updateChosenBuffsOfCharacter(chosenBuffNumber, (String) choiceComboBox.getSelectedItem()));
+            choiceComboBox.addActionListener(_ -> {
+                //modify character
+                updateChosenBuffsOfCharacter(chosenBuffNumber, (String) choiceComboBox.getSelectedItem());
+                //tells MainFrame to update panels
+                updatePanels.updatePanels();
+            });
             comboboxHolder.add(choiceComboBox);
 
             updateChosenBuffsOfCharacter(chosenBuffNumber, (String) choiceComboBox.getSelectedItem());
@@ -56,7 +65,5 @@ public class RaceChoicesPanel extends JPanel {
     //modify character chosenBuffs, tells mainframe to update the other frames
     private void updateChosenBuffsOfCharacter(int chosenBuffNumber, String buff) {
         MainFrame.character.updateChosenRaceBuffs(chosenBuffNumber, buff);
-
-        updatePanels.updatePanels();
     }
 }

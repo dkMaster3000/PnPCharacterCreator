@@ -9,7 +9,7 @@ public class TalentsPanel extends JPanel {
     private final UpdatePanels updatePanels;
 
     //update checker
-    private int previousLvl = 0;
+    private int previousLvl = -1;
 
     //panel for ComboBoxesObject
     JPanel comboboxHolder;
@@ -28,6 +28,8 @@ public class TalentsPanel extends JPanel {
 
         comboboxHolder = new JPanel();
         add(comboboxHolder);
+
+        UpdateTalentsPanel();
     }
 
     //invoked by a function in MainFrame, if the chracter has been modified
