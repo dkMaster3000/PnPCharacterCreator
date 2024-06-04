@@ -13,7 +13,11 @@ public class Character {
     private int statPoints = 0;
 
     private Race race = new Race("");
-    private List<String> chosenBuffs = new ArrayList<>();
+    private List<String> chosenRaceBuffs = new ArrayList<>();
+
+    private RPGClass rpgClass = new RPGClass("");
+    private List<Spell> chosenSpells = new ArrayList<>();
+    private List<Spell> chosenPassivs = new ArrayList<>();
 
     private List<Talent> talents = new ArrayList<>();
 
@@ -32,31 +36,6 @@ public class Character {
     public Character() {
         lvl = 1;
         statPoints = calculateStatPoints();
-    }
-
-    public Race getRace() {
-        return race;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
-        removeChosenBuffs();
-    }
-
-    public List<String> getChosenBuffs() {
-        return chosenBuffs;
-    }
-
-    public void updateChosenBuffs(int choiceNumber, String newChosenBuff) {
-        if (!chosenBuffs.isEmpty() && chosenBuffs.size() - 1 >= choiceNumber) {
-            chosenBuffs.set(choiceNumber, newChosenBuff);
-        } else {
-            chosenBuffs.add(choiceNumber, newChosenBuff);
-        }
-    }
-
-    public void removeChosenBuffs() {
-        chosenBuffs = new ArrayList<>();
     }
 
     public int getLvl() {
@@ -124,6 +103,86 @@ public class Character {
         setDexterity(modifyStatValue(dexterity, modifyValue));
     }
 
+    public int getStatPoints() {
+        return statPoints;
+    }
+
+    public void setStatPoints(int statPoints) {
+        this.statPoints = statPoints;
+    }
+
+    private int calculateStatPoints() {
+        return 2 + (lvl * 3);
+    }
+
+    public Race getRace() {
+        return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+        removeChosenRaceBuffs();
+    }
+
+    public List<String> getChosenRaceBuffs() {
+        return chosenRaceBuffs;
+    }
+
+    public void updateChosenRaceBuffs(int choiceNumber, String newChosenBuff) {
+        if (!chosenRaceBuffs.isEmpty() && chosenRaceBuffs.size() - 1 >= choiceNumber) {
+            chosenRaceBuffs.set(choiceNumber, newChosenBuff);
+        } else {
+            chosenRaceBuffs.add(choiceNumber, newChosenBuff);
+        }
+    }
+
+    public RPGClass getRpgClass() {
+        return rpgClass;
+    }
+
+    public void setRpgClass(RPGClass rpgClass) {
+        this.rpgClass = rpgClass;
+        chosenSpells = new ArrayList<>();
+        chosenPassivs = new ArrayList<>();
+    }
+
+    public List<Spell> getChosenSpells() {
+        return chosenSpells;
+    }
+
+    public void setChosenSpells(List<Spell> chosenSpells) {
+        this.chosenSpells = chosenSpells;
+    }
+
+    public List<Spell> getChosenPassivs() {
+        return chosenPassivs;
+    }
+
+    public void setChosenPassivs(List<Spell> chosenPassivs) {
+        this.chosenPassivs = chosenPassivs;
+    }
+
+    public void removeChosenRaceBuffs() {
+        chosenRaceBuffs = new ArrayList<>();
+    }
+
+    public List<Talent> getTalents() {
+        return talents;
+    }
+
+    public void updateTalents(int choiceNumber, Talent newTalent) {
+        if (!talents.isEmpty() && talents.size() - 1 >= choiceNumber) {
+            talents.set(choiceNumber, newTalent);
+        } else {
+            talents.add(choiceNumber, newTalent);
+        }
+    }
+
+    public void removeTalents() {
+        talents = new ArrayList<>();
+    }
+
+    //----------------------------- UTIL HELPER ------------------------------------------
     private int modifyStatValue(int statToModify, int modifyValue) {
 
         if (modifyValue > 0) {
@@ -141,34 +200,6 @@ public class Character {
         }
 
         return statToModify;
-    }
-
-    public int getStatPoints() {
-        return statPoints;
-    }
-
-    public void setStatPoints(int statPoints) {
-        this.statPoints = statPoints;
-    }
-
-    private int calculateStatPoints() {
-        return 2 + (lvl * 3);
-    }
-
-    public List<Talent> getTalents() {
-        return talents;
-    }
-
-    public void updateTalents(int choiceNumber, Talent newTalent) {
-        if (!talents.isEmpty() && talents.size() - 1 >= choiceNumber) {
-            talents.set(choiceNumber, newTalent);
-        } else {
-            talents.add(choiceNumber, newTalent);
-        }
-    }
-
-    public void removeTalents() {
-        talents = new ArrayList<>();
     }
 
     public String getStringToEnum(STATNAMES statname) {

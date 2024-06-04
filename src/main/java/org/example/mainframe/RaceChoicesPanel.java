@@ -55,7 +55,7 @@ public class RaceChoicesPanel extends JPanel {
 
     //modify character chosenBuffs, tells mainframe to update the other frames
     private void updateChosenBuffsOfCharacter(int chosenBuffNumber, String buff) {
-        MainFrame.character.updateChosenBuffs(chosenBuffNumber, buff);
+        MainFrame.character.updateChosenRaceBuffs(chosenBuffNumber, buff);
 
         updatePanels.updatePanels();
     }
