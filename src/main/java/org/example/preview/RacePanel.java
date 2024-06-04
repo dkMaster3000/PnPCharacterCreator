@@ -3,6 +3,7 @@ package org.example.preview;
 import org.example.mainframe.MainFrame;
 import org.example.models.Character;
 import org.example.models.Race;
+import org.example.models.Talent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -78,7 +79,7 @@ public class RacePanel extends JPanel {
             JLabel seperatorLabel = new JLabel("----------------------");
             add(seperatorLabel);
 
-            JLabel buffNotifyerLabel = new JLabel("Buffs:");
+            JLabel buffNotifyerLabel = new JLabel("Rassen Buffs:");
             add(buffNotifyerLabel);
 
             for (String buff : allBuffs) {
@@ -94,10 +95,26 @@ public class RacePanel extends JPanel {
             JLabel seperatorLabel = new JLabel("----------------------");
             add(seperatorLabel);
 
-            JLabel debuffNotifyerLabel = new JLabel("Debuffs:");
+            JLabel debuffNotifyerLabel = new JLabel("Rassen Debuffs:");
             add(debuffNotifyerLabel);
             for (String debuff : race.getDebuffs()) {
                 JLabel newDebuff = new JLabel(debuff);
+                add(newDebuff);
+            }
+        }
+
+        if (!character.getTalents().isEmpty()) {
+            JLabel spaceLabel = new JLabel(" ");
+            add(spaceLabel);
+
+            JLabel seperatorLabel = new JLabel("----------------------");
+            add(seperatorLabel);
+
+            JLabel debuffNotifyerLabel = new JLabel("Talente:");
+            add(debuffNotifyerLabel);
+
+            for (Talent talent : character.getTalents()) {
+                JLabel newDebuff = new JLabel(talent.getName() + ": " + talent.getDescription());
                 add(newDebuff);
             }
         }
