@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="start creating talentpanel and combobox">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created talentpanel and its combobox">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceChoicesPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" afterDir="false" />
@@ -228,7 +229,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717438489760</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="created talentpanel and its combobox">
+      <option name="closed" value="true" />
+      <created>1717479406459</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1717479406459</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -251,7 +260,8 @@
     <MESSAGE value="organize project into packages" />
     <MESSAGE value="creating talentmatrix and talentloader" />
     <MESSAGE value="start creating talentpanel and combobox" />
-    <option name="LAST_COMMIT_MESSAGE" value="start creating talentpanel and combobox" />
+    <MESSAGE value="created talentpanel and its combobox" />
+    <option name="LAST_COMMIT_MESSAGE" value="created talentpanel and its combobox" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

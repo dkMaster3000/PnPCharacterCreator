@@ -12,7 +12,7 @@ public class TalentsPanel extends JPanel {
     private int previousLvl = 0;
 
     //panel for ComboBoxesObject
-    JPanel onlyTalentsPanel;
+    JPanel comboboxHolder;
 
     //stores talents that are chosen by ComboBoxes
     public static List<String> usedTalents = new ArrayList<>();
@@ -26,8 +26,8 @@ public class TalentsPanel extends JPanel {
         JLabel talentsLabel = new JLabel("Talente: ");
         add(talentsLabel);
 
-        onlyTalentsPanel = new JPanel();
-        add(onlyTalentsPanel);
+        comboboxHolder = new JPanel();
+        add(comboboxHolder);
     }
 
     //invoked by a function in MainFrame, if the chracter has been modified
@@ -45,15 +45,15 @@ public class TalentsPanel extends JPanel {
 
     //generate ComboBoxes that can modify the character
     private void generateTalentComboBoxes() {
-        onlyTalentsPanel.removeAll();
+        comboboxHolder.removeAll();
 
         for (int i = 0; i < MainFrame.talentMatrix.calculateTalents(); i++) {
             TalentComboBox talentComboBox = new TalentComboBox(updatePanels, i);
             talentComboBoxes.add(talentComboBox);
-            onlyTalentsPanel.add(talentComboBox);
+            comboboxHolder.add(talentComboBox);
         }
 
-        onlyTalentsPanel.revalidate();
+        comboboxHolder.revalidate();
     }
 
     public static String getUsedTalentName(int talentNumber) {

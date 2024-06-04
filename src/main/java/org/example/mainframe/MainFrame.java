@@ -5,7 +5,6 @@ import org.example.loaders.RaceLoader;
 import org.example.loaders.TalentLoader;
 import org.example.models.Character;
 import org.example.models.Race;
-import org.example.models.Talent;
 import org.example.models.TalentMatrix;
 import org.example.preview.CharacterPreviewPanel;
 
@@ -24,7 +23,7 @@ public class MainFrame extends JFrame {
     JPanel characterPreviewBox;
     RaceComboBox raceJComboBox;
     LvlPanel lvlPanel;
-    ChoicesPanel choicesPanel;
+    RaceChoicesPanel raceChoicesPanel;
     TalentsPanel talentsPanel;
 
     public static Character character = new Character();
@@ -57,15 +56,14 @@ public class MainFrame extends JFrame {
         lvlPanel.setVisible(false);
         add(lvlPanel);
 
-
-        choicesPanel = new ChoicesPanel(this::updatePanels);
-        choicesPanel.setBounds(0, 160, 300, 40);
-        choicesPanel.setBackground(Color.orange);
-        choicesPanel.setVisible(false);
-        add(choicesPanel);
+        raceChoicesPanel = new RaceChoicesPanel(this::updatePanels);
+        raceChoicesPanel.setBounds(0, 160, 855, 45);
+        raceChoicesPanel.setBackground(Color.orange);
+        raceChoicesPanel.setVisible(false);
+        add(raceChoicesPanel);
 
         talentsPanel = new TalentsPanel(this::updatePanels);
-        talentsPanel.setBounds(0, 205, 855, 45);
+        talentsPanel.setBounds(0, 210, 855, 45);
         talentsPanel.setBackground(Color.cyan);
         talentsPanel.setVisible(false);
         add(talentsPanel);
@@ -101,7 +99,7 @@ public class MainFrame extends JFrame {
     }
 
     private void updateMainFrame() {
-        choicesPanel.InstantiateChoicesComboBoxes();
+        raceChoicesPanel.InstantiateChoicesComboBoxes();
         lvlPanel.UpdateLvlPanel();
         talentsPanel.UpdateTalentsPanel();
     }
@@ -126,7 +124,7 @@ public class MainFrame extends JFrame {
         raceJComboBox.updateRaceComboBox();
         raceJComboBox.setVisible(true);
 
-        choicesPanel.setVisible(true);
+        raceChoicesPanel.setVisible(true);
 
         lvlPanel.setVisible(true);
         talentsPanel.setVisible(true);

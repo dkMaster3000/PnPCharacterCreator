@@ -18,10 +18,8 @@ public class TalentComboBox extends JComboBox<String> {
 
     public TalentComboBox(UpdatePanels updatePanels, int talentNumber) {
         this.updatePanels = updatePanels;
-
         this.talentNumber = talentNumber;
 
-        System.out.println("Create Talent Combo Box: " + talentNumber);
         updateTalentChoices();
 
         updateCharacterTalent();
@@ -29,17 +27,13 @@ public class TalentComboBox extends JComboBox<String> {
 
     //invoked by other TalentComboBoxes
     public void updateTalentChoices() {
-        System.out.println("Update Talent Combo Box: " + talentNumber);
-
         removeActionListener(updateCharacterTalentAL);
 
         DefaultComboBoxModel<String> talentNamesModel = new DefaultComboBoxModel<>(getTalents());
         this.setModel(talentNamesModel);
-
         setSelectedIndex(0);
-        addActionListener(updateCharacterTalentAL);
 
-        System.out.println("Finish: Update Talent Combo Box: " + talentNumber);
+        addActionListener(updateCharacterTalentAL);
     }
 
     //modify character talents, modify other TalentComboBoxes, tells mainframe to update the other frames
