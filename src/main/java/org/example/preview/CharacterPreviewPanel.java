@@ -6,7 +6,6 @@ import org.example.models.Character;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.stream.Stream;
 import java.util.List;
 
 public class CharacterPreviewPanel extends JPanel {
@@ -25,7 +24,6 @@ public class CharacterPreviewPanel extends JPanel {
     //here the data must be updated
     public void UpdateCharacterPreviewPanel() {
         this.character = MainFrame.character;
-        if (character.getRace() == null) return;
 
         race = character.getRace();
 
@@ -35,153 +33,131 @@ public class CharacterPreviewPanel extends JPanel {
     private void DisplayNewValues() {
         removeAll();
 
-        JLabel raceName = new JLabel();
-        raceName.setText("Rasse: " + race.getName());
-        add(raceName);
+        addSpace();
 
-        JLabel raceHeight = new JLabel();
-        raceHeight.setText("Größe: " + race.getHeight());
-        add(raceHeight);
+        addJLabel("Rasse: " + race.getName());
 
-        JLabel raceWeight = new JLabel();
-        raceWeight.setText("Gewicht: " + race.getWeight());
-        add(raceWeight);
+        addJLabel("Größe: " + race.getHeight());
 
-        JLabel characterHP = new JLabel();
+        addJLabel("Gewicht: " + race.getWeight());
+
         int totalHP = character.getAddedHP() + Integer.parseInt(race.getHp());
-        characterHP.setText("HP: " + totalHP);
-        add(characterHP);
+        addJLabel("HP: " + totalHP);
 
-        JLabel characterStrength = new JLabel();
-        characterStrength.setText("Stärke: " + character.getStrength());
-        add(characterStrength);
+        addJLabel("Stärke: " + character.getStrength());
 
-        JLabel characterIntelligence = new JLabel();
-        characterIntelligence.setText("Intelligenz: " + character.getIntelligence());
-        add(characterIntelligence);
+        addJLabel("Intelligenz: " + character.getIntelligence());
 
-        JLabel characterDex = new JLabel();
-        characterDex.setText("Geschick: " + character.getDexterity());
-        add(characterDex);
+        addJLabel("Geschick: " + character.getDexterity());
 
-        JLabel raceMovement = new JLabel();
-        raceMovement.setText("Bewegungsreichweite: " + race.getMovement());
-        add(raceMovement);
+        addJLabel("Bewegungsreichweite: " + race.getMovement());
 
-        List<String> allBuffs = Stream.concat(race.getBuffs().stream(), character.getChosenRaceBuffs().stream()).toList();
-
+        List<String> allBuffs = character.getAllBuffs();
         if (!allBuffs.isEmpty()) {
-            JLabel spaceLabel = new JLabel(" ");
-            add(spaceLabel);
+            addSectionSeparator();
 
-            JLabel seperatorLabel = new JLabel("----------------------");
-            add(seperatorLabel);
-
-            JLabel buffNotifyerLabel = new JLabel("Rassen Buffs:");
-            add(buffNotifyerLabel);
+            addJLabel("Rassen Buffs:");
 
             for (String buff : allBuffs) {
-                JLabel newBuff = new JLabel(buff);
-                add(newBuff);
+                addJLabel(buff);
             }
         }
 
         if (!race.getDebuffs().isEmpty()) {
-            JLabel spaceLabel = new JLabel(" ");
-            add(spaceLabel);
+            addSectionSeparator();
 
-            JLabel seperatorLabel = new JLabel("----------------------");
-            add(seperatorLabel);
+            addJLabel("Rassen Debuffs:");
 
-            JLabel debuffNotifyerLabel = new JLabel("Rassen Debuffs:");
-            add(debuffNotifyerLabel);
             for (String debuff : race.getDebuffs()) {
-                JLabel newDebuff = new JLabel(debuff);
-                add(newDebuff);
+                addJLabel(debuff);
             }
         }
 
         if (!character.getTalents().isEmpty()) {
-            JLabel spaceLabel = new JLabel(" ");
-            add(spaceLabel);
+            addSectionSeparator();
 
-            JLabel seperatorLabel = new JLabel("----------------------");
-            add(seperatorLabel);
+            addJLabel("Talente:");
 
-            JLabel debuffNotifyerLabel = new JLabel("Talente:");
-            add(debuffNotifyerLabel);
+            addSpace();
 
-            for (Talent talent : character.getTalents()) {
-                JLabel newDebuff = new JLabel(talent.getName() + ": " + talent.getDescription());
-                add(newDebuff);
-            }
+            String[][] data = character.getTalents().stream()
+                    .map(talent -> new String[]{talent.getName(), talent.getDescription()})
+                    .toArray(String[][]::new);
+
+            String[] columnNames = new String[]{"Name", "Effect"};
+
+            addTable(data, columnNames);
         }
 
         List<Spell> allCharacterSpells = character.getAllCharacterSpells();
         if (!allCharacterSpells.isEmpty()) {
-            JLabel spaceLabel = new JLabel(" ");
-            add(spaceLabel);
+            addSectionSeparator();
 
-            JLabel seperatorLabel = new JLabel("----------------------");
-            add(seperatorLabel);
+            addJLabel("Zauber:");
 
-            JLabel spellNotifyerLabel = new JLabel("Zauber:");
-            add(spellNotifyerLabel);
+            addSpace();
 
-//            String[][] data = allCharacterSpells.stream()
-//                    .map(spell -> new String[]{spell.getName(), spell.getTempo(), spell.getDifficulty(), spell.getEffect(), spell.getRange()})
-//                    .toArray(String[][]::new);
-//
-//            String[] columnNames = new String[]{"Name", "Tempo", "Schwierigkeit", "Effect", "Reichweite"};
-//
-//            JLabel spaceLabel1 = new JLabel(" ");
-//            add(spaceLabel1);
-//
-//            JTable j = new JTable(data, columnNames);
-//
-//            j.setPreferredScrollableViewportSize(
-//                    new Dimension(
-//                            j.getPreferredSize().width,
-//                            j.getRowHeight() * (data.length + 1)));
-//
-//            JScrollPane scrollPane = new JScrollPane(j);
-//            Dimension d = j.getPreferredSize();
-//            scrollPane.setPreferredSize(
-//                    new Dimension(d.width, j.getRowHeight() * (data.length + 1)));
-//            add(scrollPane);
+            String[][] data = allCharacterSpells.stream()
+                    .map(spell -> new String[]{spell.getName(), spell.getTempo(), spell.getDifficulty(), spell.getEffect(), spell.getRange()})
+                    .toArray(String[][]::new);
 
-            for (Spell spell : allCharacterSpells) {
-                JLabel newSpell = new JLabel(spell.getName() + " | " +
-                        spell.getTempo() + " | " +
-                        spell.getDifficulty() + " | " +
-                        spell.getEffect() + " | " +
-                        spell.getRange());
-                add(newSpell);
-            }
+            String[] columnNames = new String[]{"Name", "Tempo", "Art", "Effect", "Reichweite"};
+
+            addTable(data, columnNames);
+
         }
 
 
         List<Passiv> allCharacterPassivs = character.getAllCharacterPassivs();
         if (!allCharacterSpells.isEmpty()) {
-            JLabel spaceLabel = new JLabel(" ");
-            add(spaceLabel);
+            addSectionSeparator();
 
-            JLabel seperatorLabel = new JLabel("----------------------");
-            add(seperatorLabel);
+            addJLabel("Passivs:");
 
-            JLabel passiveNotifyerLabel = new JLabel("Passivs:");
-            add(passiveNotifyerLabel);
+            addSpace();
 
-            for (Passiv passiv : allCharacterPassivs) {
-                JLabel newPassiv = new JLabel(passiv.getName() + " | " +
-                        passiv.getEffect() + " | " +
-                        passiv.getRange());
-                add(newPassiv);
-            }
+            String[][] data = allCharacterPassivs.stream()
+                    .map(passiv -> new String[]{passiv.getName(), passiv.getEffect(), passiv.getRange()})
+                    .toArray(String[][]::new);
+
+            String[] columnNames = new String[]{"Name", "Effect", "Reichweite"};
+
+            addTable(data, columnNames);
         }
+
 
         revalidate();
     }
 
+    public void addJLabel(String string) {
+        JLabel newJLabel = new JLabel(string);
+        add(newJLabel);
+    }
 
+    public void addTable(String[][] data, String[] columnNames) {
+        JTable newTable = new JTable(data, columnNames);
+
+        JScrollPane newScrollPane = new JScrollPane(newTable);
+        newScrollPane.setMaximumSize(new Dimension(
+                1000,
+                newTable.getRowHeight() * (data.length + 2)
+        ));
+        add(newScrollPane);
+    }
+
+    public void addSectionSeparator() {
+        addSpace();
+        addSeparator();
+        addSpace();
+    }
+
+    public void addSeparator() {
+        JSeparator newSeparator = new JSeparator();
+        newSeparator.setOrientation(SwingConstants.HORIZONTAL);
+        add(newSeparator);
+    }
+
+    public void addSpace() {
+        add(Box.createRigidArea(new Dimension(5, 10)));
+    }
 }

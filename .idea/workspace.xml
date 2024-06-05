@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added select rpgClassLvlChoices">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="display rpgclass features">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/preview/RacePanel.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -309,11 +309,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717583717297</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="display rpgclass features">
+      <option name="closed" value="true" />
+      <created>1717592676638</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1717592676638</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fully loading race" />
     <MESSAGE value="upload xlsx file in frame and read it" />
     <MESSAGE value="combobox for race, started with preview panel" />
     <MESSAGE value="choosing and displaying race working" />
@@ -338,7 +345,8 @@
     <MESSAGE value="restructure loading" />
     <MESSAGE value="added select rpgClass" />
     <MESSAGE value="added select rpgClassLvlChoices" />
-    <option name="LAST_COMMIT_MESSAGE" value="added select rpgClassLvlChoices" />
+    <MESSAGE value="display rpgclass features" />
+    <option name="LAST_COMMIT_MESSAGE" value="display rpgclass features" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

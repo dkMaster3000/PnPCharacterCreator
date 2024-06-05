@@ -40,7 +40,7 @@ public class MainFrame extends JFrame {
     //STEP: 1
     MainFrame() {
         setTitle("PnP Character Creator");
-        setSize(1280, 800);
+        setSize(1430, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setVisible(true);
@@ -51,24 +51,6 @@ public class MainFrame extends JFrame {
         uploadPanel.setBounds(0, 0, 400, 60);
         uploadPanel.setBackground(Color.lightGray);
         add(uploadPanel);
-
-        // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
-
-        characterPreviewBox = new JPanel();
-        characterPreviewBox.setBounds(860, 0, 400, 750);
-        characterPreviewBox.setBackground(Color.lightGray);
-        characterPreviewBox.setLayout(new BoxLayout(characterPreviewBox, BoxLayout.Y_AXIS));
-        add(characterPreviewBox);
-
-        JLabel characterPreviewLabel = new JLabel("Charakter Vorschau");
-        characterPreviewLabel.setBounds(5, 5, 400, 10);
-        characterPreviewBox.add(characterPreviewLabel);
-
-        characterPreviewPanel = new CharacterPreviewPanel();
-        characterPreviewPanel.setBounds(5, 20, 390, 700);
-        characterPreviewBox.add(new JScrollPane(characterPreviewPanel));
-
-        characterPreviewBox.validate();
 
         repaint();
     }
@@ -121,6 +103,26 @@ public class MainFrame extends JFrame {
         rpgClassSkillChoicesPanel.setBackground(Color.pink);
         rpgClassSkillChoicesPanel.setVisible(true);
         add(rpgClassSkillChoicesPanel);
+
+        // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
+
+        characterPreviewBox = new JPanel();
+        characterPreviewBox.setBounds(860, 0, 550, 750);
+        characterPreviewBox.setBackground(Color.lightGray);
+        characterPreviewBox.setLayout(new BoxLayout(characterPreviewBox, BoxLayout.Y_AXIS));
+        add(characterPreviewBox);
+
+        JLabel characterPreviewLabel = new JLabel("Charakter Vorschau");
+        characterPreviewLabel.setBounds(5, 5, 400, 10);
+        characterPreviewBox.add(characterPreviewLabel);
+
+        characterPreviewPanel = new CharacterPreviewPanel();
+        characterPreviewPanel.setBounds(5, 20, 390, 700);
+
+        JScrollPane scrollPane = new JScrollPane(characterPreviewPanel);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+
+        characterPreviewBox.add(scrollPane);
 
         repaint();
 

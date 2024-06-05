@@ -6,7 +6,7 @@ import java.util.stream.Stream;
 
 public class Character {
 
-    private int lvl = 0;
+    private int lvl;
     private int addedHP = 0;
     private int strength = 0;
     private int intelligence = 0;
@@ -30,12 +30,11 @@ public class Character {
     }
 
     public interface SetStat {
-
         void setStat(int stat);
     }
 
     public Character() {
-        lvl = 1;
+        lvl = 0;
         statPoints = calculateStatPoints();
     }
 
@@ -125,7 +124,7 @@ public class Character {
 
     public void setRace(Race race) {
         this.race = race;
-        removeChosenRaceBuffs();
+        chosenRaceBuffs = new ArrayList<>();
     }
 
     public List<String> getChosenRaceBuffs() {
@@ -138,6 +137,10 @@ public class Character {
         } else {
             chosenRaceBuffs.add(choiceNumber, newChosenBuff);
         }
+    }
+
+    public List<String> getAllBuffs() {
+        return Stream.concat(race.getBuffs().stream(), getChosenRaceBuffs().stream()).toList();
     }
 
     public RPGClass getRpgClass() {
@@ -192,10 +195,6 @@ public class Character {
         passivsFromRPGClassLvl = Stream.concat(passivsFromRPGClassLvl.stream(), chosenPassivs.stream()).toList();
 
         return passivsFromRPGClassLvl;
-    }
-
-    public void removeChosenRaceBuffs() {
-        chosenRaceBuffs = new ArrayList<>();
     }
 
     public List<Talent> getTalents() {
