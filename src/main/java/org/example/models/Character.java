@@ -2,6 +2,7 @@ package org.example.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 public class Character {
 
@@ -157,12 +158,40 @@ public class Character {
         this.chosenSpells = new ArrayList<>();
     }
 
+    public List<Spell> getAllCharacterSpells() {
+        List<Spell> spellsFromRPGClassLvl = new ArrayList<>();
+
+        for (RPGClassLevel rpgClassLevel : rpgClass.getClassLvls()) {
+            if (rpgClassLevel.getLvl() <= lvl) {
+                spellsFromRPGClassLvl = Stream.concat(spellsFromRPGClassLvl.stream(), rpgClassLevel.getSpellList().stream()).toList();
+            }
+        }
+
+        spellsFromRPGClassLvl = Stream.concat(spellsFromRPGClassLvl.stream(), chosenSpells.stream()).toList();
+
+        return spellsFromRPGClassLvl;
+    }
+
     public List<Passiv> getChosenPassivs() {
         return chosenPassivs;
     }
 
     public void removeChosenPassivs() {
         this.chosenPassivs = new ArrayList<>();
+    }
+
+    public List<Passiv> getAllCharacterPassivs() {
+        List<Passiv> passivsFromRPGClassLvl = new ArrayList<>();
+
+        for (RPGClassLevel rpgClassLevel : rpgClass.getClassLvls()) {
+            if (rpgClassLevel.getLvl() <= lvl) {
+                passivsFromRPGClassLvl = Stream.concat(passivsFromRPGClassLvl.stream(), rpgClassLevel.getPassivList().stream()).toList();
+            }
+        }
+
+        passivsFromRPGClassLvl = Stream.concat(passivsFromRPGClassLvl.stream(), chosenPassivs.stream()).toList();
+
+        return passivsFromRPGClassLvl;
     }
 
     public void removeChosenRaceBuffs() {

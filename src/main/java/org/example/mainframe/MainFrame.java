@@ -55,9 +55,9 @@ public class MainFrame extends JFrame {
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
 
         characterPreviewBox = new JPanel();
-        characterPreviewBox.setLayout(null);
         characterPreviewBox.setBounds(860, 0, 400, 750);
         characterPreviewBox.setBackground(Color.lightGray);
+        characterPreviewBox.setLayout(new BoxLayout(characterPreviewBox, BoxLayout.Y_AXIS));
         add(characterPreviewBox);
 
         JLabel characterPreviewLabel = new JLabel("Charakter Vorschau");
@@ -66,7 +66,7 @@ public class MainFrame extends JFrame {
 
         characterPreviewPanel = new CharacterPreviewPanel();
         characterPreviewPanel.setBounds(5, 20, 390, 700);
-        characterPreviewBox.add(characterPreviewPanel);
+        characterPreviewBox.add(new JScrollPane(characterPreviewPanel));
 
         characterPreviewBox.validate();
 
@@ -144,6 +144,6 @@ public class MainFrame extends JFrame {
     }
 
     private void updatePreviewPanel() {
-        characterPreviewPanel.updateCharacter(character);
+        characterPreviewPanel.UpdateCharacterPreviewPanel();
     }
 }
