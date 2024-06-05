@@ -14,7 +14,7 @@ public class RPGClassLoader {
     //to simplify MainFrame and improve its readability
     public static List<RPGClass> getRPGClass() {
         Sheet rpgClassSheet = MainFrame.workbook.getSheet("Klassen");
-        
+
         return getRPGClassFromMap(LoaderUtils.getMap(rpgClassSheet));
     }
 
@@ -42,7 +42,7 @@ public class RPGClassLoader {
                 default -> {
                     assert rpgClassLevel != null;
                     if (list.size() > 5) {
-                        List<RPGClassChoosable> newChoosables = new ArrayList<>();
+                        List<RPGClassChooseable> newChoosables = new ArrayList<>();
                         newChoosables.add(createRPGClassChoosable(list, true));
                         newChoosables.add(createRPGClassChoosable(list, false));
                         rpgClassLevel.getChoosables().add(newChoosables);
@@ -63,7 +63,7 @@ public class RPGClassLoader {
         return rpgClasses;
     }
 
-    private static RPGClassChoosable createRPGClassChoosable(List<String> list, boolean first) {
+    private static RPGClassChooseable createRPGClassChoosable(List<String> list, boolean first) {
         int shift = first ? 0 : 6;
         if (Objects.equals(list.get(1 + shift), "Passiv")) {
             return createPassivFromList(list, first);

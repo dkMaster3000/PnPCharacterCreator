@@ -4,18 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="modified character">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added select rpgClass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/loaders/RPGClassLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/loaders/RPGClassLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceChoicesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceComboBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RPGClassPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGClassPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/preview/RacePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/preview/RacePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Passiv.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Passiv.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClassChoosable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClassChooseable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClassLevel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClassLevel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Spell.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -283,12 +281,26 @@
       <option name="project" value="LOCAL" />
       <updated>1717499307657</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="restructure loading">
+      <option name="closed" value="true" />
+      <created>1717515424105</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1717515424105</updated>
+    </task>
+    <task id="LOCAL-00027" summary="added select rpgClass">
+      <option name="closed" value="true" />
+      <created>1717515451546</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1717515451546</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit" />
-    <MESSAGE value="reading excel file" />
     <MESSAGE value="better loading, starting to implement race model" />
     <MESSAGE value="fully loading race" />
     <MESSAGE value="upload xlsx file in frame and read it" />
@@ -312,7 +324,9 @@
     <MESSAGE value="displayed talent changes in preview" />
     <MESSAGE value="created models for RPGClass, created RPGCLassloader" />
     <MESSAGE value="modified character" />
-    <option name="LAST_COMMIT_MESSAGE" value="modified character" />
+    <MESSAGE value="restructure loading" />
+    <MESSAGE value="added select rpgClass" />
+    <option name="LAST_COMMIT_MESSAGE" value="added select rpgClass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

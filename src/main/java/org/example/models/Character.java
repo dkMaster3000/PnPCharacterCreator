@@ -17,7 +17,7 @@ public class Character {
 
     private RPGClass rpgClass = new RPGClass("");
     private List<Spell> chosenSpells = new ArrayList<>();
-    private List<Spell> chosenPassivs = new ArrayList<>();
+    private List<Passiv> chosenPassivs = new ArrayList<>();
 
     private List<Talent> talents = new ArrayList<>();
 
@@ -52,7 +52,10 @@ public class Character {
 
         setStatPoints(calculateStatPoints());
 
-        removeTalents();
+        talents = new ArrayList<>();
+
+        removeChoseSpells();
+        removeChosenPassivs();
     }
 
     public int getAddedHP() {
@@ -142,24 +145,24 @@ public class Character {
 
     public void setRpgClass(RPGClass rpgClass) {
         this.rpgClass = rpgClass;
-        chosenSpells = new ArrayList<>();
-        chosenPassivs = new ArrayList<>();
+        removeChoseSpells();
+        removeChosenPassivs();
     }
 
     public List<Spell> getChosenSpells() {
         return chosenSpells;
     }
 
-    public void setChosenSpells(List<Spell> chosenSpells) {
-        this.chosenSpells = chosenSpells;
+    public void removeChoseSpells() {
+        this.chosenSpells = new ArrayList<>();
     }
 
-    public List<Spell> getChosenPassivs() {
+    public List<Passiv> getChosenPassivs() {
         return chosenPassivs;
     }
 
-    public void setChosenPassivs(List<Spell> chosenPassivs) {
-        this.chosenPassivs = chosenPassivs;
+    public void removeChosenPassivs() {
+        this.chosenPassivs = new ArrayList<>();
     }
 
     public void removeChosenRaceBuffs() {
@@ -176,10 +179,6 @@ public class Character {
         } else {
             talents.add(choiceNumber, newTalent);
         }
-    }
-
-    public void removeTalents() {
-        talents = new ArrayList<>();
     }
 
     //----------------------------- UTIL HELPER ------------------------------------------

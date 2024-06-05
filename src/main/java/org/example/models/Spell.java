@@ -1,6 +1,6 @@
 package org.example.models;
 
-public class Spell extends RPGClassChoosable {
+public class Spell extends RPGClassChooseable {
     String tempo;
     String difficulty;
 

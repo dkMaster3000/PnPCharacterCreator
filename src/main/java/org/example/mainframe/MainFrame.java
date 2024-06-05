@@ -4,6 +4,8 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.example.loaders.RPGClassLoader;
 import org.example.loaders.RaceLoader;
 import org.example.loaders.TalentLoader;
+import org.example.mainframe.rpgclass.RPGClassPanel;
+import org.example.mainframe.rpgclass.RPGClassSkillChoicesPanel;
 import org.example.models.Character;
 import org.example.models.RPGClass;
 import org.example.models.Race;
@@ -28,6 +30,7 @@ public class MainFrame extends JFrame {
     RaceChoicesPanel raceChoicesPanel;
     TalentsPanel talentsPanel;
     RPGClassPanel rpgClassPanel;
+    RPGClassSkillChoicesPanel rpgClassSkillChoicesPanel;
 
     public static Character character = new Character();
     public static List<Race> races = new ArrayList<>();
@@ -108,10 +111,16 @@ public class MainFrame extends JFrame {
         add(talentsPanel);
 
         rpgClassPanel = new RPGClassPanel(this::updatePanels);
-        rpgClassPanel.setBounds(0, 260, 855, 45);
+        rpgClassPanel.setBounds(0, 260, 855, 40);
         rpgClassPanel.setBackground(Color.green);
         rpgClassPanel.setVisible(true);
         add(rpgClassPanel);
+
+        rpgClassSkillChoicesPanel = new RPGClassSkillChoicesPanel(this::updatePanels);
+        rpgClassSkillChoicesPanel.setBounds(0, 305, 855, 450);
+        rpgClassSkillChoicesPanel.setBackground(Color.pink);
+        rpgClassSkillChoicesPanel.setVisible(true);
+        add(rpgClassSkillChoicesPanel);
 
         repaint();
 
@@ -131,6 +140,7 @@ public class MainFrame extends JFrame {
         raceChoicesPanel.InstantiateChoicesComboBoxes();
         lvlPanel.UpdateLvlPanel();
         talentsPanel.UpdateTalentsPanel();
+        rpgClassSkillChoicesPanel.UpdateRPGClassSkillChoicesPanel();
     }
 
     private void updatePreviewPanel() {

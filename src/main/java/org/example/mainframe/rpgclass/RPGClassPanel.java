@@ -1,7 +1,8 @@
-package org.example.mainframe;
+package org.example.mainframe.rpgclass;
 
+import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatePanels;
 import org.example.models.RPGClass;
-import org.example.models.Talent;
 
 import javax.swing.*;
 import java.util.Objects;

@@ -1,12 +1,12 @@
 package org.example.models;
 
-public abstract class RPGClassChoosable {
+public abstract class RPGClassChooseable {
 
     String name;
     String effect;
     String range;
 
-    public RPGClassChoosable(String name, String effect, String range) {
+    public RPGClassChooseable(String name, String effect, String range) {
         this.name = name;
         this.effect = effect;
         this.range = range;

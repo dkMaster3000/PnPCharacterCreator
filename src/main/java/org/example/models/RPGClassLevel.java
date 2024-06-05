@@ -8,10 +8,14 @@ public class RPGClassLevel {
     int lvl;
     private final List<Spell> spellList = new ArrayList<>();
     private final List<Passiv> passivList = new ArrayList<>();
-    private final List<List<RPGClassChoosable>> choosables = new ArrayList<>();
+    private final List<List<RPGClassChooseable>> choosables = new ArrayList<>();
 
     public RPGClassLevel(int lvl) {
         this.lvl = lvl;
+    }
+
+    public int getLvl() {
+        return lvl;
     }
 
     public List<Spell> getSpellList() {
@@ -22,7 +26,7 @@ public class RPGClassLevel {
         return passivList;
     }
 
-    public List<List<RPGClassChoosable>> getChoosables() {
+    public List<List<RPGClassChooseable>> getChoosables() {
         return choosables;
     }
 

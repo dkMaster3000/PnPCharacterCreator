@@ -1,6 +1,6 @@
 package org.example.models;
 
-public class Passiv extends RPGClassChoosable {
+public class Passiv extends RPGClassChooseable {
 
     public Passiv(String name, String effect, String range) {
         super(name, effect, range);
