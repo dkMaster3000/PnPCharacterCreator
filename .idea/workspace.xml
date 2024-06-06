@@ -4,17 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="refactored CharacterPreviewPanel">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" afterDir="false" />
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="refactored editor display">
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/LvlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/Main.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceChoicesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceComboBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGClassPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGClassPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGClassSkillChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGClassSkillChoicesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGLevelChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGLevelChoicesPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/race/RaceChoicesPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/race/RaceComboBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RacePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/race/RacePanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/StatModifierButtons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/StatModifierButtons.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentComboBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentsPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -333,11 +332,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717615887179</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="refactored editor display">
+      <option name="closed" value="true" />
+      <created>1717660764935</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1717660764935</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="combobox for race, started with preview panel" />
     <MESSAGE value="choosing and displaying race working" />
     <MESSAGE value="make RaceComboBox own class" />
     <MESSAGE value="added upload pannel kontaining the upload button" />
@@ -362,7 +368,8 @@
     <MESSAGE value="added select rpgClassLvlChoices" />
     <MESSAGE value="display rpgclass features" />
     <MESSAGE value="refactored CharacterPreviewPanel" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored CharacterPreviewPanel" />
+    <MESSAGE value="refactored editor display" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored editor display" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

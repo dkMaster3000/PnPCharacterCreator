@@ -1,7 +1,8 @@
-package org.example.mainframe;
+package org.example.mainframe.talent;
 
+import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatePanels;
 import org.example.models.Talent;
-import org.example.models.TalentMatrix;
 
 import javax.swing.*;
 import java.awt.event.ActionListener;

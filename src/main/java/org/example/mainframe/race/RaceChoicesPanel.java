@@ -1,4 +1,7 @@
-package org.example.mainframe;
+package org.example.mainframe.race;
+
+import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatePanels;
 
 import javax.swing.*;
 import java.awt.*;

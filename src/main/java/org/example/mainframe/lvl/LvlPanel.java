@@ -1,5 +1,7 @@
-package org.example.mainframe;
+package org.example.mainframe.lvl;
 
+import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatePanels;
 import org.example.models.Character;
 
 import javax.swing.*;

@@ -1,4 +1,6 @@
-package org.example.mainframe;
+package org.example.mainframe.race;
+
+import org.example.mainframe.UpdatePanels;
 
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +10,7 @@ public class RacePanel extends JPanel {
 
     JLabel uploadedLabel;
 
-    RacePanel(UpdatePanels updatePanels) {
+    public RacePanel(UpdatePanels updatePanels) {
         setMaximumSize(new Dimension(1000, 45));
 
         setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
