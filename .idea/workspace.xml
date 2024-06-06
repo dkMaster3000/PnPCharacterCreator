@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="removed unused code">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="sort spells by difficulty">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -366,12 +366,26 @@
       <option name="project" value="LOCAL" />
       <updated>1717663575422</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="added export mechanism">
+      <option name="closed" value="true" />
+      <created>1717668302436</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1717668302436</updated>
+    </task>
+    <task id="LOCAL-00038" summary="sort spells by difficulty">
+      <option name="closed" value="true" />
+      <created>1717679150804</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1717679150804</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="update preview after choices are made" />
-    <MESSAGE value="refactored to unified update system" />
     <MESSAGE value="improved race panel optic" />
     <MESSAGE value="added lvl panel" />
     <MESSAGE value="added statchanging pannels" />
@@ -395,7 +409,9 @@
     <MESSAGE value="improved updateCharacterChosen Skills" />
     <MESSAGE value="talents are updated if the talentsamount are changed" />
     <MESSAGE value="removed unused code" />
-    <option name="LAST_COMMIT_MESSAGE" value="removed unused code" />
+    <MESSAGE value="added export mechanism" />
+    <MESSAGE value="sort spells by difficulty" />
+    <option name="LAST_COMMIT_MESSAGE" value="sort spells by difficulty" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

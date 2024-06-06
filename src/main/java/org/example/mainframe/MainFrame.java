@@ -110,7 +110,7 @@ public class MainFrame extends JFrame {
 
         editorContainer.add(Box.createVerticalBox());
 
-        ExportPanel exportPanel = new ExportPanel(this::onUpload);
+        ExportPanel exportPanel = new ExportPanel();
         editorContainer.add(exportPanel);
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
