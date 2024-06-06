@@ -3,6 +3,7 @@ package org.example.mainframe;
 import org.example.models.Race;
 
 import javax.swing.*;
+
 import java.util.Objects;
 
 public class RaceComboBox extends JComboBox<String> {

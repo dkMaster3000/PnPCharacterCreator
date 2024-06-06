@@ -1,8 +1,7 @@
 package org.example.mainframe;
 
-import org.example.models.Race;
-
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,6 +16,10 @@ public class RaceChoicesPanel extends JPanel {
 
     public RaceChoicesPanel(UpdatePanels updatePanels) {
         this.updatePanels = updatePanels;
+
+        setMaximumSize(new Dimension(1000, 45));
+
+        setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
 
         JLabel talentsLabel = new JLabel("Auswahl Rassen Talente: ");
         add(talentsLabel);

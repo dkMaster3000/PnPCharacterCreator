@@ -5,16 +5,18 @@ import org.example.mainframe.UpdatePanels;
 import org.example.models.RPGClass;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Objects;
 
 public class RPGClassPanel extends JPanel {
 
-    private final UpdatePanels updatePanels;
-
     JComboBox<String> rpgClassComboBox;
 
     public RPGClassPanel(UpdatePanels updatePanels) {
-        this.updatePanels = updatePanels;
+
+        setMaximumSize(new Dimension(1000, 45));
+
+        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
 
         JLabel talentsLabel = new JLabel("Klassenauswahl: ");
         add(talentsLabel);
@@ -49,5 +51,4 @@ public class RPGClassPanel extends JPanel {
                 .map(RPGClass::getName)
                 .toArray(String[]::new);
     }
-
 }

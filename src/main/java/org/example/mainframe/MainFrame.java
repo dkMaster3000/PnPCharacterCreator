@@ -24,13 +24,13 @@ public class MainFrame extends JFrame {
     public static Workbook workbook = null;
 
     CharacterPreviewPanel characterPreviewPanel;
-    JPanel characterPreviewBox;
-    RaceComboBox raceJComboBox;
+    JPanel characterPreviewContainer;
     LvlPanel lvlPanel;
     RaceChoicesPanel raceChoicesPanel;
     TalentsPanel talentsPanel;
     RPGClassPanel rpgClassPanel;
     RPGClassSkillChoicesPanel rpgClassSkillChoicesPanel;
+    JPanel editorContainer;
 
     public static Character character = new Character();
     public static List<Race> races = new ArrayList<>();
@@ -47,11 +47,16 @@ public class MainFrame extends JFrame {
 
         setLayout(null);
 
-        UploadPanel uploadPanel = new UploadPanel(this::onUpload);
-        uploadPanel.setBounds(0, 0, 400, 60);
-        uploadPanel.setBackground(Color.lightGray);
-        add(uploadPanel);
+        editorContainer = new JPanel();
+        editorContainer.setLayout(new BoxLayout(editorContainer, BoxLayout.Y_AXIS));
+        editorContainer.setBounds(5, 5, 850, 750);
+        add(editorContainer);
 
+        UploadPanel uploadPanel = new UploadPanel(this::onUpload);
+        uploadPanel.setBackground(Color.lightGray);
+        editorContainer.add(uploadPanel);
+
+        revalidate();
         repaint();
     }
 
@@ -69,52 +74,47 @@ public class MainFrame extends JFrame {
 
     //STEP: 3
     private void createPanelsAfterUpload() {
-        raceJComboBox = new RaceComboBox(this::updatePanels);
-        raceJComboBox.setBounds(5, 65, 150, 40);
-        raceJComboBox.setVisible(true);
-        add(raceJComboBox);
+        RacePanel racePanel = new RacePanel(this::updatePanels);
+        editorContainer.add(racePanel);
 
         lvlPanel = new LvlPanel(this::updatePanels);
-        lvlPanel.setBounds(0, 110, 855, 45);
         lvlPanel.setBackground(Color.magenta);
         lvlPanel.setVisible(true);
-        add(lvlPanel);
+        editorContainer.add(lvlPanel);
 
         raceChoicesPanel = new RaceChoicesPanel(this::updatePanels);
-        raceChoicesPanel.setBounds(0, 160, 855, 45);
         raceChoicesPanel.setBackground(Color.orange);
         raceChoicesPanel.setVisible(true);
-        add(raceChoicesPanel);
+        editorContainer.add(raceChoicesPanel);
 
         talentsPanel = new TalentsPanel(this::updatePanels);
-        talentsPanel.setBounds(0, 210, 855, 45);
         talentsPanel.setBackground(Color.cyan);
         talentsPanel.setVisible(true);
-        add(talentsPanel);
+        editorContainer.add(talentsPanel);
 
         rpgClassPanel = new RPGClassPanel(this::updatePanels);
-        rpgClassPanel.setBounds(0, 260, 855, 40);
         rpgClassPanel.setBackground(Color.green);
         rpgClassPanel.setVisible(true);
-        add(rpgClassPanel);
+        editorContainer.add(rpgClassPanel);
 
         rpgClassSkillChoicesPanel = new RPGClassSkillChoicesPanel(this::updatePanels);
-        rpgClassSkillChoicesPanel.setBounds(0, 305, 855, 450);
         rpgClassSkillChoicesPanel.setBackground(Color.pink);
         rpgClassSkillChoicesPanel.setVisible(true);
-        add(rpgClassSkillChoicesPanel);
+        editorContainer.add(rpgClassSkillChoicesPanel);
+
+        editorContainer.add(Box.createVerticalBox());
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
 
-        characterPreviewBox = new JPanel();
-        characterPreviewBox.setBounds(860, 0, 550, 750);
-        characterPreviewBox.setBackground(Color.lightGray);
-        characterPreviewBox.setLayout(new BoxLayout(characterPreviewBox, BoxLayout.Y_AXIS));
-        add(characterPreviewBox);
+        characterPreviewContainer = new JPanel();
+        characterPreviewContainer.setBounds(860, 0, 550, 750);
+        characterPreviewContainer.setBackground(Color.lightGray);
+        characterPreviewContainer.setLayout(new BoxLayout(characterPreviewContainer, BoxLayout.Y_AXIS));
+        add(characterPreviewContainer);
 
         JLabel characterPreviewLabel = new JLabel("Charakter Vorschau");
         characterPreviewLabel.setBounds(5, 5, 400, 10);
-        characterPreviewBox.add(characterPreviewLabel);
+        characterPreviewContainer.add(characterPreviewLabel);
 
         characterPreviewPanel = new CharacterPreviewPanel();
         characterPreviewPanel.setBounds(5, 20, 390, 700);
@@ -122,7 +122,7 @@ public class MainFrame extends JFrame {
         JScrollPane scrollPane = new JScrollPane(characterPreviewPanel);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
-        characterPreviewBox.add(scrollPane);
+        characterPreviewContainer.add(scrollPane);
 
         repaint();
 

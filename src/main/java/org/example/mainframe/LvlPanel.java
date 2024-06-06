@@ -3,18 +3,20 @@ package org.example.mainframe;
 import org.example.models.Character;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.Objects;
 
 public class LvlPanel extends JPanel {
 
-    private final UpdatePanels updatePanels;
     JLabel pointsToSpentLabel;
 
     JComboBox<String> lvlComboBox = new JComboBox<>(new String[]{"1", "2", "3", "4", "5"});
 
     public LvlPanel(UpdatePanels updatePanels) {
-        this.updatePanels = updatePanels;
 
+        setMaximumSize(new Dimension(1000, 45));
+
+        setLayout(new FlowLayout(FlowLayout.LEFT, 10, 5));
 
         JLabel lvlComboBoxLabel = new JLabel("Lvl: ");
         add(lvlComboBoxLabel);

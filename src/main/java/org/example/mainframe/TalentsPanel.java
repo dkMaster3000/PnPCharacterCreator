@@ -1,6 +1,7 @@
 package org.example.mainframe;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,10 @@ public class TalentsPanel extends JPanel {
 
     public TalentsPanel(UpdatePanels updatePanels) {
         this.updatePanels = updatePanels;
+
+        setMaximumSize(new Dimension(1000, 45));
+
+        setLayout(new FlowLayout(FlowLayout.LEFT, 15, 5));
 
         JLabel talentsLabel = new JLabel("Talente: ");
         add(talentsLabel);

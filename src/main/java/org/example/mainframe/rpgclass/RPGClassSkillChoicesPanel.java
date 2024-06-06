@@ -21,15 +21,21 @@ public class RPGClassSkillChoicesPanel extends JPanel {
     public RPGClassSkillChoicesPanel(UpdatePanels updatePanels) {
         this.updatePanels = updatePanels;
 
-        setLayout(null);
+        setMaximumSize(new Dimension(1000, 450));
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         JLabel classSkillChoicesLabel = new JLabel("Klassen Skill Auswahl: ");
-        classSkillChoicesLabel.setBounds(5, 5, 150, 40);
-        add(classSkillChoicesLabel);
+
+        JPanel choiceLabelPanel = new JPanel();
+        choiceLabelPanel.add(classSkillChoicesLabel);
+        choiceLabelPanel.setMaximumSize(new Dimension(1000, 30));
+        choiceLabelPanel.setLayout(new FlowLayout(FlowLayout.LEFT, 10, 10));
+        choiceLabelPanel.add(classSkillChoicesLabel);
+        add(choiceLabelPanel);
 
         comboboxHolder = new JPanel();
-        comboboxHolder.setBounds(0, 50, 855, 400);
-        comboboxHolder.setLayout(new GridLayout(0, 1, 5, 5));
+        comboboxHolder.setLayout(new BoxLayout(comboboxHolder, BoxLayout.Y_AXIS));
         add(comboboxHolder);
 
         UpdateRPGClassSkillChoicesPanel();
@@ -41,9 +47,6 @@ public class RPGClassSkillChoicesPanel extends JPanel {
         String newRPGClassName = MainFrame.character.getRpgClass().getName();
         if (previousLvl != newLvl) {
             previousLvl = newLvl;
-//            usedTalents = new ArrayList<>();
-//            talentComboBoxes = new ArrayList<>();
-
             generateChoicesPanels();
             return;
         }
@@ -60,13 +63,8 @@ public class RPGClassSkillChoicesPanel extends JPanel {
 
         for (int i = 0; i < MainFrame.character.getLvl(); i++) {
             RPGClassLevel classLvl = MainFrame.character.getRpgClass().getClassLvls().get(i);
-            if (classLvl.getChoosables().isEmpty()) {
-                continue;
-            }
             RPGLevelChoicesPanel rpgLevelChoicesPanel = new RPGLevelChoicesPanel(updatePanels, classLvl);
             comboboxHolder.add(rpgLevelChoicesPanel);
         }
-
-        comboboxHolder.revalidate();
     }
 }

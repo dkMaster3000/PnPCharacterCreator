@@ -22,8 +22,12 @@ public class UploadPanel extends JPanel implements ActionListener {
     UploadPanelFunc onUpload;
 
     UploadPanel(UploadPanelFunc onUpload) {
-
         this.onUpload = onUpload;
+
+        Dimension thisSize = new Dimension(1000, 60);
+        setMinimumSize(thisSize);
+        setMaximumSize(thisSize);
+        setPreferredSize(thisSize);
 
         setLayout(null);
 
