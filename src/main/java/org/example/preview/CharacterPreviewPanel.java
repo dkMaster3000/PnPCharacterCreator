@@ -109,7 +109,7 @@ public class CharacterPreviewPanel extends JPanel {
 
 
         List<Passiv> allCharacterPassivs = character.getAllCharacterPassivs();
-        if (!allCharacterSpells.isEmpty()) {
+        if (!allCharacterPassivs.isEmpty()) {
             addSectionSeparator();
 
             addJLabel("Passivs:");
@@ -124,8 +124,7 @@ public class CharacterPreviewPanel extends JPanel {
 
             addTable(data, columnNames);
         }
-
-
+        
         revalidate();
     }
 
