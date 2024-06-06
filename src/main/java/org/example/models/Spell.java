@@ -1,5 +1,7 @@
 package org.example.models;
 
+import java.util.Objects;
+
 public class Spell extends RPGClassChooseable {
     String tempo;
     String difficulty;
@@ -16,6 +18,17 @@ public class Spell extends RPGClassChooseable {
 
     public String getDifficulty() {
         return difficulty;
+    }
+
+    public int getDifficultyValue() {
+        return switch (difficulty) {
+            case "Basis" -> 1;
+            case "Einfach" -> 2;
+            case "Fortgeschritten" -> 3;
+            case "Experte" -> 4;
+            case "Legendär" -> 5;
+            default -> 6;
+        };
     }
 
     @Override

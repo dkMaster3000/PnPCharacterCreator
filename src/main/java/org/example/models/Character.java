@@ -3,7 +3,9 @@ package org.example.models;
 import org.example.mainframe.MainFrame;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Character {
@@ -176,7 +178,9 @@ public class Character {
             }
         }
 
-        spellsFromRPGClassLvl = Stream.concat(spellsFromRPGClassLvl.stream(), chosenSpells.stream()).toList();
+        spellsFromRPGClassLvl = Stream.concat(spellsFromRPGClassLvl.stream(), chosenSpells.stream()).collect(Collectors.toList());
+
+        spellsFromRPGClassLvl.sort(Comparator.comparing(Spell::getDifficultyValue));
 
         return spellsFromRPGClassLvl;
     }
