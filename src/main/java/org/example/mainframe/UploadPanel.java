@@ -9,6 +9,7 @@ import javax.swing.filechooser.FileSystemView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.FileInputStream;
 
 public class UploadPanel extends JPanel implements ActionListener {
@@ -55,8 +56,11 @@ public class UploadPanel extends JPanel implements ActionListener {
         if (returnVal == JFileChooser.APPROVE_OPTION) {
 
             try {
-                FileInputStream file = new FileInputStream(fileChooser.getSelectedFile());
-                workbook = new XSSFWorkbook(file);
+                File file = fileChooser.getSelectedFile();
+                MainFrame.file = file;
+
+                FileInputStream fileInputStream = new FileInputStream(file);
+                workbook = new XSSFWorkbook(fileInputStream);
 
                 uploadedLabel.setText("Excel Datei hochgeladen");
                 uploadedLabel.setForeground(Color.GREEN);
@@ -67,7 +71,5 @@ public class UploadPanel extends JPanel implements ActionListener {
                 throw new RuntimeException(ex);
             }
         }
-
     }
-
 }

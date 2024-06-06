@@ -20,12 +20,14 @@ import javax.swing.*;
 
 import java.awt.*;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainFrame extends JFrame {
 
     public static Workbook workbook = null;
+    public static File file = null;
 
     CharacterPreviewPanel characterPreviewPanel;
     JPanel characterPreviewContainer;
@@ -107,6 +109,9 @@ public class MainFrame extends JFrame {
         editorContainer.add(rpgClassSkillChoicesPanel);
 
         editorContainer.add(Box.createVerticalBox());
+
+        ExportPanel exportPanel = new ExportPanel(this::onUpload);
+        editorContainer.add(exportPanel);
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
 
