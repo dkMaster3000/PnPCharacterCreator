@@ -20,9 +20,13 @@ public class TalentMatrix {
     }
 
     public int calculateTalents() {
+        return calculateTalents(MainFrame.character.getLvl());
+    }
+
+    public int calculateTalents(int characterLvl) {
         int talentsAmount = 0;
         for (Integer unlockLvl : unlockLvls) {
-            if (unlockLvl <= MainFrame.character.getLvl()) {
+            if (unlockLvl <= characterLvl) {
                 talentsAmount++;
             }
         }
@@ -31,18 +35,10 @@ public class TalentMatrix {
 
     public Talent getTalentByName(String talentName) {
         for (Talent talent : talents) {
-            if (Objects.equals(talent.getName(), talentName)) {
+            if (Objects.equals(talent.name(), talentName)) {
                 return talent;
             }
         }
         return null;
-    }
-
-    @Override
-    public String toString() {
-        return "TalentMatrix{" +
-                "talents=" + talents +
-                ", unlockLvls=" + unlockLvls +
-                '}';
     }
 }

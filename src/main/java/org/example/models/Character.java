@@ -1,5 +1,7 @@
 package org.example.models;
 
+import org.example.mainframe.MainFrame;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
@@ -43,6 +45,12 @@ public class Character {
     }
 
     public void setLvl(int lvl) {
+
+        TalentMatrix talentMatrix = MainFrame.talentMatrix;
+        if (talentMatrix.calculateTalents(this.lvl) != talentMatrix.calculateTalents(lvl)) {
+            talents = new ArrayList<>();
+        }
+
         this.lvl = lvl;
 
         setAddedHP(0);
@@ -51,8 +59,6 @@ public class Character {
         setStrength(0);
 
         setStatPoints(calculateStatPoints());
-
-        talents = new ArrayList<>();
 
         removeChoseSpells();
         removeChosenPassivs();

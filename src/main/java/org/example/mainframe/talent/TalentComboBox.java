@@ -63,7 +63,7 @@ public class TalentComboBox extends JComboBox<String> {
         //determine if a unique talent is already selected
         boolean uniqueTalentSelected = TalentsPanel.usedTalents
                 .stream()
-                .map(usedTalentName -> MainFrame.talentMatrix.getTalentByName(usedTalentName)).anyMatch(Talent::isUnique);
+                .map(usedTalentName -> MainFrame.talentMatrix.getTalentByName(usedTalentName)).anyMatch(Talent::unique);
 
         //get own choice if exists
         String ownChoice = TalentsPanel.getUsedTalentName(talentNumber);
@@ -71,7 +71,7 @@ public class TalentComboBox extends JComboBox<String> {
         //determine wether own choice is unique or not
         boolean ownChoiceIsUnique;
         if (ownChoice != null) {
-            ownChoiceIsUnique = MainFrame.talentMatrix.getTalentByName(ownChoice).isUnique();
+            ownChoiceIsUnique = MainFrame.talentMatrix.getTalentByName(ownChoice).unique();
         } else {
             ownChoiceIsUnique = false;
         }
@@ -79,8 +79,8 @@ public class TalentComboBox extends JComboBox<String> {
         //get talents from talentMatrix, filtered by uniqueness
         List<String> talentsChoices = MainFrame.talentMatrix.getTalents()
                 .stream()
-                .filter(talent -> ownChoiceIsUnique || !uniqueTalentSelected || !talent.isUnique())
-                .map(Talent::getName)
+                .filter(talent -> ownChoiceIsUnique || !uniqueTalentSelected || !talent.unique())
+                .map(Talent::name)
                 .toList();
 
         //filter out all usedTalents

@@ -13,7 +13,7 @@ public class TalentsPanel extends JPanel {
     private final UpdatePanels updatePanels;
 
     //update checker
-    private int previousLvl = -1;
+    private int previousTalentsAmount = -1;
 
     //panel for ComboBoxesObject
     JPanel comboboxHolder;
@@ -42,28 +42,23 @@ public class TalentsPanel extends JPanel {
 
     //invoked by a function in MainFrame, if the chracter has been modified
     public void UpdateTalentsPanel() {
-
-        int newLvl = MainFrame.character.getLvl();
-        if (previousLvl != newLvl) {
-            previousLvl = newLvl;
+        int newTalentsAmount = MainFrame.talentMatrix.calculateTalents();
+        if (previousTalentsAmount != newTalentsAmount) {
+            previousTalentsAmount = newTalentsAmount;
             usedTalents = new ArrayList<>();
             talentComboBoxes = new ArrayList<>();
 
-            generateTalentComboBoxes();
+            comboboxHolder.removeAll();
+
+            //generate ComboBoxes that can modify the character
+            for (int i = 0; i < newTalentsAmount; i++) {
+                TalentComboBox talentComboBox = new TalentComboBox(updatePanels, i);
+                talentComboBoxes.add(talentComboBox);
+                comboboxHolder.add(talentComboBox);
+            }
+
+            comboboxHolder.revalidate();
         }
-    }
-
-    //generate ComboBoxes that can modify the character
-    private void generateTalentComboBoxes() {
-        comboboxHolder.removeAll();
-
-        for (int i = 0; i < MainFrame.talentMatrix.calculateTalents(); i++) {
-            TalentComboBox talentComboBox = new TalentComboBox(updatePanels, i);
-            talentComboBoxes.add(talentComboBox);
-            comboboxHolder.add(talentComboBox);
-        }
-
-        comboboxHolder.revalidate();
     }
 
     public static String getUsedTalentName(int talentNumber) {
