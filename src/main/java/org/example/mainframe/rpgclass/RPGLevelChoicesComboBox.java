@@ -9,7 +9,6 @@ import org.example.models.Spell;
 import javax.swing.*;
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 //will only work if you have to select between two option
 public class RPGLevelChoicesComboBox extends JComboBox<String> {
@@ -38,54 +37,34 @@ public class RPGLevelChoicesComboBox extends JComboBox<String> {
         int selectedIndex = getSelectedIndex();
         int unselectedIndex = selectedIndex == 0 ? 1 : 0;
 
-        removeUnselectedChoosableFromCharacter(unselectedIndex);
-        addSelectedChoosableToCharacter(selectedIndex);
+        List<Spell> chosenSpells = MainFrame.character.getChosenSpells();
+        List<Passiv> chosenPassivs = MainFrame.character.getChosenPassivs();
 
-//        modifyChooseableFromCharacter(unselectedIndex,
-//                unselectedChoosable -> MainFrame.character.getChosenSpells().remove((Spell) unselectedChoosable),
-//                unselectedChoosable -> MainFrame.character.getChosenPassivs().remove((Passiv) unselectedChoosable)
-//        );
+        //remove previous chooseable
+        modifyChooseableFromCharacter(unselectedIndex,
+                unselectedChoosable -> chosenSpells.remove((Spell) unselectedChoosable),
+                unselectedChoosable -> chosenPassivs.remove((Passiv) unselectedChoosable)
+        );
 
+        //add new chooseable
+        modifyChooseableFromCharacter(selectedIndex,
+                selectedChoosable -> chosenSpells.add((Spell) selectedChoosable),
+                selectedChoosable -> chosenPassivs.add((Passiv) selectedChoosable)
+        );
     }
 
-//    private interface Modify {
-//
-//        void modify(RPGClassChooseable selectedChoosable);
-//    }
+    private interface ModifyCharacterChooseables {
 
-//    private void modifyChooseableFromCharacter(int selectedIndex, Modify spellModifier, Modify passivModifier) {
-//        RPGClassChooseable selectedChoosable = getChooseableByName(choicePossibilities[selectedIndex]);
-//
-//        if (selectedChoosable instanceof Spell) {
-//            spellModifier.modify(selectedChoosable);
-//        } else if (selectedChoosable instanceof Passiv) {
-//            passivModifier.modify(selectedChoosable);
-//        } else {
-//            System.out.println("hoosable TypeMissMatch");
-//        }
-//    }
-
-    private void removeUnselectedChoosableFromCharacter(int unselectedIndex) {
-        RPGClassChooseable unselectedChoosable = getChooseableByName(choicePossibilities[unselectedIndex]);
-
-        if (unselectedChoosable instanceof Spell) {
-            MainFrame.character.getChosenSpells().remove(unselectedChoosable);
-        } else if (unselectedChoosable instanceof Passiv) {
-            MainFrame.character.getChosenPassivs().remove(unselectedChoosable);
-        } else {
-            System.out.println("Unselected Choosable TypeMissMatch");
-        }
+        void modify(RPGClassChooseable selectedChoosable);
     }
 
-    private void addSelectedChoosableToCharacter(int selectedIndex) {
+    private void modifyChooseableFromCharacter(int selectedIndex, ModifyCharacterChooseables spellModifier, ModifyCharacterChooseables passivModifier) {
         RPGClassChooseable selectedChoosable = getChooseableByName(choicePossibilities[selectedIndex]);
 
-        if (selectedChoosable instanceof Spell) {
-            MainFrame.character.getChosenSpells().add((Spell) selectedChoosable);
-        } else if (selectedChoosable instanceof Passiv) {
-            MainFrame.character.getChosenPassivs().add((Passiv) selectedChoosable);
-        } else {
-            System.out.println("Unselected Choosable TypeMissMatch");
+        switch (selectedChoosable) {
+            case Spell _ -> spellModifier.modify(selectedChoosable);
+            case Passiv _ -> passivModifier.modify(selectedChoosable);
+            default -> System.out.println("Choosable TypeMissMatch");
         }
     }
 
