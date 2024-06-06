@@ -5,6 +5,8 @@ import org.apache.poi.xssf.usermodel.XSSFFont;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import org.example.models.Character;
+import org.example.models.Passiv;
+import org.example.models.Spell;
 import org.example.models.Talent;
 
 import javax.swing.*;
@@ -15,16 +17,20 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class ExportPanel extends JPanel implements ActionListener {
 
     JLabel uploadedLabel;
     Workbook workbook;
     Sheet sheet;
-    int rowCount = 0;
+    int rowCount = 2;
+    int cellShift = 2;
 
     CellStyle headerStyle;
     CellStyle valueStyle;
+
+    IndexedColors indexedColors = IndexedColors.LIGHT_BLUE;
 
     ExportPanel() {
         Dimension thisSize = new Dimension(1000, 60);
@@ -51,10 +57,20 @@ public class ExportPanel extends JPanel implements ActionListener {
         XSSFFont fontBold = createFont(true);
         XSSFFont font = createFont(false);
 
+
         headerStyle.setFont(fontBold);
         valueStyle.setFont(font);
-        valueStyle.setWrapText(true);
 
+        headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        valueStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+        valueStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+    }
+
+    private void createNewHeaderStyle() {
+        XSSFFont font = createFont(true);
+        CellStyle style = workbook.createCellStyle();
     }
 
     @Override
@@ -65,9 +81,11 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         String dateTime = new Date().toString().replaceAll(":", "_");
 
-        sheet = workbook.createSheet("Char" + dateTime);
-        sheet.setColumnWidth(0, 6000);
-        sheet.setColumnWidth(1, 4000);
+        sheet = workbook.createSheet("Char" + character.getRace().getName() + character.getRpgClass().getName() + dateTime);
+
+        for (int i = cellShift; i < 9; i++) {
+            sheet.setColumnWidth(i, 20 * 256);
+        }
 
         createRow("Vorname");
         createRow("Nachname");
@@ -95,11 +113,13 @@ public class ExportPanel extends JPanel implements ActionListener {
             }
         }
 
-        createRow("");
+        createBreak();
+
+        setNewBackgroundColor(IndexedColors.LIGHT_YELLOW);
 
         createRow("Stuffe", String.valueOf(character.getLvl()));
 
-        createRow("Stats", new String[]{"Punkte", "Skills", "Ausrüstung", "Insgesamt"});
+        createRow(new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"}, true);
 
         int totalHP = character.getAddedHP() + Integer.parseInt(character.getRace().getHp());
         createRow("HP", totalHP);
@@ -110,13 +130,86 @@ public class ExportPanel extends JPanel implements ActionListener {
         createRow("Rüstung");
         createRow("Dodge");
 
-        createRow("");
+        createBreak();
 
-        createRow("Talente");
-        for (Talent talent : character.getTalents()) {
-            createRow(talent.name(), talent.description());
+        List<Talent> talente = character.getTalents();
+        if (!talente.isEmpty()) {
+            createRow(new String[]{"Talente", "Name", "Effekt"}, true);
+            for (int i = 0; i < talente.size(); i++) {
+                Talent talent = talente.get(i);
+                createRow(new String[]{
+                        String.valueOf(i + 1),
+                        talent.name(),
+                        talent.description(),
+                }, false);
+            }
         }
 
+        createBreak();
+
+        createRow("Klasse", character.getRpgClass().getName());
+
+        List<Passiv> allCharacterPassivs = character.getAllCharacterPassivs();
+        if (!allCharacterPassivs.isEmpty()) {
+            createRow(new String[]{"Passivs", "Name", "Effekt", "Reichweite"}, true);
+
+            for (int i = 0; i < allCharacterPassivs.size(); i++) {
+                Passiv passiv = allCharacterPassivs.get(i);
+                createRow(new String[]{
+                        String.valueOf(i + 1),
+                        passiv.getName(),
+                        passiv.getEffect(),
+                        passiv.getRange()}, false);
+            }
+        }
+
+        createBreak();
+
+        List<Spell> allCharacterSpells = character.getAllCharacterSpells();
+        if (!allCharacterSpells.isEmpty()) {
+            createRow(new String[]{"Zauber", "Name", "Art", "Schnelligkeit", "Effekt", "Reichweite"}, true);
+
+            for (int i = 0; i < allCharacterSpells.size(); i++) {
+                Spell spell = allCharacterSpells.get(i);
+                createRow(new String[]{
+                        String.valueOf(i + 1),
+                        spell.getName(),
+                        spell.getDifficulty(),
+                        spell.getTempo(),
+                        spell.getEffect(),
+                        spell.getRange()}, false);
+            }
+        }
+
+        createBreak();
+
+        createRow(new String[]{"Spellslots", "Level", "Wissen", "Gesamt"}, true);
+        createRow("Einfache");
+        createRow("Fortgeschrittene");
+        createRow("Expert");
+        createRow("Legendäre");
+
+        createBreak();
+
+        createRow(new String[]{"Ausrüstung", "HP", "Stärke", "Intelligenz", "Geschick", "Rüstung", "Magische Effekte"}, true);
+        createRow("Kopf");
+        createRow("Brust");
+        createRow("Arme");
+        createRow("Beine");
+        createRow("Ring");
+        createRow("Amulett");
+
+        createBreak();
+
+        createRow(new String[]{"Inventar", "Plätze", "5"}, true);
+        createRow("1.");
+        createRow("2.");
+        createRow("3.");
+        createRow("4.");
+        createRow("5.");
+        createRow("Gold");
+        createRow("Waffe 1");
+        createRow("Waffe 2");
 
         try {
             FileOutputStream outputStream = new FileOutputStream(MainFrame.file.getAbsolutePath());
@@ -134,41 +227,71 @@ public class ExportPanel extends JPanel implements ActionListener {
 
     }
 
-    public void createRow(String header) {
+    private void createBreak() {
+        createRow("");
+        createRow("");
+    }
+
+    private void createRow(String header) {
         createRow(header, new String[]{});
     }
 
-    public void createRow(String header, int value) {
+    private void createRow(String header, int value) {
         createRow(header, String.valueOf(value));
     }
 
-    public void createRow(String header, String value) {
+    private void createRow(String header, String value) {
         createRow(header, new String[]{value});
     }
 
-    public void createRow(String header, String[] values) {
+    private void createRow(String header, String[] values) {
+        createRow((Row newRow) -> {
+
+            Cell headerCell = newRow.createCell(cellShift);
+            headerCell.setCellValue(header);
+            headerCell.setCellStyle(headerStyle);
+
+            for (int i = 0; i < values.length; i++) {
+                Cell cell = newRow.createCell(i + 1 + cellShift);
+                cell.setCellValue(values[i]);
+                cell.setCellStyle(valueStyle);
+            }
+
+        });
+    }
+
+    private void createRow(String[] values, boolean isHeader) {
+        createRow((Row newRow) -> {
+
+            for (int i = 0; i < values.length; i++) {
+                Cell headerCell = newRow.createCell(i + cellShift);
+                headerCell.setCellValue(values[i]);
+                headerCell.setCellStyle(isHeader ? headerStyle : valueStyle);
+            }
+
+        });
+    }
+
+    private void createRow(Consumer<Row> fn) {
         Row newRow = sheet.createRow(rowCount);
 
-        Cell headerCell = newRow.createCell(0);
-        headerCell.setCellValue(header);
-        headerCell.setCellStyle(headerStyle);
-
-        for (int i = 0; i < values.length; i++) {
-            Cell cell = newRow.createCell(i + 1);
-            cell.setCellValue(values[i]);
-            cell.setCellStyle(valueStyle);
-        }
+        fn.accept(newRow);
 
         rowCount++;
     }
 
-    public XSSFFont createFont(boolean bold) {
+    private XSSFFont createFont(boolean bold) {
         XSSFFont font = ((XSSFWorkbook) workbook).createFont();
         font.setFontName("Arial");
-        font.setFontHeightInPoints((short) (bold ? 10 : 9));
+        font.setFontHeightInPoints((short) 11);
         font.setBold(bold);
 
         return font;
+    }
+
+    private void setNewBackgroundColor(IndexedColors indexedColors) {
+        headerStyle.setFillForegroundColor(indexedColors.getIndex());
+        valueStyle.setFillForegroundColor(indexedColors.getIndex());
     }
 
 }

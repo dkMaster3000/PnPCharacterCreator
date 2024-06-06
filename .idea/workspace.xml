@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="sort spells by difficulty">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="quick fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,12 +381,26 @@
       <option name="project" value="LOCAL" />
       <updated>1717679150804</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="write race, custom values, lvl, stats and talents inte exel sheet">
+      <option name="closed" value="true" />
+      <created>1717679331285</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1717679331285</updated>
+    </task>
+    <task id="LOCAL-00040" summary="quick fix">
+      <option name="closed" value="true" />
+      <created>1717691411288</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1717691411288</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved race panel optic" />
-    <MESSAGE value="added lvl panel" />
     <MESSAGE value="added statchanging pannels" />
     <MESSAGE value="improved loader structure" />
     <MESSAGE value="organize project into packages" />
@@ -411,7 +424,9 @@
     <MESSAGE value="removed unused code" />
     <MESSAGE value="added export mechanism" />
     <MESSAGE value="sort spells by difficulty" />
-    <option name="LAST_COMMIT_MESSAGE" value="sort spells by difficulty" />
+    <MESSAGE value="write race, custom values, lvl, stats and talents inte exel sheet" />
+    <MESSAGE value="quick fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="quick fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
