@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="refactored editor display">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/LvlPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceChoicesPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/race/RaceChoicesPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RaceComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/race/RaceComboBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/RacePanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/race/RacePanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/StatModifierButtons.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/StatModifierButtons.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentComboBox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/TalentsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentsPanel.java" afterDir="false" />
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="improved updateCharacterChosen Skills">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentComboBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentsPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/talent/TalentsPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClassChooseable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/RPGClassChooseable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Race.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Race.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Spell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Spell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Talent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Talent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/TalentMatrix.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/TalentMatrix.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -340,12 +341,26 @@
       <option name="project" value="LOCAL" />
       <updated>1717660764935</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="added better folder structure">
+      <option name="closed" value="true" />
+      <created>1717661094108</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1717661094108</updated>
+    </task>
+    <task id="LOCAL-00034" summary="improved updateCharacterChosen Skills">
+      <option name="closed" value="true" />
+      <created>1717662508522</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1717662508522</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="choosing and displaying race working" />
-    <MESSAGE value="make RaceComboBox own class" />
     <MESSAGE value="added upload pannel kontaining the upload button" />
     <MESSAGE value="added choice panel to wrtite choices in character" />
     <MESSAGE value="update preview after choices are made" />
@@ -369,7 +384,9 @@
     <MESSAGE value="display rpgclass features" />
     <MESSAGE value="refactored CharacterPreviewPanel" />
     <MESSAGE value="refactored editor display" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored editor display" />
+    <MESSAGE value="added better folder structure" />
+    <MESSAGE value="improved updateCharacterChosen Skills" />
+    <option name="LAST_COMMIT_MESSAGE" value="improved updateCharacterChosen Skills" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

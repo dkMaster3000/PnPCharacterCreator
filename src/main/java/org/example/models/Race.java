@@ -10,23 +10,12 @@ public class Race {
     private String weight = "";
     private String hp = "";
     private String movement = "";
-    private List<String> buffs = new ArrayList<>();
-    private List<String> debuffs = new ArrayList<>();
-    private List<List<String>> choices = new ArrayList<>();
+    private final List<String> buffs = new ArrayList<>();
+    private final List<String> debuffs = new ArrayList<>();
+    private final List<List<String>> choices = new ArrayList<>();
 
     public Race(String name) {
         this.name = name;
-    }
-
-    public Race(String name, String height, String weight, String hp, String movement, List<String> buffs, List<String> debuffs, List<List<String>> choices) {
-        this.name = name;
-        this.height = height;
-        this.weight = weight;
-        this.hp = hp;
-        this.movement = movement;
-        this.buffs = buffs;
-        this.debuffs = debuffs;
-        this.choices = choices;
     }
 
     public String getName() {
@@ -65,10 +54,6 @@ public class Race {
         return buffs;
     }
 
-    public void setBuffs(List<String> buffs) {
-        this.buffs = buffs;
-    }
-
     public void addBuffs(String buff) {
         buffs.add(buff);
     }
@@ -77,20 +62,12 @@ public class Race {
         return debuffs;
     }
 
-    public void setDebuffs(List<String> debuffs) {
-        this.debuffs = debuffs;
-    }
-
     public void addDebuffs(String debuff) {
         debuffs.add(debuff);
     }
 
     public List<List<String>> getChoices() {
         return choices;
-    }
-
-    public void setChoices(List<List<String>> choices) {
-        this.choices = choices;
     }
 
     public void addChoices(List<String> choice) {

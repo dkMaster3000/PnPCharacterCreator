@@ -81,7 +81,7 @@ public class CharacterPreviewPanel extends JPanel {
             addSpace();
 
             String[][] data = character.getTalents().stream()
-                    .map(talent -> new String[]{talent.getName(), talent.getDescription()})
+                    .map(talent -> new String[]{talent.name(), talent.description()})
                     .toArray(String[][]::new);
 
             String[] columnNames = new String[]{"Name", "Effect"};

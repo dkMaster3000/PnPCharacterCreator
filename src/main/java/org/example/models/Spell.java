@@ -14,16 +14,8 @@ public class Spell extends RPGClassChooseable {
         return tempo;
     }
 
-    public void setTempo(String tempo) {
-        this.tempo = tempo;
-    }
-
     public String getDifficulty() {
         return difficulty;
-    }
-
-    public void setDifficulty(String difficulty) {
-        this.difficulty = difficulty;
     }
 
     @Override
