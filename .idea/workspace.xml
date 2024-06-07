@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="quick fix">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="exel file filled">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
     </list>
@@ -397,11 +397,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717691411288</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="exel file filled">
+      <option name="closed" value="true" />
+      <created>1717695359827</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1717695359827</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added statchanging pannels" />
     <MESSAGE value="improved loader structure" />
     <MESSAGE value="organize project into packages" />
     <MESSAGE value="creating talentmatrix and talentloader" />
@@ -426,7 +433,8 @@
     <MESSAGE value="sort spells by difficulty" />
     <MESSAGE value="write race, custom values, lvl, stats and talents inte exel sheet" />
     <MESSAGE value="quick fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="quick fix" />
+    <MESSAGE value="exel file filled" />
+    <option name="LAST_COMMIT_MESSAGE" value="exel file filled" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

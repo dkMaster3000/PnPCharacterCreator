@@ -24,8 +24,13 @@ public class ExportPanel extends JPanel implements ActionListener {
     JLabel uploadedLabel;
     Workbook workbook;
     Sheet sheet;
-    int rowCount = 2;
+
+    //startpoints
+    int rowCount = 2; //also rowTracker
     int cellShift = 2;
+
+    int startPaintRow = 0;
+    int endPaintRow = 0;
 
     CellStyle headerStyle;
     CellStyle valueStyle;
@@ -61,11 +66,11 @@ public class ExportPanel extends JPanel implements ActionListener {
         headerStyle.setFont(fontBold);
         valueStyle.setFont(font);
 
-        headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
-        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-
-        valueStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
-        valueStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+//        headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+//        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+//
+//        valueStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+//        valueStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
     }
 
     private void createNewHeaderStyle() {
@@ -83,9 +88,11 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         sheet = workbook.createSheet("Char" + character.getRace().getName() + character.getRpgClass().getName() + dateTime);
 
-        for (int i = cellShift; i < 9; i++) {
+        for (int i = cellShift - 1; i < 10; i++) {
             sheet.setColumnWidth(i, 20 * 256);
         }
+
+        setStartPaintRow();
 
         createRow("Vorname");
         createRow("Nachname");
@@ -113,9 +120,11 @@ public class ExportPanel extends JPanel implements ActionListener {
             }
         }
 
+        paintRim(2, IndexedColors.LIGHT_YELLOW);
+
         createBreak();
 
-        setNewBackgroundColor(IndexedColors.LIGHT_YELLOW);
+        setStartPaintRow();
 
         createRow("Stuffe", String.valueOf(character.getLvl()));
 
@@ -129,6 +138,8 @@ public class ExportPanel extends JPanel implements ActionListener {
         createRow("Bewegung", character.getRace().getMovement());
         createRow("Rüstung");
         createRow("Dodge");
+
+        paintRim(5, IndexedColors.LIGHT_BLUE);
 
         createBreak();
 
@@ -229,7 +240,7 @@ public class ExportPanel extends JPanel implements ActionListener {
 
     private void createBreak() {
         createRow("");
-        createRow("");
+//        createRow("");
     }
 
     private void createRow(String header) {
@@ -289,9 +300,72 @@ public class ExportPanel extends JPanel implements ActionListener {
         return font;
     }
 
-    private void setNewBackgroundColor(IndexedColors indexedColors) {
-        headerStyle.setFillForegroundColor(indexedColors.getIndex());
-        valueStyle.setFillForegroundColor(indexedColors.getIndex());
+//    private void setNewBackgroundColor(IndexedColors indexedColors) {
+//        headerStyle.setFillForegroundColor(indexedColors.getIndex());
+//        valueStyle.setFillForegroundColor(indexedColors.getIndex());
+//    }
+
+    private void setStartPaintRow() {
+        startPaintRow = rowCount - 1;
+    }
+
+    private void paintRim(int tableWidth, IndexedColors indexedColors) {
+
+        System.out.println("PAINT RIM ääääääääääääääääääääääääääääääääääääääääääääääääääääääää");
+
+        CellStyle paintStyle = workbook.createCellStyle();
+        paintStyle.setFillForegroundColor(indexedColors.getIndex());
+        paintStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+
+        int tabelEnd = rowCount;
+
+        for (int i = startPaintRow; i <= tabelEnd; i++) {
+
+            System.out.println("--------------------- ");
+            System.out.println("startPaintRow: " + startPaintRow);
+            System.out.println("tabelEnd: " + tabelEnd);
+            System.out.println("rowCount: " + rowCount);
+            System.out.println("--------------------- ");
+
+            if (i == startPaintRow) {
+//                for (int j = 0; j < tableWidth; j++) {
+//                    Cell newPaintCell = sheet.getRow(i).createCell(j + cellShift);
+//                    newPaintCell.setCellStyle(paintStyle);
+//
+//                }
+                Row newRow = sheet.createRow(startPaintRow);
+
+                for (int j = 0; j <= tableWidth + 1; j++) {
+                    Cell newPaintCell = newRow.createCell(j + cellShift - 1);
+                    newPaintCell.setCellStyle(paintStyle);
+                }
+
+                System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+//                rowCount++;
+
+            } else if (i == tabelEnd) {
+//                System.out.println("rowcount: " + rowCount);
+//                System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
+                Row newRow = sheet.createRow(rowCount);
+
+
+                for (int j = 0; j <= tableWidth + 1; j++) {
+                    Cell newPaintCell = newRow.createCell(j + cellShift - 1);
+                    newPaintCell.setCellStyle(paintStyle);
+                }
+
+                rowCount++;
+            } else {
+                System.out.println("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
+                System.out.println(i);
+                sheet.getRow(i).createCell(cellShift - 1).setCellStyle(paintStyle);
+                sheet.getRow(i).createCell(tableWidth + 1 + cellShift - 1).setCellStyle(paintStyle);
+
+//                Row newRow = sheet.createRow(i);
+//                newRow.createCell(cellShift).setCellStyle(paintStyle);
+//                newRow.createCell(tableWidth + cellShift).setCellStyle(paintStyle);
+            }
+        }
     }
 
 }
