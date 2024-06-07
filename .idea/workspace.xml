@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="exel file filled">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="paint table prototype working">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
     </list>
@@ -405,11 +405,18 @@
       <option name="project" value="LOCAL" />
       <updated>1717695359827</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="paint table prototype working">
+      <option name="closed" value="true" />
+      <created>1717745332350</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1717745332350</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved loader structure" />
     <MESSAGE value="organize project into packages" />
     <MESSAGE value="creating talentmatrix and talentloader" />
     <MESSAGE value="start creating talentpanel and combobox" />
@@ -434,7 +441,8 @@
     <MESSAGE value="write race, custom values, lvl, stats and talents inte exel sheet" />
     <MESSAGE value="quick fix" />
     <MESSAGE value="exel file filled" />
-    <option name="LAST_COMMIT_MESSAGE" value="exel file filled" />
+    <MESSAGE value="paint table prototype working" />
+    <option name="LAST_COMMIT_MESSAGE" value="paint table prototype working" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

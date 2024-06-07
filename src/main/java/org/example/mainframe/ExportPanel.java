@@ -18,6 +18,7 @@ import java.io.*;
 import java.util.Date;
 import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Supplier;
 
 public class ExportPanel extends JPanel implements ActionListener {
 
@@ -30,12 +31,11 @@ public class ExportPanel extends JPanel implements ActionListener {
     int cellShift = 2;
 
     int startPaintRow = 0;
-    int endPaintRow = 0;
+
+    int startPaintCell = cellShift - 1;
 
     CellStyle headerStyle;
     CellStyle valueStyle;
-
-    IndexedColors indexedColors = IndexedColors.LIGHT_BLUE;
 
     ExportPanel() {
         Dimension thisSize = new Dimension(1000, 60);
@@ -62,26 +62,13 @@ public class ExportPanel extends JPanel implements ActionListener {
         XSSFFont fontBold = createFont(true);
         XSSFFont font = createFont(false);
 
-
         headerStyle.setFont(fontBold);
         valueStyle.setFont(font);
-
-//        headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
-//        headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-//
-//        valueStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
-//        valueStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-    }
-
-    private void createNewHeaderStyle() {
-        XSSFFont font = createFont(true);
-        CellStyle style = workbook.createCellStyle();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
 
-//----------------------------------------------------Excel Sheet---------------------------------
         Character character = MainFrame.character;
 
         String dateTime = new Date().toString().replaceAll(":", "_");
@@ -92,135 +79,155 @@ public class ExportPanel extends JPanel implements ActionListener {
             sheet.setColumnWidth(i, 20 * 256);
         }
 
-        setStartPaintRow();
+        createTabel(IndexedColors.GREY_25_PERCENT, () -> {
+            createRow("Vorname");
+            createRow("Nachname");
+            createRow("Ruf");
+            createRow("Alter");
+            createRow("Sonstiges");
 
-        createRow("Vorname");
-        createRow("Nachname");
-        createRow("Ruf");
-        createRow("Alter");
-        createRow("Sonstiges");
+            createRow("Klasse", character.getRpgClass().getName());
+            createRow("Rasse", character.getRace().getName());
+            createRow("Gewicht");
+            createRow("Größe");
 
-        createRow("Rasse", character.getRace().getName());
-        createRow("Gewicht");
-        createRow("Größe");
-
-        List<String> characterRaceBuffs = character.getAllBuffs();
-        if (!characterRaceBuffs.isEmpty()) {
-            createRow("Rassenbuffs");
-            for (String buff : characterRaceBuffs) {
-                createRow("Buff", buff);
+            List<String> characterRaceBuffs = character.getAllBuffs();
+            if (!characterRaceBuffs.isEmpty()) {
+                createRow("Rassenbuffs");
+                for (String buff : characterRaceBuffs) {
+                    createRow("Buff", buff);
+                }
             }
-        }
 
-        List<String> characterRaceDebuffs = character.getRace().getDebuffs();
-        if (!characterRaceDebuffs.isEmpty()) {
-            createRow("RassenDebuffs");
-            for (String debuff : characterRaceDebuffs) {
-                createRow("Buff", debuff);
+            List<String> characterRaceDebuffs = character.getRace().getDebuffs();
+            if (!characterRaceDebuffs.isEmpty()) {
+                createRow("RassenDebuffs");
+                for (String debuff : characterRaceDebuffs) {
+                    createRow("Debuff", debuff);
+                }
             }
-        }
 
-        paintRim(2, IndexedColors.LIGHT_YELLOW);
+            return 2;
+        });
 
-        createBreak();
+        createTabel(IndexedColors.LIGHT_YELLOW, () -> {
+            createRow("Stufe", String.valueOf(character.getLvl()));
 
-        setStartPaintRow();
+            String[] statsHeaderValues = new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"};
+            createRow(statsHeaderValues, true);
 
-        createRow("Stuffe", String.valueOf(character.getLvl()));
+            int totalHP = character.getAddedHP() + Integer.parseInt(character.getRace().getHp());
+            createRow("HP", totalHP);
+            createRow("Stärke", character.getStrength());
+            createRow("Intelligenz", character.getIntelligence());
+            createRow("Geschick", character.getDexterity());
+            createRow("Bewegung", character.getRace().getMovement());
+            createRow("Rüstung");
+            createRow("Dodge");
 
-        createRow(new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"}, true);
+            return statsHeaderValues.length;
+        });
 
-        int totalHP = character.getAddedHP() + Integer.parseInt(character.getRace().getHp());
-        createRow("HP", totalHP);
-        createRow("Stärke", character.getStrength());
-        createRow("Intelligenz", character.getIntelligence());
-        createRow("Geschick", character.getDexterity());
-        createRow("Bewegung", character.getRace().getMovement());
-        createRow("Rüstung");
-        createRow("Dodge");
 
-        paintRim(5, IndexedColors.LIGHT_BLUE);
-
-        createBreak();
-
-        List<Talent> talente = character.getTalents();
-        if (!talente.isEmpty()) {
-            createRow(new String[]{"Talente", "Name", "Effekt"}, true);
-            for (int i = 0; i < talente.size(); i++) {
-                Talent talent = talente.get(i);
-                createRow(new String[]{
-                        String.valueOf(i + 1),
-                        talent.name(),
-                        talent.description(),
-                }, false);
+        createTabel(IndexedColors.LIGHT_CORNFLOWER_BLUE, () -> {
+            List<Talent> talents = character.getTalents();
+            String[] talentsHeader = new String[]{"Talente", "Name", "Effekt"};
+            if (!talents.isEmpty()) {
+                createRow(talentsHeader, true);
+                for (int i = 0; i < talents.size(); i++) {
+                    Talent talent = talents.get(i);
+                    createRow(new String[]{
+                            String.valueOf(i + 1),
+                            talent.name(),
+                            talent.description(),
+                    }, false);
+                }
             }
-        }
 
-        createBreak();
+            return talentsHeader.length;
+        });
 
-        createRow("Klasse", character.getRpgClass().getName());
+        createTabel(IndexedColors.LIGHT_GREEN, () -> {
+            List<Passiv> allCharacterPassivs = character.getAllCharacterPassivs();
+            String[] passivsHeader = new String[]{"Passivs", "Name", "Effekt", "Reichweite"};
+            if (!allCharacterPassivs.isEmpty()) {
+                createRow(passivsHeader, true);
 
-        List<Passiv> allCharacterPassivs = character.getAllCharacterPassivs();
-        if (!allCharacterPassivs.isEmpty()) {
-            createRow(new String[]{"Passivs", "Name", "Effekt", "Reichweite"}, true);
-
-            for (int i = 0; i < allCharacterPassivs.size(); i++) {
-                Passiv passiv = allCharacterPassivs.get(i);
-                createRow(new String[]{
-                        String.valueOf(i + 1),
-                        passiv.getName(),
-                        passiv.getEffect(),
-                        passiv.getRange()}, false);
+                for (int i = 0; i < allCharacterPassivs.size(); i++) {
+                    Passiv passiv = allCharacterPassivs.get(i);
+                    createRow(new String[]{
+                            String.valueOf(i + 1),
+                            passiv.getName(),
+                            passiv.getEffect(),
+                            passiv.getRange()}, false);
+                }
             }
-        }
 
-        createBreak();
+            return passivsHeader.length;
+        });
 
-        List<Spell> allCharacterSpells = character.getAllCharacterSpells();
-        if (!allCharacterSpells.isEmpty()) {
-            createRow(new String[]{"Zauber", "Name", "Art", "Schnelligkeit", "Effekt", "Reichweite"}, true);
 
-            for (int i = 0; i < allCharacterSpells.size(); i++) {
-                Spell spell = allCharacterSpells.get(i);
-                createRow(new String[]{
-                        String.valueOf(i + 1),
-                        spell.getName(),
-                        spell.getDifficulty(),
-                        spell.getTempo(),
-                        spell.getEffect(),
-                        spell.getRange()}, false);
+        createTabel(IndexedColors.BLUE_GREY, () -> {
+            List<Spell> allCharacterSpells = character.getAllCharacterSpells();
+            String[] spellHeader = new String[]{"Zauber", "Name", "Art", "Schnelligkeit", "Effekt", "Reichweite"};
+            if (!allCharacterSpells.isEmpty()) {
+                createRow(spellHeader, true);
+
+                for (int i = 0; i < allCharacterSpells.size(); i++) {
+                    Spell spell = allCharacterSpells.get(i);
+                    createRow(new String[]{
+                            String.valueOf(i + 1),
+                            spell.getName(),
+                            spell.getDifficulty(),
+                            spell.getTempo(),
+                            spell.getEffect(),
+                            spell.getRange()}, false);
+                }
             }
-        }
 
-        createBreak();
+            return spellHeader.length;
+        });
 
-        createRow(new String[]{"Spellslots", "Level", "Wissen", "Gesamt"}, true);
-        createRow("Einfache");
-        createRow("Fortgeschrittene");
-        createRow("Expert");
-        createRow("Legendäre");
 
-        createBreak();
+        createTabel(IndexedColors.AQUA, () -> {
+            String[] spellslotsHeader = new String[]{"Spellslots", "Level", "Wissen", "Gesamt"};
+            createRow(spellslotsHeader, true);
+            createRow("Einfache");
+            createRow("Fortgeschrittene");
+            createRow("Expert");
+            createRow("Legendäre");
 
-        createRow(new String[]{"Ausrüstung", "HP", "Stärke", "Intelligenz", "Geschick", "Rüstung", "Magische Effekte"}, true);
-        createRow("Kopf");
-        createRow("Brust");
-        createRow("Arme");
-        createRow("Beine");
-        createRow("Ring");
-        createRow("Amulett");
+            return spellslotsHeader.length;
+        });
 
-        createBreak();
+        createTabel(IndexedColors.CORAL, () -> {
+            String[] equipmentHeader = new String[]{"Ausrüstung", "HP", "Stärke", "Intelligenz", "Geschick", "Rüstung", "Magische Effekte"};
+            createRow(equipmentHeader, true);
+            createRow("Kopf");
+            createRow("Brust");
+            createRow("Arme");
+            createRow("Beine");
+            createRow("Ring");
+            createRow("Amulett");
 
-        createRow(new String[]{"Inventar", "Plätze", "5"}, true);
-        createRow("1.");
-        createRow("2.");
-        createRow("3.");
-        createRow("4.");
-        createRow("5.");
-        createRow("Gold");
-        createRow("Waffe 1");
-        createRow("Waffe 2");
+            return equipmentHeader.length;
+        });
+
+        createTabel(IndexedColors.LIGHT_YELLOW, () -> {
+            String[] inventoryHeader = new String[]{"Inventar", "Plätze", "5"};
+            createRow(inventoryHeader, true);
+            createRow("1.");
+            createRow("2.");
+            createRow("3.");
+            createRow("4.");
+            createRow("5.");
+            createRow("Gold");
+            createRow("Waffe 1");
+            createRow("Waffe 2");
+
+            return inventoryHeader.length;
+        });
+
 
         try {
             FileOutputStream outputStream = new FileOutputStream(MainFrame.file.getAbsolutePath());
@@ -238,10 +245,7 @@ public class ExportPanel extends JPanel implements ActionListener {
 
     }
 
-    private void createBreak() {
-        createRow("");
-//        createRow("");
-    }
+    //---------------------------------------------------------- Row Creation -----------------------------
 
     private void createRow(String header) {
         createRow(header, new String[]{});
@@ -300,72 +304,49 @@ public class ExportPanel extends JPanel implements ActionListener {
         return font;
     }
 
-//    private void setNewBackgroundColor(IndexedColors indexedColors) {
-//        headerStyle.setFillForegroundColor(indexedColors.getIndex());
-//        valueStyle.setFillForegroundColor(indexedColors.getIndex());
-//    }
+    //---------------------------------------------------------- Table Creation -----------------------------
+    private void createTabel(IndexedColors indexedColors, Supplier<Integer> table) {
+        beginnNewTable();
 
-    private void setStartPaintRow() {
+        int itemsAmount = table.get();
+
+        paintTable(itemsAmount, indexedColors);
+    }
+
+    private void beginnNewTable() {
+        createRow("");
         startPaintRow = rowCount - 1;
     }
 
-    private void paintRim(int tableWidth, IndexedColors indexedColors) {
-
-        System.out.println("PAINT RIM ääääääääääääääääääääääääääääääääääääääääääääääääääääääää");
+    private void paintTable(int itemsAmount, IndexedColors indexedColors) {
 
         CellStyle paintStyle = workbook.createCellStyle();
         paintStyle.setFillForegroundColor(indexedColors.getIndex());
         paintStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
 
-        int tabelEnd = rowCount;
+        int tabelEndRow = rowCount;
+        int endPaintCell = startPaintCell + itemsAmount + 1;
 
-        for (int i = startPaintRow; i <= tabelEnd; i++) {
 
-            System.out.println("--------------------- ");
-            System.out.println("startPaintRow: " + startPaintRow);
-            System.out.println("tabelEnd: " + tabelEnd);
-            System.out.println("rowCount: " + rowCount);
-            System.out.println("--------------------- ");
+        for (int i = startPaintRow; i <= tabelEndRow; i++) {
+            Consumer<Row> paintWholeRow = row -> {
+                for (int j = startPaintCell; j <= endPaintCell; j++) {
+                    Cell newPaintCell = row.createCell(j);
+                    newPaintCell.setCellStyle(paintStyle);
+                }
+            };
 
             if (i == startPaintRow) {
-//                for (int j = 0; j < tableWidth; j++) {
-//                    Cell newPaintCell = sheet.getRow(i).createCell(j + cellShift);
-//                    newPaintCell.setCellStyle(paintStyle);
-//
-//                }
-                Row newRow = sheet.createRow(startPaintRow);
+                paintWholeRow.accept(sheet.getRow(startPaintRow));
 
-                for (int j = 0; j <= tableWidth + 1; j++) {
-                    Cell newPaintCell = newRow.createCell(j + cellShift - 1);
-                    newPaintCell.setCellStyle(paintStyle);
-                }
+            } else if (i == tabelEndRow) {
+                createRow(paintWholeRow);
 
-                System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-//                rowCount++;
-
-            } else if (i == tabelEnd) {
-//                System.out.println("rowcount: " + rowCount);
-//                System.out.println("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
-                Row newRow = sheet.createRow(rowCount);
-
-
-                for (int j = 0; j <= tableWidth + 1; j++) {
-                    Cell newPaintCell = newRow.createCell(j + cellShift - 1);
-                    newPaintCell.setCellStyle(paintStyle);
-                }
-
-                rowCount++;
             } else {
-                System.out.println("llllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll");
-                System.out.println(i);
-                sheet.getRow(i).createCell(cellShift - 1).setCellStyle(paintStyle);
-                sheet.getRow(i).createCell(tableWidth + 1 + cellShift - 1).setCellStyle(paintStyle);
-
-//                Row newRow = sheet.createRow(i);
-//                newRow.createCell(cellShift).setCellStyle(paintStyle);
-//                newRow.createCell(tableWidth + cellShift).setCellStyle(paintStyle);
+                Row currentRow = sheet.getRow(i);
+                currentRow.createCell(startPaintCell).setCellStyle(paintStyle);
+                currentRow.createCell(endPaintCell).setCellStyle(paintStyle);
             }
         }
     }
-
 }
