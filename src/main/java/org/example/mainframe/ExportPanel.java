@@ -15,8 +15,8 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -71,9 +71,9 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         Character character = MainFrame.character;
 
-        String dateTime = new Date().toString().replaceAll(":", "_");
+        UUID uuid = UUID.randomUUID();
 
-        sheet = workbook.createSheet("Char" + character.getRace().getName() + character.getRpgClass().getName() + dateTime);
+        sheet = workbook.createSheet("Char" + character.getRace().getName() + character.getRpgClass().getName() + uuid);
 
         for (int i = cellShift - 1; i < 10; i++) {
             sheet.setColumnWidth(i, 20 * 256);
