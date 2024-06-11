@@ -27,12 +27,13 @@ public class ExportPanel extends JPanel implements ActionListener {
     Sheet sheet;
 
     //startpoints
-    int rowCount = 2; //also rowTracker
-    int cellShift = 2;
+    private final int rowStart = 2;
+    private int rowCount = rowStart; //also rowTracker
+    private final int cellShift = 2;
 
-    int startPaintRow = 0;
+    private int startPaintRow = 0;
 
-    int startPaintCell = cellShift - 1;
+    private final int startPaintCell = cellShift - 1;
 
     CellStyle headerStyle;
     CellStyle valueStyle;
@@ -64,6 +65,13 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         headerStyle.setFont(fontBold);
         valueStyle.setFont(font);
+    }
+
+    public void OnUpdate() {
+        uploadedLabel.setText("Excel Datei noch nicht exportiert");
+        uploadedLabel.setForeground(Color.RED);
+
+        rowCount = rowStart;
     }
 
     @Override
@@ -232,7 +240,6 @@ public class ExportPanel extends JPanel implements ActionListener {
         try {
             FileOutputStream outputStream = new FileOutputStream(MainFrame.file.getAbsolutePath());
             workbook.write(outputStream);
-            workbook.close();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }

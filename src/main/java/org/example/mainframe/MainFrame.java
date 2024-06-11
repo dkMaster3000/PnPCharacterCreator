@@ -21,6 +21,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class MainFrame extends JFrame {
     RPGClassPanel rpgClassPanel;
     RPGClassSkillChoicesPanel rpgClassSkillChoicesPanel;
     JPanel editorContainer;
+    ExportPanel exportPanel;
 
     public static Character character = new Character();
     public static List<Race> races = new ArrayList<>();
@@ -61,6 +63,19 @@ public class MainFrame extends JFrame {
         UploadPanel uploadPanel = new UploadPanel(this::onUpload);
         uploadPanel.setBackground(Color.lightGray);
         editorContainer.add(uploadPanel);
+
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                if (workbook != null) {
+                    try {
+                        workbook.close();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                System.exit(0);
+            }
+        });
 
         revalidate();
         repaint();
@@ -110,7 +125,7 @@ public class MainFrame extends JFrame {
 
         editorContainer.add(Box.createVerticalBox());
 
-        ExportPanel exportPanel = new ExportPanel();
+        exportPanel = new ExportPanel();
         editorContainer.add(exportPanel);
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
@@ -152,6 +167,7 @@ public class MainFrame extends JFrame {
         lvlPanel.UpdateLvlPanel();
         talentsPanel.UpdateTalentsPanel();
         rpgClassSkillChoicesPanel.UpdateRPGClassSkillChoicesPanel();
+        exportPanel.OnUpdate();
     }
 
     private void updatePreviewPanel() {
