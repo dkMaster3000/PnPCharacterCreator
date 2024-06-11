@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="packaging manifest added">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="multiple character creations possible">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/LvlPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -467,11 +467,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718048408408</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="multiple character creations possible">
+      <option name="closed" value="true" />
+      <created>1718098807629</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1718098807629</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="created talentpanel and its combobox" />
     <MESSAGE value="updated raceChoicesPanel" />
     <MESSAGE value="updated talentcombobox with unique attribute" />
     <MESSAGE value="displayed talent changes in preview" />
@@ -496,7 +503,8 @@
     <MESSAGE value="create all tables with painted rim" />
     <MESSAGE value="added uuid to sheetname" />
     <MESSAGE value="packaging manifest added" />
-    <option name="LAST_COMMIT_MESSAGE" value="packaging manifest added" />
+    <MESSAGE value="multiple character creations possible" />
+    <option name="LAST_COMMIT_MESSAGE" value="multiple character creations possible" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

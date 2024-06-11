@@ -120,6 +120,7 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         createTabel(IndexedColors.LIGHT_YELLOW, () -> {
             createRow("Stufe", String.valueOf(character.getLvl()));
+            createRow("Punkte zu Vergeben", String.valueOf(character.getStatPoints()));
 
             String[] statsHeaderValues = new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"};
             createRow(statsHeaderValues, true);

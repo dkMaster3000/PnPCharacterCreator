@@ -45,7 +45,9 @@ public class LvlPanel extends JPanel {
 
     //invoked by a function in MainFrame, if the chracter has been modified
     public void UpdateLvlPanel() {
-        pointsToSpentLabel.setText("Punkte zu vergeben: " + MainFrame.character.getStatPoints());
+        int characterStatPoints = MainFrame.character.getStatPoints();
+        pointsToSpentLabel.setText("Punkte zu vergeben: " + characterStatPoints);
+        pointsToSpentLabel.setForeground(characterStatPoints > 0 ? Color.RED : Color.GREEN);
     }
 
     //modify character, tells mainframe to update the other frames
