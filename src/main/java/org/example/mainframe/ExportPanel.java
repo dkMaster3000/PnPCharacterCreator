@@ -247,7 +247,7 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         //update text
         uploadedLabel.setText("Excel Datei exportiert");
-        uploadedLabel.setForeground(Color.GREEN);
+        uploadedLabel.setForeground(UsedValues.DARK_GREEN);
 
         repaint();
 

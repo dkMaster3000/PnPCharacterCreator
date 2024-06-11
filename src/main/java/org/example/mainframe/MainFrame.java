@@ -37,7 +37,7 @@ public class MainFrame extends JFrame {
     TalentsPanel talentsPanel;
     RPGClassPanel rpgClassPanel;
     RPGClassSkillChoicesPanel rpgClassSkillChoicesPanel;
-    JPanel editorContainer;
+    PanelContainer panelContainer;
     ExportPanel exportPanel;
 
     public static Character character = new Character();
@@ -55,14 +55,15 @@ public class MainFrame extends JFrame {
 
         setLayout(null);
 
-        editorContainer = new JPanel();
-        editorContainer.setLayout(new BoxLayout(editorContainer, BoxLayout.Y_AXIS));
-        editorContainer.setBounds(5, 5, 850, 750);
-        add(editorContainer);
+        panelContainer = new PanelContainer();
+        panelContainer.setLayout(new BoxLayout(panelContainer, BoxLayout.Y_AXIS));
+        panelContainer.setBounds(5, 5, 850, 750);
+        add(panelContainer);
 
         UploadPanel uploadPanel = new UploadPanel(this::onUpload);
-        uploadPanel.setBackground(Color.lightGray);
-        editorContainer.add(uploadPanel);
+        panelContainer.add(uploadPanel);
+
+        panelContainer.addSectionSeparator();
 
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent e) {
@@ -96,42 +97,49 @@ public class MainFrame extends JFrame {
     //STEP: 3
     private void createPanelsAfterUpload() {
         RacePanel racePanel = new RacePanel(this::updatePanels);
-        editorContainer.add(racePanel);
+        panelContainer.add(racePanel);
+
+        panelContainer.addSectionSeparator();
 
         lvlPanel = new LvlPanel(this::updatePanels);
-        lvlPanel.setBackground(Color.magenta);
         lvlPanel.setVisible(true);
-        editorContainer.add(lvlPanel);
+        panelContainer.add(lvlPanel);
+
+        panelContainer.addSectionSeparator();
 
         raceChoicesPanel = new RaceChoicesPanel(this::updatePanels);
-        raceChoicesPanel.setBackground(Color.orange);
         raceChoicesPanel.setVisible(true);
-        editorContainer.add(raceChoicesPanel);
+        panelContainer.add(raceChoicesPanel);
+
+        panelContainer.addSectionSeparator();
 
         talentsPanel = new TalentsPanel(this::updatePanels);
-        talentsPanel.setBackground(Color.cyan);
         talentsPanel.setVisible(true);
-        editorContainer.add(talentsPanel);
+        panelContainer.add(talentsPanel);
+
+        panelContainer.addSectionSeparator();
 
         rpgClassPanel = new RPGClassPanel(this::updatePanels);
-        rpgClassPanel.setBackground(Color.green);
         rpgClassPanel.setVisible(true);
-        editorContainer.add(rpgClassPanel);
+        panelContainer.add(rpgClassPanel);
+
+        panelContainer.addSectionSeparator();
 
         rpgClassSkillChoicesPanel = new RPGClassSkillChoicesPanel(this::updatePanels);
-        rpgClassSkillChoicesPanel.setBackground(Color.pink);
         rpgClassSkillChoicesPanel.setVisible(true);
-        editorContainer.add(rpgClassSkillChoicesPanel);
+        panelContainer.add(rpgClassSkillChoicesPanel);
 
-        editorContainer.add(Box.createVerticalBox());
+        panelContainer.add(Box.createVerticalBox());
+
+        panelContainer.addSectionSeparator();
 
         exportPanel = new ExportPanel();
-        editorContainer.add(exportPanel);
+        panelContainer.add(exportPanel);
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
 
         characterPreviewContainer = new JPanel();
-        characterPreviewContainer.setBounds(860, 0, 550, 750);
+        characterPreviewContainer.setBounds(860, 5, 550, 750);
         characterPreviewContainer.setBackground(Color.lightGray);
         characterPreviewContainer.setLayout(new BoxLayout(characterPreviewContainer, BoxLayout.Y_AXIS));
         add(characterPreviewContainer);

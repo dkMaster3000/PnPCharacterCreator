@@ -1,6 +1,7 @@
 package org.example.preview;
 
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.PanelContainer;
 import org.example.models.*;
 import org.example.models.Character;
 
@@ -8,13 +9,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
-public class CharacterPreviewPanel extends JPanel {
+public class CharacterPreviewPanel extends PanelContainer {
 
     private Character character;
     private Race race;
 
     public CharacterPreviewPanel() {
-        super(true);
         this.character = MainFrame.character;
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -124,7 +124,7 @@ public class CharacterPreviewPanel extends JPanel {
 
             addTable(data, columnNames);
         }
-        
+
         revalidate();
     }
 
@@ -142,21 +142,5 @@ public class CharacterPreviewPanel extends JPanel {
                 newTable.getRowHeight() * (data.length + 2)
         ));
         add(newScrollPane);
-    }
-
-    public void addSectionSeparator() {
-        addSpace();
-        addSeparator();
-        addSpace();
-    }
-
-    public void addSeparator() {
-        JSeparator newSeparator = new JSeparator();
-        newSeparator.setOrientation(SwingConstants.HORIZONTAL);
-        add(newSeparator);
-    }
-
-    public void addSpace() {
-        add(Box.createRigidArea(new Dimension(5, 10)));
     }
 }

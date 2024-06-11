@@ -12,7 +12,10 @@
     <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="multiple character creations possible">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/LvlPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/lvl/LvlPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

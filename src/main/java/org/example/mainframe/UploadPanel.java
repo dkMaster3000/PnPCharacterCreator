@@ -63,7 +63,7 @@ public class UploadPanel extends JPanel implements ActionListener {
                 workbook = new XSSFWorkbook(fileInputStream);
 
                 uploadedLabel.setText("Excel Datei hochgeladen");
-                uploadedLabel.setForeground(Color.GREEN);
+                uploadedLabel.setForeground(UsedValues.DARK_GREEN);
 
                 onUpload.onUpload(workbook);
 

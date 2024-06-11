@@ -2,6 +2,7 @@ package org.example.mainframe.lvl;
 
 import org.example.mainframe.MainFrame;
 import org.example.mainframe.UpdatePanels;
+import org.example.mainframe.UsedValues;
 import org.example.models.Character;
 
 import javax.swing.*;
@@ -47,7 +48,7 @@ public class LvlPanel extends JPanel {
     public void UpdateLvlPanel() {
         int characterStatPoints = MainFrame.character.getStatPoints();
         pointsToSpentLabel.setText("Punkte zu vergeben: " + characterStatPoints);
-        pointsToSpentLabel.setForeground(characterStatPoints > 0 ? Color.RED : Color.GREEN);
+        pointsToSpentLabel.setForeground(characterStatPoints > 0 ? Color.RED : UsedValues.DARK_GREEN);
     }
 
     //modify character, tells mainframe to update the other frames
