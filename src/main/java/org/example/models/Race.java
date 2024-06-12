@@ -9,7 +9,7 @@ public class Race {
     private String height = "";
     private String weight = "";
     private String hp = "";
-    private String movement = "";
+    private int movement = 0;
     private final List<String> buffs = new ArrayList<>();
     private final List<String> debuffs = new ArrayList<>();
     private final List<List<String>> choices = new ArrayList<>();
@@ -42,11 +42,11 @@ public class Race {
         this.weight = weight;
     }
 
-    public String getMovement() {
+    public int getMovement() {
         return movement;
     }
 
-    public void setMovement(String movement) {
+    public void setMovement(int movement) {
         this.movement = movement;
     }
 

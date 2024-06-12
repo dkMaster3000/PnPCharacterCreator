@@ -33,7 +33,7 @@ public class RaceLoader {
                 case "Größe" -> races.get(activeRace).setHeight(list.get(1));
                 case "Gewicht" -> races.get(activeRace).setWeight(list.get(1));
                 case "HP" -> races.get(activeRace).setHp(list.get(1));
-                case "Bewegungsreichweite" -> races.get(activeRace).setMovement(list.get(1));
+                case "Bewegungsreichweite" -> races.get(activeRace).setMovement(Integer.parseInt(list.get(1)));
                 case "Effekte" -> {
                     for (int i = 1; i < list.size(); i++) {
                         races.get(activeRace).addBuffs(list.get(i));
