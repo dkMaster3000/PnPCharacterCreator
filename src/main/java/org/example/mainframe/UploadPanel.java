@@ -15,11 +15,11 @@ import java.io.FileInputStream;
 public class UploadPanel extends JPanel implements ActionListener {
 
     public interface UploadPanelFunc {
-        void onUpload(Workbook workbook);
+        void onUpload(XSSFWorkbook workbook);
     }
 
     JLabel uploadedLabel;
-    Workbook workbook;
+    XSSFWorkbook workbook;
     UploadPanelFunc onUpload;
 
     UploadPanel(UploadPanelFunc onUpload) {

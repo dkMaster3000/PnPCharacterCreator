@@ -1,8 +1,8 @@
 package org.example.mainframe;
 
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.xssf.usermodel.XSSFFont;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 
 import org.example.models.Character;
 import org.example.models.Passiv;
@@ -23,8 +23,8 @@ import java.util.function.Supplier;
 public class ExportPanel extends JPanel implements ActionListener {
 
     JLabel uploadedLabel;
-    Workbook workbook;
-    Sheet sheet;
+    XSSFWorkbook workbook;
+    XSSFSheet sheet;
 
     //startpoints
     private final int rowStart = 2;
@@ -83,9 +83,13 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         sheet = workbook.createSheet("Char" + character.getRace().getName() + character.getRpgClass().getName() + uuid);
 
+
         for (int i = cellShift - 1; i < 10; i++) {
             sheet.setColumnWidth(i, 20 * 256);
         }
+
+        XSSFFormulaEvaluator formulaEvaluator =
+                workbook.getCreationHelper().createFormulaEvaluator();
 
         createTabel(IndexedColors.GREY_25_PERCENT, () -> {
             createRow("Vorname");
@@ -119,20 +123,42 @@ public class ExportPanel extends JPanel implements ActionListener {
         });
 
         createTabel(IndexedColors.LIGHT_YELLOW, () -> {
+
+            XSSFCellStyle lockedNumericStyle = workbook.createCellStyle();
+            lockedNumericStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+            lockedNumericStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            lockedNumericStyle.setLocked(true);
+
+
             createRow("Stufe", String.valueOf(character.getLvl()));
             createRow("Punkte zu Vergeben", String.valueOf(character.getStatPoints()));
 
             String[] statsHeaderValues = new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"};
             createRow(statsHeaderValues, true);
 
+            Runnable addSumCell = () -> {
+                int previousRow = rowCount - 1;
+                XSSFCell formulaCell = sheet.getRow(rowCount).createCell(cellShift + statsHeaderValues.length - 1);
+                formulaCell.setCellFormula("SUM(D" + rowCount + ":F" + rowCount + ")");
+                formulaCell.setCellStyle(lockedNumericStyle);
+                formulaEvaluator.evaluateFormulaCell(formulaCell);
+            };
+
+
             int totalHP = character.getAddedHP() + Integer.parseInt(character.getRace().getHp());
-            createRow("HP", totalHP);
-            createRow("Stärke", character.getStrength());
-            createRow("Intelligenz", character.getIntelligence());
-            createRow("Geschick", character.getDexterity());
+            createRowWithInt("HP", totalHP);
+            addSumCell.run();
+
+            createRowWithInt("Stärke", character.getStrength());
+            addSumCell.run();
+            createRowWithInt("Intelligenz", character.getIntelligence());
+            addSumCell.run();
+            createRowWithInt("Geschick", character.getDexterity());
+            addSumCell.run();
             createRow("Bewegung", character.getRace().getMovement());
             createRow("Rüstung");
             createRow("Dodge");
+
 
             return statsHeaderValues.length;
         });
@@ -241,6 +267,7 @@ public class ExportPanel extends JPanel implements ActionListener {
         try {
             FileOutputStream outputStream = new FileOutputStream(MainFrame.file.getAbsolutePath());
             workbook.write(outputStream);
+            outputStream.close();
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
@@ -253,7 +280,23 @@ public class ExportPanel extends JPanel implements ActionListener {
 
     }
 
+
     //---------------------------------------------------------- Row Creation -----------------------------
+
+    private void createRowWithInt(String header, int totalHP) {
+        createRow((Row newRow) -> {
+
+            Cell headerCell = newRow.createCell(cellShift);
+            headerCell.setCellValue(header);
+            headerCell.setCellStyle(headerStyle);
+
+            Cell cell = newRow.createCell(1 + cellShift);
+            cell.setCellValue(totalHP);
+            cell.setCellStyle(valueStyle);
+
+
+        });
+    }
 
     private void createRow(String header) {
         createRow(header, new String[]{});
@@ -304,7 +347,7 @@ public class ExportPanel extends JPanel implements ActionListener {
     }
 
     private XSSFFont createFont(boolean bold) {
-        XSSFFont font = ((XSSFWorkbook) workbook).createFont();
+        XSSFFont font = workbook.createFont();
         font.setFontName("Arial");
         font.setFontHeightInPoints((short) 11);
         font.setBold(bold);

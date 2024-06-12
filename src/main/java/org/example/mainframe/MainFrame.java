@@ -1,6 +1,7 @@
 package org.example.mainframe;
 
 import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.example.loaders.RPGClassLoader;
 import org.example.loaders.RaceLoader;
 import org.example.loaders.TalentLoader;
@@ -27,7 +28,7 @@ import java.util.List;
 
 public class MainFrame extends JFrame {
 
-    public static Workbook workbook = null;
+    public static XSSFWorkbook workbook = null;
     public static File file = null;
 
     CharacterPreviewPanel characterPreviewPanel;
@@ -84,7 +85,7 @@ public class MainFrame extends JFrame {
 
     //STEP: 2
     //invoked by upload button
-    private void onUpload(Workbook workbook) {
+    private void onUpload(XSSFWorkbook workbook) {
         MainFrame.workbook = workbook;
 
         races = RaceLoader.getRaces();
