@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="improved ui">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="movement as int">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -484,12 +482,26 @@
       <option name="project" value="LOCAL" />
       <updated>1718102421191</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="able to write formulas">
+      <option name="closed" value="true" />
+      <created>1718190639893</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1718190639893</updated>
+    </task>
+    <task id="LOCAL-00049" summary="movement as int">
+      <option name="closed" value="true" />
+      <created>1718196730407</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1718196730407</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="updated talentcombobox with unique attribute" />
-    <MESSAGE value="displayed talent changes in preview" />
     <MESSAGE value="created models for RPGClass, created RPGCLassloader" />
     <MESSAGE value="modified character" />
     <MESSAGE value="restructure loading" />
@@ -513,7 +525,9 @@
     <MESSAGE value="packaging manifest added" />
     <MESSAGE value="multiple character creations possible" />
     <MESSAGE value="improved ui" />
-    <option name="LAST_COMMIT_MESSAGE" value="improved ui" />
+    <MESSAGE value="able to write formulas" />
+    <MESSAGE value="movement as int" />
+    <option name="LAST_COMMIT_MESSAGE" value="movement as int" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -1,7 +1,7 @@
 package org.example.mainframe;
 
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.*;
 
 import org.example.models.Character;
@@ -15,9 +15,12 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ExportPanel extends JPanel implements ActionListener {
@@ -37,6 +40,16 @@ public class ExportPanel extends JPanel implements ActionListener {
 
     CellStyle headerStyle;
     CellStyle valueStyle;
+    XSSFCellStyle lockedNumericStyle;
+
+    //stats equipmentcells
+    XSSFCell hpEquipment;
+    XSSFCell strengthEquipment;
+    XSSFCell inteligenceEquipment;
+    XSSFCell dexEquipment;
+    XSSFCell armorEquipment;
+
+    HashMap<Integer, XSSFCell> equipmentCells = new HashMap<>();
 
     ExportPanel() {
         Dimension thisSize = new Dimension(1000, 60);
@@ -65,6 +78,11 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         headerStyle.setFont(fontBold);
         valueStyle.setFont(font);
+
+        lockedNumericStyle = workbook.createCellStyle();
+        lockedNumericStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
+        lockedNumericStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+        lockedNumericStyle.setLocked(true);
     }
 
     public void OnUpdate() {
@@ -124,41 +142,89 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         createTabel(IndexedColors.LIGHT_YELLOW, () -> {
 
-            XSSFCellStyle lockedNumericStyle = workbook.createCellStyle();
-            lockedNumericStyle.setFillForegroundColor(IndexedColors.GREY_25_PERCENT.getIndex());
-            lockedNumericStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-            lockedNumericStyle.setLocked(true);
-
-
             createRow("Stufe", String.valueOf(character.getLvl()));
             createRow("Punkte zu Vergeben", String.valueOf(character.getStatPoints()));
 
             String[] statsHeaderValues = new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"};
             createRow(statsHeaderValues, true);
 
+            //punkte + skill + ausrüstung = insgesammt
             Runnable addSumCell = () -> {
-                int previousRow = rowCount - 1;
-                XSSFCell formulaCell = sheet.getRow(rowCount).createCell(cellShift + statsHeaderValues.length - 1);
-                formulaCell.setCellFormula("SUM(D" + rowCount + ":F" + rowCount + ")");
+                XSSFCell formulaCell = sheet.getRow(rowCount - 1).createCell(cellShift + statsHeaderValues.length - 1);
+                String startCountCell = CellReference.convertNumToColString(cellShift + 1) + rowCount;
+                String endCountCell = CellReference.convertNumToColString(cellShift + 3) + rowCount;
+                formulaCell.setCellFormula("SUM(" + startCountCell + ":" + endCountCell + ")");
                 formulaCell.setCellStyle(lockedNumericStyle);
                 formulaEvaluator.evaluateFormulaCell(formulaCell);
             };
 
+            Supplier<XSSFCell> getCurrentArmorSumCell = () -> sheet.getRow(rowCount - 1).createCell(cellShift + 3);
 
             int totalHP = character.getAddedHP() + Integer.parseInt(character.getRace().getHp());
-            createRowWithInt("HP", totalHP);
+            createRow("HP", totalHP);
+            addSumCell.run();
+            hpEquipment = getCurrentArmorSumCell.get();
+            equipmentCells.put(1, hpEquipment);
+
+            createRow("Stärke", character.getStrength());
+            addSumCell.run();
+            strengthEquipment = getCurrentArmorSumCell.get();
+            equipmentCells.put(2, strengthEquipment);
+
+            createRow("Intelligenz", character.getIntelligence());
             addSumCell.run();
 
-            createRowWithInt("Stärke", character.getStrength());
+            inteligenceEquipment = getCurrentArmorSumCell.get();
+            equipmentCells.put(3, inteligenceEquipment);
+
+            createRow("Geschick", character.getDexterity());
             addSumCell.run();
-            createRowWithInt("Intelligenz", character.getIntelligence());
-            addSumCell.run();
-            createRowWithInt("Geschick", character.getDexterity());
-            addSumCell.run();
-            createRow("Bewegung", character.getRace().getMovement());
+            dexEquipment = getCurrentArmorSumCell.get();
+            equipmentCells.put(4, dexEquipment);
+
+            //calculatable substats ------------------------------------------------------------------
+            createRow("Substats");
+            int totalSumCellNumber = cellShift + statsHeaderValues.length - 1;
+            int valueCellNumber = cellShift + 1;
+            Supplier<Integer> getCurrentRowNumber = () -> rowCount - 1;
+            Function<Integer, Integer> getTableRowWithOffset = (offset) -> getCurrentRowNumber.get() + 1 + offset; // rowCount - 1 + 1, because excel table number start with 1
+
             createRow("Rüstung");
-            createRow("Dodge");
+            XSSFCell armorValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
+            String strengthSumCell = CellReference.convertNumToColString(totalSumCellNumber) + getTableRowWithOffset.apply(-4);
+            armorValueCell.setCellFormula("(" + strengthSumCell + ")");
+            armorValueCell.setCellStyle(lockedNumericStyle);
+            formulaEvaluator.evaluateFormulaCell(armorValueCell);
 
+            addSumCell.run();
+            armorEquipment = getCurrentArmorSumCell.get();
+            equipmentCells.put(5, armorEquipment);
+
+
+            createRow("Bewegung");
+            XSSFCell movementValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
+            String dexSumCell = CellReference.convertNumToColString(totalSumCellNumber) + getTableRowWithOffset.apply(-3);
+            movementValueCell.setCellFormula("ROUNDDOWN(" + (dexSumCell) + " / 10 + " + character.getRace().getMovement() + ", 0)");
+            movementValueCell.setCellStyle(lockedNumericStyle);
+            formulaEvaluator.evaluateFormulaCell(movementValueCell);
+            addSumCell.run();
+
+
+            createRow("Dodge in %");
+            XSSFCell dodgeValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
+            dodgeValueCell.setCellFormula("(" + dexSumCell + ")");
+            dodgeValueCell.setCellStyle(lockedNumericStyle);
+            formulaEvaluator.evaluateFormulaCell(dodgeValueCell);
+            addSumCell.run();
+
+            createRow("Ini-Bonus");
+            XSSFCell iniValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
+            iniValueCell.setCellFormula("(" + dexSumCell + ")");
+            iniValueCell.setCellStyle(lockedNumericStyle);
+            formulaEvaluator.evaluateFormulaCell(iniValueCell);
+            addSumCell.run();
+
+            createRow("Charisma");
 
             return statsHeaderValues.length;
         });
@@ -245,6 +311,15 @@ public class ExportPanel extends JPanel implements ActionListener {
             createRow("Ring");
             createRow("Amulett");
 
+            //add sum formular for values in stats
+            for (Integer key : equipmentCells.keySet()) {
+                String startCountCell = CellReference.convertNumToColString(cellShift + key) + (rowCount - 5);
+                String endCountCell = CellReference.convertNumToColString(cellShift + key) + rowCount;
+                equipmentCells.get(key).setCellFormula("SUM(" + startCountCell + ":" + endCountCell + ")");
+                equipmentCells.get(key).setCellStyle(lockedNumericStyle);
+                formulaEvaluator.evaluateFormulaCell(hpEquipment);
+            }
+
             return equipmentHeader.length;
         });
 
@@ -283,7 +358,7 @@ public class ExportPanel extends JPanel implements ActionListener {
 
     //---------------------------------------------------------- Row Creation -----------------------------
 
-    private void createRowWithInt(String header, int totalHP) {
+    private void createRow(String header, int totalHP) {
         createRow((Row newRow) -> {
 
             Cell headerCell = newRow.createCell(cellShift);
@@ -300,10 +375,6 @@ public class ExportPanel extends JPanel implements ActionListener {
 
     private void createRow(String header) {
         createRow(header, new String[]{});
-    }
-
-    private void createRow(String header, int value) {
-        createRow(header, String.valueOf(value));
     }
 
     private void createRow(String header, String value) {
