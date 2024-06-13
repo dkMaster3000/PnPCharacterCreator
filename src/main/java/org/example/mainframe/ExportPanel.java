@@ -4,10 +4,8 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.*;
 
+import org.example.models.*;
 import org.example.models.Character;
-import org.example.models.Passiv;
-import org.example.models.Spell;
-import org.example.models.Talent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,8 +17,8 @@ import java.io.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ExportPanel extends JPanel implements ActionListener {
@@ -42,12 +40,19 @@ public class ExportPanel extends JPanel implements ActionListener {
     CellStyle valueStyle;
     XSSFCellStyle lockedNumericStyle;
 
+    //cells to remember
+    //level cell
+    XSSFCell currentLevelCell;
     //stats equipmentcells
     XSSFCell hpEquipment;
     XSSFCell strengthEquipment;
-    XSSFCell inteligenceEquipment;
+    XSSFCell intelligenceEquipment;
     XSSFCell dexEquipment;
     XSSFCell armorEquipment;
+    //total sum of specific stats
+    XSSFCell strengthTotalSum;
+    XSSFCell intelligenceTotalSum;
+    XSSFCell dexTotalSum;
 
     HashMap<Integer, XSSFCell> equipmentCells = new HashMap<>();
 
@@ -142,7 +147,8 @@ public class ExportPanel extends JPanel implements ActionListener {
 
         createTabel(IndexedColors.LIGHT_YELLOW, () -> {
 
-            createRow("Stufe", String.valueOf(character.getLvl()));
+            createRow("Level", character.getLvl());
+            currentLevelCell = sheet.getRow(rowCount - 1).getCell(cellShift + 1);
             createRow("Punkte zu Vergeben", String.valueOf(character.getStatPoints()));
 
             String[] statsHeaderValues = new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"};
@@ -160,6 +166,8 @@ public class ExportPanel extends JPanel implements ActionListener {
 
             Supplier<XSSFCell> getCurrentArmorSumCell = () -> sheet.getRow(rowCount - 1).createCell(cellShift + 3);
 
+            Supplier<XSSFCell> getCurrentTotalSumCell = () -> sheet.getRow(rowCount - 1).getCell(cellShift + statsHeaderValues.length - 1);
+
             int totalHP = character.getAddedHP() + Integer.parseInt(character.getRace().getHp());
             createRow("HP", totalHP);
             addSumCell.run();
@@ -168,30 +176,32 @@ public class ExportPanel extends JPanel implements ActionListener {
 
             createRow("Stärke", character.getStrength());
             addSumCell.run();
+            strengthTotalSum = getCurrentTotalSumCell.get();
             strengthEquipment = getCurrentArmorSumCell.get();
             equipmentCells.put(2, strengthEquipment);
 
             createRow("Intelligenz", character.getIntelligence());
             addSumCell.run();
-
-            inteligenceEquipment = getCurrentArmorSumCell.get();
-            equipmentCells.put(3, inteligenceEquipment);
+            intelligenceTotalSum = getCurrentTotalSumCell.get();
+            intelligenceEquipment = getCurrentArmorSumCell.get();
+            equipmentCells.put(3, intelligenceEquipment);
 
             createRow("Geschick", character.getDexterity());
             addSumCell.run();
+            dexTotalSum = getCurrentTotalSumCell.get();
             dexEquipment = getCurrentArmorSumCell.get();
             equipmentCells.put(4, dexEquipment);
 
             //calculatable substats ------------------------------------------------------------------
             createRow("Substats");
-            int totalSumCellNumber = cellShift + statsHeaderValues.length - 1;
+
             int valueCellNumber = cellShift + 1;
-            Supplier<Integer> getCurrentRowNumber = () -> rowCount - 1;
-            Function<Integer, Integer> getTableRowWithOffset = (offset) -> getCurrentRowNumber.get() + 1 + offset; // rowCount - 1 + 1, because excel table number start with 1
 
             createRow("Rüstung");
-            XSSFCell armorValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
-            String strengthSumCell = CellReference.convertNumToColString(totalSumCellNumber) + getTableRowWithOffset.apply(-4);
+            XSSFCell armorValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
+
+            String strengthSumCell = CellReference.convertNumToColString(strengthTotalSum.getColumnIndex()) + GetDisplayedExcelRow(strengthTotalSum);
+
             armorValueCell.setCellFormula("(" + strengthSumCell + ")");
             armorValueCell.setCellStyle(lockedNumericStyle);
             formulaEvaluator.evaluateFormulaCell(armorValueCell);
@@ -202,24 +212,24 @@ public class ExportPanel extends JPanel implements ActionListener {
 
 
             createRow("Bewegung");
-            XSSFCell movementValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
-            String dexSumCell = CellReference.convertNumToColString(totalSumCellNumber) + getTableRowWithOffset.apply(-3);
-            movementValueCell.setCellFormula("ROUNDDOWN(" + (dexSumCell) + " / 10 + " + character.getRace().getMovement() + ", 0)");
+            XSSFCell movementValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
+            String dexTotalSumCellID = CellReference.convertNumToColString(dexTotalSum.getColumnIndex()) + GetDisplayedExcelRow(dexTotalSum);
+            movementValueCell.setCellFormula("ROUNDDOWN(" + (dexTotalSumCellID) + " / 10 + " + character.getRace().getMovement() + ", 0)");
             movementValueCell.setCellStyle(lockedNumericStyle);
             formulaEvaluator.evaluateFormulaCell(movementValueCell);
             addSumCell.run();
 
 
             createRow("Dodge in %");
-            XSSFCell dodgeValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
-            dodgeValueCell.setCellFormula("(" + dexSumCell + ")");
+            XSSFCell dodgeValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
+            dodgeValueCell.setCellFormula("(" + dexTotalSumCellID + ")");
             dodgeValueCell.setCellStyle(lockedNumericStyle);
             formulaEvaluator.evaluateFormulaCell(dodgeValueCell);
             addSumCell.run();
 
             createRow("Ini-Bonus");
-            XSSFCell iniValueCell = sheet.getRow(getCurrentRowNumber.get()).createCell(valueCellNumber);
-            iniValueCell.setCellFormula("(" + dexSumCell + ")");
+            XSSFCell iniValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
+            iniValueCell.setCellFormula("(" + dexTotalSumCellID + ")");
             iniValueCell.setCellStyle(lockedNumericStyle);
             formulaEvaluator.evaluateFormulaCell(iniValueCell);
             addSumCell.run();
@@ -291,12 +301,62 @@ public class ExportPanel extends JPanel implements ActionListener {
 
 
         createTabel(IndexedColors.AQUA, () -> {
+            int lvlCellColumn = cellShift + 1;
+            int wisdomCellColumn = cellShift + 2;
+            int totalSlotsCellColumn = cellShift + 3;
+
             String[] spellslotsHeader = new String[]{"Spellslots", "Level", "Wissen", "Gesamt"};
             createRow(spellslotsHeader, true);
+
+            SpellslotsMatrix spellslotsMatrix = MainFrame.spellslotsMatrix;
+            BiConsumer<String, Integer> createSpellslotRow = (key, dividend) -> {
+                //create formular cell for lvl
+                XSSFCell lvlValueCell = sheet.getRow(GetLastRow()).createCell(lvlCellColumn);
+                String currentLvlCellID = CellReference.convertNumToColString(currentLevelCell.getColumnIndex()) + GetDisplayedExcelRow(currentLevelCell);
+                StringBuilder formularBuilder = new StringBuilder();
+                for (Integer lvl : spellslotsMatrix.getSpellslotsMatrix().keySet()) {
+                    formularBuilder.append("IF(").append(currentLvlCellID).append("=").append(lvl).append(", ").append(spellslotsMatrix.getSpellslotsMatrix().get(lvl).get(key)).append(", ");
+                }
+                formularBuilder.append("0");
+                for (Integer _ : spellslotsMatrix.getSpellslotsMatrix().keySet()) {
+                    formularBuilder.append(")");
+                }
+
+                lvlValueCell.setCellFormula(formularBuilder.toString());
+                lvlValueCell.setCellStyle(lockedNumericStyle);
+                formulaEvaluator.evaluateFormulaCell(lvlValueCell);
+
+                //create formalur cell for int
+                XSSFCell wisdomValueCell = sheet.getRow(GetLastRow()).createCell(wisdomCellColumn);
+                String intelligenceTotalSumCellID = CellReference.convertNumToColString(intelligenceTotalSum.getColumnIndex()) + GetDisplayedExcelRow(intelligenceTotalSum);
+                wisdomValueCell.setCellFormula("ROUNDDOWN(" + (intelligenceTotalSumCellID) + " / " + dividend + " , 0)");
+                wisdomValueCell.setCellStyle(lockedNumericStyle);
+                formulaEvaluator.evaluateFormulaCell(wisdomValueCell);
+
+                // create formular cell for sum
+                XSSFCell spellSlotSumValueCell = sheet.getRow(GetLastRow()).createCell(totalSlotsCellColumn);
+                String startCalc = CellReference.convertNumToColString(lvlCellColumn) + GetDisplayedExcelRow(spellSlotSumValueCell);
+                String endCalc = CellReference.convertNumToColString(wisdomCellColumn) + GetDisplayedExcelRow(spellSlotSumValueCell);
+                spellSlotSumValueCell.setCellFormula("Sum(" + startCalc + ":" + endCalc + ")");
+                spellSlotSumValueCell.setCellStyle(lockedNumericStyle);
+                formulaEvaluator.evaluateFormulaCell(spellSlotSumValueCell);
+            };
+
             createRow("Einfache");
+
+            createSpellslotRow.accept(spellslotsMatrix.getSimpleKey(), spellslotsMatrix.getSimpleDivider());
+
             createRow("Fortgeschrittene");
+
+            createSpellslotRow.accept(spellslotsMatrix.getAdvancedkey(), spellslotsMatrix.getAdvancedDivider());
+
             createRow("Expert");
+
+            createSpellslotRow.accept(spellslotsMatrix.getExpertKey(), spellslotsMatrix.getExpertDivider());
+
             createRow("Legendäre");
+
+            createSpellslotRow.accept(spellslotsMatrix.getLegendaryKey(), spellslotsMatrix.getLegendarDivider());
 
             return spellslotsHeader.length;
         });
@@ -470,5 +530,14 @@ public class ExportPanel extends JPanel implements ActionListener {
                 currentRow.createCell(endPaintCell).setCellStyle(paintStyle);
             }
         }
+    }
+
+    //---------------------------------------------------------- Utils -----------------------------
+    private int GetDisplayedExcelRow(XSSFCell cell) {
+        return cell.getRowIndex() + 1;
+    }
+
+    private int GetLastRow() {
+        return rowCount - 1;
     }
 }

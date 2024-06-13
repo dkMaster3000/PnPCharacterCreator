@@ -1,9 +1,9 @@
 package org.example.mainframe;
 
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.example.loaders.RPGClassLoader;
 import org.example.loaders.RaceLoader;
+import org.example.loaders.SpellslotsLoader;
 import org.example.loaders.TalentLoader;
 import org.example.mainframe.lvl.LvlPanel;
 import org.example.mainframe.race.RaceChoicesPanel;
@@ -11,10 +11,8 @@ import org.example.mainframe.race.RacePanel;
 import org.example.mainframe.rpgclass.RPGClassPanel;
 import org.example.mainframe.rpgclass.RPGClassSkillChoicesPanel;
 import org.example.mainframe.talent.TalentsPanel;
+import org.example.models.*;
 import org.example.models.Character;
-import org.example.models.RPGClass;
-import org.example.models.Race;
-import org.example.models.TalentMatrix;
 import org.example.preview.CharacterPreviewPanel;
 
 import javax.swing.*;
@@ -45,6 +43,7 @@ public class MainFrame extends JFrame {
     public static List<Race> races = new ArrayList<>();
     public static TalentMatrix talentMatrix = null;
     public static List<RPGClass> rpgClasses = null;
+    public static SpellslotsMatrix spellslotsMatrix = null;
 
     //STEP: 1
     MainFrame() {
@@ -91,6 +90,7 @@ public class MainFrame extends JFrame {
         races = RaceLoader.getRaces();
         talentMatrix = TalentLoader.getTalentMatrix();
         rpgClasses = RPGClassLoader.getRPGClass();
+        spellslotsMatrix = SpellslotsLoader.getSpellslotsMatrix();
 
         createPanelsAfterUpload();
     }
