@@ -1,6 +1,7 @@
 package org.example.mainframe.rpgclass;
 
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatableByMainFrame;
 import org.example.mainframe.UpdatePanels;
 import org.example.models.RPGClassLevel;
 
@@ -8,7 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class RPGClassSkillChoicesPanel extends JPanel {
+public class RPGClassSkillChoicesPanel extends JPanel implements UpdatableByMainFrame {
     private final UpdatePanels updatePanels;
 
     //update checker
@@ -41,7 +42,11 @@ public class RPGClassSkillChoicesPanel extends JPanel {
         UpdateRPGClassSkillChoicesPanel();
     }
 
-    //invoked by a function in MainFrame, if the chracter has been modified
+    @Override
+    public void UpdateByMainFrame() {
+        UpdateRPGClassSkillChoicesPanel();
+    }
+
     public void UpdateRPGClassSkillChoicesPanel() {
         int newLvl = MainFrame.character.getLvl();
         String newRPGClassName = MainFrame.character.getRpgClass().getName();
@@ -67,4 +72,5 @@ public class RPGClassSkillChoicesPanel extends JPanel {
             comboboxHolder.add(rpgLevelChoicesPanel);
         }
     }
+
 }

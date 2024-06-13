@@ -1,6 +1,7 @@
 package org.example.mainframe.race;
 
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatableByMainFrame;
 import org.example.mainframe.UpdatePanels;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 import java.util.List;
 import java.util.Objects;
 
-public class RaceChoicesPanel extends JPanel {
+public class RaceChoicesPanel extends JPanel implements UpdatableByMainFrame {
 
     private final UpdatePanels updatePanels;
 
@@ -33,9 +34,12 @@ public class RaceChoicesPanel extends JPanel {
         InstantiateChoicesComboBoxes();
     }
 
-    //invoked by a function in MainFrame, if the chracter has been modified
-    public void InstantiateChoicesComboBoxes() {
+    @Override
+    public void UpdateByMainFrame() {
+        InstantiateChoicesComboBoxes();
+    }
 
+    public void InstantiateChoicesComboBoxes() {
         //update checker to prevent constantly updating
         String newRaceName = MainFrame.character.getRace().getName();
         if (Objects.equals(newRaceName, previousRaceName)) {
@@ -72,4 +76,6 @@ public class RaceChoicesPanel extends JPanel {
     private void updateChosenBuffsOfCharacter(int chosenBuffNumber, String buff) {
         MainFrame.character.updateChosenRaceBuffs(chosenBuffNumber, buff);
     }
+
+
 }

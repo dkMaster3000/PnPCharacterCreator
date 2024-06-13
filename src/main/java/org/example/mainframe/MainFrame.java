@@ -38,6 +38,7 @@ public class MainFrame extends JFrame {
     RPGClassSkillChoicesPanel rpgClassSkillChoicesPanel;
     PanelContainer panelContainer;
     ExportPanel exportPanel;
+    List<UpdatableByMainFrame> updatablesByMainFrame = new ArrayList<>();
 
     public static Character character = new Character();
     public static List<Race> races = new ArrayList<>();
@@ -105,18 +106,21 @@ public class MainFrame extends JFrame {
         lvlPanel = new LvlPanel(this::updatePanels);
         lvlPanel.setVisible(true);
         panelContainer.add(lvlPanel);
+        updatablesByMainFrame.add(lvlPanel);
 
         panelContainer.addSectionSeparator();
 
         raceChoicesPanel = new RaceChoicesPanel(this::updatePanels);
         raceChoicesPanel.setVisible(true);
         panelContainer.add(raceChoicesPanel);
+        updatablesByMainFrame.add(raceChoicesPanel);
 
         panelContainer.addSectionSeparator();
 
         talentsPanel = new TalentsPanel(this::updatePanels);
         talentsPanel.setVisible(true);
         panelContainer.add(talentsPanel);
+        updatablesByMainFrame.add(talentsPanel);
 
         panelContainer.addSectionSeparator();
 
@@ -129,6 +133,7 @@ public class MainFrame extends JFrame {
         rpgClassSkillChoicesPanel = new RPGClassSkillChoicesPanel(this::updatePanels);
         rpgClassSkillChoicesPanel.setVisible(true);
         panelContainer.add(rpgClassSkillChoicesPanel);
+        updatablesByMainFrame.add(rpgClassSkillChoicesPanel);
 
         panelContainer.add(Box.createVerticalBox());
 
@@ -136,6 +141,7 @@ public class MainFrame extends JFrame {
 
         exportPanel = new ExportPanel();
         panelContainer.add(exportPanel);
+        updatablesByMainFrame.add(exportPanel);
 
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
 
@@ -172,11 +178,9 @@ public class MainFrame extends JFrame {
     }
 
     private void updateMainFrame() {
-        raceChoicesPanel.InstantiateChoicesComboBoxes();
-        lvlPanel.UpdateLvlPanel();
-        talentsPanel.UpdateTalentsPanel();
-        rpgClassSkillChoicesPanel.UpdateRPGClassSkillChoicesPanel();
-        exportPanel.OnUpdate();
+        for (UpdatableByMainFrame updatable : updatablesByMainFrame) {
+            updatable.UpdateByMainFrame();
+        }
     }
 
     private void updatePreviewPanel() {

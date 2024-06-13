@@ -21,7 +21,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-public class ExportPanel extends JPanel implements ActionListener {
+public class ExportPanel extends JPanel implements ActionListener, UpdatableByMainFrame {
 
     JLabel uploadedLabel;
     XSSFWorkbook workbook;
@@ -90,7 +90,8 @@ public class ExportPanel extends JPanel implements ActionListener {
         lockedNumericStyle.setLocked(true);
     }
 
-    public void OnUpdate() {
+    @Override
+    public void UpdateByMainFrame() {
         uploadedLabel.setText("Excel Datei noch nicht exportiert");
         uploadedLabel.setForeground(Color.RED);
 
@@ -540,4 +541,6 @@ public class ExportPanel extends JPanel implements ActionListener {
     private int GetLastRow() {
         return rowCount - 1;
     }
+
+
 }

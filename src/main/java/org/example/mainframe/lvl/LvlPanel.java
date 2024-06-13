@@ -1,6 +1,7 @@
 package org.example.mainframe.lvl;
 
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatableByMainFrame;
 import org.example.mainframe.UpdatePanels;
 import org.example.mainframe.UsedValues;
 import org.example.models.Character;
@@ -9,7 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Objects;
 
-public class LvlPanel extends JPanel {
+public class LvlPanel extends JPanel implements UpdatableByMainFrame {
 
     JLabel pointsToSpentLabel;
 
@@ -44,7 +45,11 @@ public class LvlPanel extends JPanel {
         updateChracterLvl(Integer.parseInt((String) Objects.requireNonNull(lvlComboBox.getSelectedItem())));
     }
 
-    //invoked by a function in MainFrame, if the chracter has been modified
+    @Override
+    public void UpdateByMainFrame() {
+        UpdateLvlPanel();
+    }
+
     public void UpdateLvlPanel() {
         int characterStatPoints = MainFrame.character.getStatPoints();
         pointsToSpentLabel.setText("Punkte zu vergeben: " + characterStatPoints);
@@ -55,4 +60,6 @@ public class LvlPanel extends JPanel {
     private void updateChracterLvl(int level) {
         MainFrame.character.setLvl(level);
     }
+
+
 }

@@ -1,6 +1,7 @@
 package org.example.mainframe.talent;
 
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UpdatableByMainFrame;
 import org.example.mainframe.UpdatePanels;
 
 import javax.swing.*;
@@ -8,7 +9,7 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TalentsPanel extends JPanel {
+public class TalentsPanel extends JPanel implements UpdatableByMainFrame {
 
     private final UpdatePanels updatePanels;
 
@@ -40,7 +41,11 @@ public class TalentsPanel extends JPanel {
         UpdateTalentsPanel();
     }
 
-    //invoked by a function in MainFrame, if the chracter has been modified
+    @Override
+    public void UpdateByMainFrame() {
+        UpdateTalentsPanel();
+    }
+
     public void UpdateTalentsPanel() {
         int newTalentsAmount = MainFrame.talentMatrix.calculateTalents();
         if (previousTalentsAmount != newTalentsAmount) {
