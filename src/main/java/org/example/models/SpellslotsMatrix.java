@@ -65,4 +65,19 @@ public class SpellslotsMatrix {
     public int getLegendarDivider() {
         return legendarDivider;
     }
+
+    @Override
+    public String toString() {
+        return "SpellslotsMatrix{" +
+                "spellslotsMatrix=" + spellslotsMatrix +
+                ", simpleKey='" + simpleKey + '\'' +
+                ", advancedkey='" + advancedkey + '\'' +
+                ", expertKey='" + expertKey + '\'' +
+                ", legendaryKey='" + legendaryKey + '\'' +
+                ", simpleDivider=" + simpleDivider +
+                ", advancedDivider=" + advancedDivider +
+                ", expertDivider=" + expertDivider +
+                ", legendarDivider=" + legendarDivider +
+                '}';
+    }
 }

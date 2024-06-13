@@ -2,6 +2,7 @@ package org.example.loaders;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UsedValues;
 import org.example.models.Talent;
 import org.example.models.TalentMatrix;
 
@@ -14,7 +15,7 @@ public class TalentLoader {
 
     //to simplify MainFrame and improve its readability
     public static TalentMatrix getTalentMatrix() {
-        Sheet raceSheet = MainFrame.workbook.getSheet("Talente");
+        Sheet raceSheet = MainFrame.workbook.getSheet(UsedValues.TALENTS_SHEETNAME);
 
         return getTalentMatrixFromMap(LoaderUtils.getMap(raceSheet));
     }

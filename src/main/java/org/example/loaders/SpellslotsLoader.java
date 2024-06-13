@@ -2,6 +2,7 @@ package org.example.loaders;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UsedValues;
 import org.example.models.SpellslotsMatrix;
 
 import java.util.HashMap;
@@ -12,7 +13,7 @@ public class SpellslotsLoader {
 
     //to simplify MainFrame and improve its readability
     public static SpellslotsMatrix getSpellslotsMatrix() {
-        Sheet raceSheet = MainFrame.workbook.getSheet("Spellslots");
+        Sheet raceSheet = MainFrame.workbook.getSheet(UsedValues.SPELLSLOTS_SHEETNAME);
 
         return getSpellslotsMatrixFromMap(LoaderUtils.getMap(raceSheet));
     }

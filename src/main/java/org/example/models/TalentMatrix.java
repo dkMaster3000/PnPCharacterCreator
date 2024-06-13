@@ -41,4 +41,12 @@ public class TalentMatrix {
         }
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "TalentMatrix{" +
+                "talents=" + talents +
+                ", unlockLvls=" + unlockLvls +
+                '}';
+    }
 }

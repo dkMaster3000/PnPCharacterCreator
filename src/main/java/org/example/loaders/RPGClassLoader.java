@@ -2,6 +2,7 @@ package org.example.loaders;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UsedValues;
 import org.example.models.*;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class RPGClassLoader {
 
     //to simplify MainFrame and improve its readability
     public static List<RPGClass> getRPGClass() {
-        Sheet rpgClassSheet = MainFrame.workbook.getSheet("Klassen");
+        Sheet rpgClassSheet = MainFrame.workbook.getSheet(UsedValues.CLASS_SHEETNAME);
 
         return getRPGClassFromMap(LoaderUtils.getMap(rpgClassSheet));
     }
@@ -60,6 +61,7 @@ public class RPGClassLoader {
             }
 
         }
+
         return rpgClasses;
     }
 
@@ -79,6 +81,6 @@ public class RPGClassLoader {
 
     private static Spell createSpellFromList(List<String> list, boolean first) {
         int shift = first ? 0 : 6;
-        return new Spell(list.get(2 + shift), list.get(0 + shift), list.get(1 + shift), list.get(3 + shift), list.get(4 + shift));
+        return new Spell(list.get(2 + shift), list.get(shift), list.get(1 + shift), list.get(3 + shift), list.get(4 + shift));
     }
 }

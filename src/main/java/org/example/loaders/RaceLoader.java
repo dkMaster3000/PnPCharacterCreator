@@ -2,6 +2,7 @@ package org.example.loaders;
 
 import org.apache.poi.ss.usermodel.Sheet;
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UsedValues;
 import org.example.models.Race;
 
 import java.util.ArrayList;
@@ -12,7 +13,7 @@ public class RaceLoader {
 
     //to simplify MainFrame and improve its readability
     public static List<Race> getRaces() {
-        Sheet raceSheet = MainFrame.workbook.getSheet("Rassen");
+        Sheet raceSheet = MainFrame.workbook.getSheet(UsedValues.RACE_SHEETNAME);
 
         return getRacesFromMap(LoaderUtils.getMap(raceSheet));
     }
