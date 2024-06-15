@@ -1,6 +1,7 @@
 package org.example.models;
 
 import org.example.mainframe.MainFrame;
+import org.example.mainframe.UsedValues;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -39,7 +40,7 @@ public class Character {
 
     public Character() {
         lvl = 0;
-        statPoints = calculateStatPoints();
+        setStatPoints(calculateStatPoints());
     }
 
     public int getLvl() {
@@ -225,14 +226,14 @@ public class Character {
         if (modifyValue > 0) {
             if (statPoints > 0) {
                 statToModify += modifyValue;
-                statPoints -= 1;
+                statPoints -= UsedValues.STATPOINT;
             }
         }
 
         if (modifyValue < 0) {
             if (statToModify > 0) {
                 statToModify += modifyValue;
-                statPoints += 1;
+                statPoints += UsedValues.STATPOINT;
             }
         }
 
@@ -259,8 +260,8 @@ public class Character {
 
     public int getModifyValueByEnum(STATNAMES statname) {
         return switch (statname) {
-            case STATNAMES.HP -> 10;
-            case STATNAMES.STRENGTH, STATNAMES.DEXTERITY, STATNAMES.INTELLIGENCE -> 1;
+            case STATNAMES.HP -> UsedValues.ADDEDHP_MODIFIER;
+            case STATNAMES.STRENGTH, STATNAMES.DEXTERITY, STATNAMES.INTELLIGENCE -> UsedValues.NOT_HP_STAT_MODIFIER;
         };
     }
 }
