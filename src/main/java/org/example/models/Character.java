@@ -124,7 +124,7 @@ public class Character {
     }
 
     private int calculateStatPoints() {
-        return 2 + (lvl * 3);
+        return UsedValues.STATPOINT_START + (lvl * UsedValues.STATPOINT_PER_LEVEL);
     }
 
     public Race getRace() {
@@ -226,14 +226,14 @@ public class Character {
         if (modifyValue > 0) {
             if (statPoints > 0) {
                 statToModify += modifyValue;
-                statPoints -= UsedValues.STATPOINT;
+                statPoints -= UsedValues.STATPOINT_SPENT;
             }
         }
 
         if (modifyValue < 0) {
             if (statToModify > 0) {
                 statToModify += modifyValue;
-                statPoints += UsedValues.STATPOINT;
+                statPoints += UsedValues.STATPOINT_SPENT;
             }
         }
 

@@ -39,7 +39,7 @@ public class CharacterTests {
         int START_STATSVALUE = 0;
         Character character = new Character();
         Assert.assertEquals("Level should have an initial value of 0.", character.getLvl(), 0);
-        Assert.assertEquals("Statpoints should have an initial value of 2.", character.getStatPoints(), 2);
+        Assert.assertEquals("Statpoints should have an initial value of 2.", character.getStatPoints(), UsedValues.STATPOINT_START);
         Assert.assertEquals("Stats should have an initial value of 0.", character.getAddedHP(), START_STATSVALUE);
         Assert.assertEquals("Stats should have an initial value of 0.", character.getStrength(), START_STATSVALUE);
         Assert.assertEquals("Stats should have an initial value of 0.", character.getIntelligence(), START_STATSVALUE);
@@ -75,7 +75,7 @@ public class CharacterTests {
         int NEW_LVL = 1;
         character.setLvl(NEW_LVL);
         Assert.assertEquals("Character Level should be the new lvl.", character.getLvl(), NEW_LVL);
-        Assert.assertEquals("Character statspoints should be calculated new after level change.", character.getStatPoints(), 5);
+        Assert.assertEquals("Character statspoints should be calculated new after level change.", character.getStatPoints(), UsedValues.STATPOINT_START + UsedValues.STATPOINT_PER_LEVEL * NEW_LVL);
 
         Assert.assertEquals("Stats should be reset and 0 after lvl change.", character.getAddedHP(), START_STATSVALUE);
         Assert.assertEquals("Stats should be reset and 0 after lvl change.", character.getStrength(), START_STATSVALUE);
@@ -139,12 +139,12 @@ public class CharacterTests {
 
         ModifySpecificStatvalueTest modifySpecificStatvalue = (modifier, getter, startValue, modifyValue) -> {
             modifier.accept(modifyValue);
-            Assert.assertEquals(pointsSpentErr, START_STATPOINTS - UsedValues.STATPOINT, character.getStatPoints());
+            Assert.assertEquals(pointsSpentErr, START_STATPOINTS - UsedValues.STATPOINT_SPENT, character.getStatPoints());
             Assert.assertEquals(statIncreasedErr, Integer.valueOf(startValue + modifyValue), getter.get());
             int CURRENT_STATPOINTS_1 = character.getStatPoints();
             int CURRENT_DEXTERITY = getter.get();
             modifier.accept(-modifyValue);
-            Assert.assertEquals(pointsUnspentErr, CURRENT_STATPOINTS_1 + UsedValues.STATPOINT, character.getStatPoints());
+            Assert.assertEquals(pointsUnspentErr, CURRENT_STATPOINTS_1 + UsedValues.STATPOINT_SPENT, character.getStatPoints());
             Assert.assertEquals(statDecreaseErr, Integer.valueOf(CURRENT_DEXTERITY - modifyValue), getter.get());
         };
 

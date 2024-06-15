@@ -16,6 +16,9 @@ public class UsedValues {
     //Character stats modifier per point spent
     public static final int ADDEDHP_MODIFIER = 10;
     public static final int NOT_HP_STAT_MODIFIER = 1;
-    //points reduction/addition after spent/unspent
-    public static final int STATPOINT = 1;
+    //Statpoints values
+    public static final int STATPOINT_START = 2;
+    public static final int STATPOINT_PER_LEVEL = 3;
+    public static final int STATPOINT_SPENT = 1;
+
 }

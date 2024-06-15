@@ -9,11 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added test for specific loaders">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for level change and modify value">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,14 +179,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00007" summary="choosing and displaying race working">
-      <option name="closed" value="true" />
-      <created>1717158717318</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1717158717318</updated>
     </task>
     <task id="LOCAL-00008" summary="make RaceComboBox own class">
       <option name="closed" value="true" />
@@ -572,11 +564,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718301265004</updated>
     </task>
-    <option name="localTasksCounter" value="56" />
+    <task id="LOCAL-00056" summary="added character test for level change and modify value">
+      <option name="closed" value="true" />
+      <created>1718442355287</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1718442355287</updated>
+    </task>
+    <option name="localTasksCounter" value="57" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored CharacterPreviewPanel" />
     <MESSAGE value="refactored editor display" />
     <MESSAGE value="added better folder structure" />
     <MESSAGE value="improved updateCharacterChosen Skills" />
@@ -601,7 +600,8 @@
     <MESSAGE value="deleted unused files" />
     <MESSAGE value="added raceloaderUtils tests" />
     <MESSAGE value="added test for specific loaders" />
-    <option name="LAST_COMMIT_MESSAGE" value="added test for specific loaders" />
+    <MESSAGE value="added character test for level change and modify value" />
+    <option name="LAST_COMMIT_MESSAGE" value="added character test for level change and modify value" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
