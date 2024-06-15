@@ -9,6 +9,7 @@ import org.example.mainframe.UsedValues;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +19,8 @@ import java.util.List;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+
+import static org.mockito.Mockito.mock;
 
 
 public class CharacterTests {
@@ -166,6 +169,31 @@ public class CharacterTests {
         for (ModifyStatValueSample modifyStatValueSample : modifyStatValueSamples) {
             modifySpecificStatvalue.test(modifyStatValueSample.modifier(), modifyStatValueSample.getter(), modifyStatValueSample.startValue(), modifyStatValueSample.modifyValue());
         }
+    }
 
+    @Test
+    public void testCharacterRace() {
+        Character character = new Character();
+        int START_RACE_BUFFSIZE = 0;
+        Assert.assertNull("Character Race should be null after creation", character.getRace());
+        Assert.assertEquals("Character ChosenRaceBuffs should be empty after creation", character.getChosenRaceBuffs().size(), START_RACE_BUFFSIZE);
+
+        int NEW_RACE_BUFFSIZE = 2;
+        for (int i = 0; i < NEW_RACE_BUFFSIZE; i++) {
+            character.updateChosenRaceBuffs(i, "");
+        }
+
+        Assert.assertEquals("Character ChosenRaceBuffs should contains buffs after adding them", character.getChosenRaceBuffs().size(), NEW_RACE_BUFFSIZE);
+
+        Race NEW_RACE = mock(Race.class);
+        String NEW_RACE_NAME = "Necromancer";
+        Mockito.when(NEW_RACE.getName()).thenReturn(NEW_RACE_NAME);
+
+        character.setRace(NEW_RACE);
+        String CHARACTER_NEW_RACE_NAME = character.getRace().getName();
+
+        Assert.assertEquals("Character should have a race after setting it", CHARACTER_NEW_RACE_NAME, NEW_RACE_NAME);
+
+        Assert.assertEquals("Character ChosenRaceBuffs should be empty after changing the race", character.getChosenRaceBuffs().size(), START_RACE_BUFFSIZE);
     }
 }

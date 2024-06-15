@@ -11,12 +11,12 @@ import java.util.stream.Stream;
 
 public class Character {
 
-    private int lvl;
+    private int lvl = 0;
     private int addedHP = 0;
     private int strength = 0;
     private int intelligence = 0;
     private int dexterity = 0;
-    private int statPoints = 0;
+    private int statPoints = calculateStatPoints();
 
     private Race race = null;
     private List<String> chosenRaceBuffs = new ArrayList<>();
@@ -38,11 +38,6 @@ public class Character {
         void setStat(int stat);
     }
 
-    public Character() {
-        lvl = 0;
-        setStatPoints(calculateStatPoints());
-    }
-
     public int getLvl() {
         return lvl;
     }
@@ -61,7 +56,7 @@ public class Character {
         setIntelligence(0);
         setStrength(0);
 
-        setStatPoints(calculateStatPoints());
+        statPoints = calculateStatPoints();
 
         removeChoseSpells();
         removeChosenPassivs();
@@ -117,10 +112,6 @@ public class Character {
 
     public int getStatPoints() {
         return statPoints;
-    }
-
-    public void setStatPoints(int statPoints) {
-        this.statPoints = statPoints;
     }
 
     private int calculateStatPoints() {

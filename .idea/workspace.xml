@@ -9,9 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for level change and modify value">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for calculating StatPoints">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" afterDir="false" />
     </list>
@@ -57,24 +56,25 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainFrame.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CharacterTests.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CharacterTests.testGetModifyValueByEnum.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CharacterTests.testModifyStatValue.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoadersTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.LoadersTest.testLoaderUtil.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Main.executor": "Run",
+    "Application.MainFrame.executor": "Run",
+    "JUnit.CharacterTests.executor": "Run",
+    "JUnit.CharacterTests.testCharacterRace.executor": "Run",
+    "JUnit.CharacterTests.testGetModifyValueByEnum.executor": "Run",
+    "JUnit.CharacterTests.testModifyStatValue.executor": "Run",
+    "JUnit.LoadersTest.executor": "Run",
+    "JUnit.LoadersTest.testLoaderUtil.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "MavenSettings"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kunzd\IdeaProjects\PnPCharacterCreator\src\test\resources" />
@@ -84,7 +84,7 @@
       <recent name="org.example.mainframe" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CharacterTests">
+  <component name="RunManager" selected="JUnit.CharacterTests.testCharacterRace">
     <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
       <option name="MAIN_CLASS_NAME" value="org.example.mainframe.MainFrame" />
@@ -110,6 +110,22 @@
       <option name="PACKAGE_NAME" value="org.example.models" />
       <option name="MAIN_CLASS_NAME" value="org.example.models.CharacterTests" />
       <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CharacterTests.testCharacterRace" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="PnPCharacterCreator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.models.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.example.models" />
+      <option name="MAIN_CLASS_NAME" value="org.example.models.CharacterTests" />
+      <option name="METHOD_NAME" value="testCharacterRace" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -146,28 +162,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoadersTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PnPCharacterCreator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.loaders.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.loaders" />
-      <option name="MAIN_CLASS_NAME" value="org.example.loaders.LoadersTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CharacterTests.testCharacterRace" />
+        <item itemvalue="Application.MainFrame" />
         <item itemvalue="JUnit.CharacterTests" />
         <item itemvalue="JUnit.CharacterTests.testModifyStatValue" />
-        <item itemvalue="Application.MainFrame" />
         <item itemvalue="JUnit.CharacterTests.testGetModifyValueByEnum" />
-        <item itemvalue="JUnit.LoadersTest" />
       </list>
     </recent_temporary>
   </component>
@@ -179,14 +180,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00008" summary="make RaceComboBox own class">
-      <option name="closed" value="true" />
-      <created>1717161101294</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1717161101294</updated>
     </task>
     <task id="LOCAL-00009" summary="added upload pannel kontaining the upload button">
       <option name="closed" value="true" />
@@ -572,11 +565,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718442355287</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="added character test for calculating StatPoints">
+      <option name="closed" value="true" />
+      <created>1718442909021</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1718442909021</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactored editor display" />
     <MESSAGE value="added better folder structure" />
     <MESSAGE value="improved updateCharacterChosen Skills" />
     <MESSAGE value="talents are updated if the talentsamount are changed" />
@@ -601,7 +601,8 @@
     <MESSAGE value="added raceloaderUtils tests" />
     <MESSAGE value="added test for specific loaders" />
     <MESSAGE value="added character test for level change and modify value" />
-    <option name="LAST_COMMIT_MESSAGE" value="added character test for level change and modify value" />
+    <MESSAGE value="added character test for calculating StatPoints" />
+    <option name="LAST_COMMIT_MESSAGE" value="added character test for calculating StatPoints" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
