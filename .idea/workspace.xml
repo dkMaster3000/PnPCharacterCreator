@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for changing race">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for updateChosenRaceBuffs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" afterDir="false" />
     </list>
@@ -61,6 +61,7 @@
     "Application.MainFrame.executor": "Run",
     "JUnit.CharacterTests.executor": "Run",
     "JUnit.CharacterTests.testCharacterRace.executor": "Run",
+    "JUnit.CharacterTests.testGetAllbuffs.executor": "Run",
     "JUnit.CharacterTests.testGetModifyValueByEnum.executor": "Run",
     "JUnit.CharacterTests.testModifyStatValue.executor": "Run",
     "JUnit.CharacterTests.testUpdateChosenRaceBuffs.executor": "Run",
@@ -84,7 +85,7 @@
       <recent name="org.example.mainframe" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CharacterTests.testUpdateChosenRaceBuffs">
+  <component name="RunManager" selected="JUnit.CharacterTests">
     <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="jbr-17" />
       <option name="MAIN_CLASS_NAME" value="org.example.mainframe.MainFrame" />
@@ -130,7 +131,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CharacterTests.testModifyStatValue" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="CharacterTests.testGetAllbuffs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PnPCharacterCreator" />
       <extension name="coverage">
         <pattern>
@@ -140,7 +141,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.example.models" />
       <option name="MAIN_CLASS_NAME" value="org.example.models.CharacterTests" />
-      <option name="METHOD_NAME" value="testModifyStatValue" />
+      <option name="METHOD_NAME" value="testGetAllbuffs" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -164,11 +165,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CharacterTests" />
+        <item itemvalue="JUnit.CharacterTests.testGetAllbuffs" />
         <item itemvalue="JUnit.CharacterTests.testUpdateChosenRaceBuffs" />
         <item itemvalue="JUnit.CharacterTests.testCharacterRace" />
         <item itemvalue="Application.MainFrame" />
-        <item itemvalue="JUnit.CharacterTests" />
-        <item itemvalue="JUnit.CharacterTests.testModifyStatValue" />
       </list>
     </recent_temporary>
   </component>
@@ -180,14 +181,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00010" summary="added choice panel to wrtite choices in character">
-      <option name="closed" value="true" />
-      <created>1717173521130</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1717173521130</updated>
     </task>
     <task id="LOCAL-00011" summary="update preview after choices are made">
       <option name="closed" value="true" />
@@ -573,11 +566,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718444387536</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="added character test for updateChosenRaceBuffs">
+      <option name="closed" value="true" />
+      <created>1718445226845</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1718445226845</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="improved updateCharacterChosen Skills" />
     <MESSAGE value="talents are updated if the talentsamount are changed" />
     <MESSAGE value="removed unused code" />
     <MESSAGE value="added export mechanism" />
@@ -602,7 +602,8 @@
     <MESSAGE value="added character test for level change and modify value" />
     <MESSAGE value="added character test for calculating StatPoints" />
     <MESSAGE value="added character test for changing race" />
-    <option name="LAST_COMMIT_MESSAGE" value="added character test for changing race" />
+    <MESSAGE value="added character test for updateChosenRaceBuffs" />
+    <option name="LAST_COMMIT_MESSAGE" value="added character test for updateChosenRaceBuffs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -8,6 +8,7 @@ import org.example.mainframe.MainFrame;
 import org.example.mainframe.UsedValues;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.mockito.Mockito;
 
@@ -15,6 +16,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import java.util.function.Consumer;
@@ -25,22 +27,28 @@ import static org.mockito.Mockito.mock;
 
 public class CharacterTests {
 
-    File file = new File("src/test/resources/PnpCharacterCreator2.xlsx");
-    FileInputStream fileInputStream = null;
-    XSSFWorkbook workbook = null;
+    Character character;
 
-    @Before
-    public void loadWorkbook() throws IOException {
-        fileInputStream = new FileInputStream(file);
-        workbook = new XSSFWorkbook(fileInputStream);
+    @BeforeClass
+    public static void setMatrix() throws IOException {
+        File file = new File("src/test/resources/PnpCharacterCreator2.xlsx");
+        FileInputStream fileInputStream = new FileInputStream(file);
+        XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
         Sheet talentsSheet = workbook.getSheet(UsedValues.TALENTS_SHEETNAME);
         MainFrame.talentMatrix = TalentLoader.getTalentMatrixFromMap(LoaderUtils.getMap(talentsSheet));
+        System.out.println("baum");
+    }
+
+    @Before
+    public void loadWorkbook() {
+
+        character = new Character();
     }
 
     @Test
     public void testCharacterLvlChange() {
         int START_STATSVALUE = 0;
-        Character character = new Character();
+
         Assert.assertEquals("Level should have an initial value of 0.", character.getLvl(), 0);
         Assert.assertEquals("Statpoints should have an initial value of 2.", character.getStatPoints(), UsedValues.STATPOINT_START);
         Assert.assertEquals("Stats should have an initial value of 0.", character.getAddedHP(), START_STATSVALUE);
@@ -107,7 +115,6 @@ public class CharacterTests {
 
     @Test
     public void testGetModifyValueByEnum() {
-        Character character = new Character();
         Assert.assertEquals("Stat modify value is not matched", UsedValues.ADDEDHP_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.HP));
         Assert.assertEquals("Stat modify value is not matched", UsedValues.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.STRENGTH));
         Assert.assertEquals("Stat modify value is not matched", UsedValues.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.INTELLIGENCE));
@@ -117,7 +124,6 @@ public class CharacterTests {
 
     @Test
     public void testModifyStatValue() {
-        Character character = new Character();
         int NEW_LVL = 1;
         character.setLvl(NEW_LVL);
         int START_STATPOINTS = character.getStatPoints();
@@ -173,7 +179,6 @@ public class CharacterTests {
 
     @Test
     public void testCharacterRace() {
-        Character character = new Character();
         int START_RACE_BUFFSIZE = 0;
         Assert.assertNull("Character Race should be null after creation", character.getRace());
         Assert.assertEquals("Character ChosenRaceBuffs should be empty after creation", character.getChosenRaceBuffs().size(), START_RACE_BUFFSIZE);
@@ -200,7 +205,6 @@ public class CharacterTests {
     @Test
     public void testUpdateChosenRaceBuffs() {
         //here only replacement will be tested, because setting is tested at testCharacterRace
-        Character character = new Character();
         int CHOICENUMBER_ZERO = 0;
         int CHOICENUMBER_ONE = 1;
         String START_BUFF_ZERO = "Buff zero";
@@ -225,5 +229,22 @@ public class CharacterTests {
 
         Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ZERO), NEW_BUFF_ZERO);
         Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ONE), NEW_BUFF_ONE);
+    }
+
+    @Test
+    public void testGetAllbuffs() {
+        Race NEW_RACE = mock(Race.class);
+        String RACE_BUFF_ONE = "1";
+        String RACE_BUFF_TWO = "2";
+        String CHOSEN_RACE_BUFF_ONE = "3";
+        String CHOSEN_RACE_BUFF_TWO = "4";
+        Mockito.when(NEW_RACE.getBuffs()).thenReturn(Arrays.asList(RACE_BUFF_ONE, RACE_BUFF_TWO));
+        character.setRace(NEW_RACE);
+        character.updateChosenRaceBuffs(0, CHOSEN_RACE_BUFF_ONE);
+        character.updateChosenRaceBuffs(1, CHOSEN_RACE_BUFF_TWO);
+
+        List<String> RESULT = Arrays.asList(RACE_BUFF_ONE, RACE_BUFF_TWO, CHOSEN_RACE_BUFF_ONE, CHOSEN_RACE_BUFF_TWO);
+
+        Assert.assertEquals("get all buffs does not return correct values", character.getAllBuffs(), RESULT);
     }
 }
