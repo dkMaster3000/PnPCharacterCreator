@@ -20,8 +20,8 @@ public class Character {
 
     private Race race = null;
     private List<String> chosenRaceBuffs = new ArrayList<>();
-
-    private RPGClass rpgClass = new RPGClass("");
+    
+    private RPGClass rpgClass = null;
     private List<Spell> chosenSpells = new ArrayList<>();
     private List<Passiv> chosenPassivs = new ArrayList<>();
 

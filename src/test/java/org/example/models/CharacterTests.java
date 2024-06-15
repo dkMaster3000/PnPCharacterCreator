@@ -36,7 +36,6 @@ public class CharacterTests {
         XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
         Sheet talentsSheet = workbook.getSheet(UsedValues.TALENTS_SHEETNAME);
         MainFrame.talentMatrix = TalentLoader.getTalentMatrixFromMap(LoaderUtils.getMap(talentsSheet));
-        System.out.println("baum");
     }
 
     @Before
@@ -191,7 +190,7 @@ public class CharacterTests {
         Assert.assertEquals("Character ChosenRaceBuffs should contains buffs after adding them", character.getChosenRaceBuffs().size(), NEW_RACE_BUFFSIZE);
 
         Race NEW_RACE = mock(Race.class);
-        String NEW_RACE_NAME = "Necromancer";
+        String NEW_RACE_NAME = "Goblin";
         Mockito.when(NEW_RACE.getName()).thenReturn(NEW_RACE_NAME);
 
         character.setRace(NEW_RACE);
@@ -246,5 +245,26 @@ public class CharacterTests {
         List<String> RESULT = Arrays.asList(RACE_BUFF_ONE, RACE_BUFF_TWO, CHOSEN_RACE_BUFF_ONE, CHOSEN_RACE_BUFF_TWO);
 
         Assert.assertEquals("get all buffs does not return correct values", character.getAllBuffs(), RESULT);
+    }
+
+    @Test
+    public void testSetRpgClass() {
+        //here will be not tested that spells and passiv are empty after initialization, already tested in testCharacterLvlChange
+        RPGClass NEW_RPG_CLASS = mock(RPGClass.class);
+        String NEW_RPG_CLASS_NAME = "Necromancer";
+        Mockito.when(NEW_RPG_CLASS.getName()).thenReturn(NEW_RPG_CLASS_NAME);
+
+        Assert.assertNull("Character should not have a RPGClass after creation.", character.getRpgClass());
+
+        String BLANK = "";
+        character.getChosenPassivs().add(new Passiv(BLANK, BLANK, BLANK));
+        character.getChosenSpells().add(new Spell(BLANK, BLANK, BLANK, BLANK, BLANK));
+
+        character.setRpgClass(NEW_RPG_CLASS);
+
+        Assert.assertEquals("Character should have a RPGClass after setting it.", character.getRpgClass().getName(), NEW_RPG_CLASS_NAME);
+        Assert.assertEquals("Character should not have chosen Passivs after RPGClass change.", character.getChosenPassivs().size(), 0);
+        Assert.assertEquals("Character should not have chosen Spells after RPGClass change.", character.getChosenSpells().size(), 0);
+
     }
 }
