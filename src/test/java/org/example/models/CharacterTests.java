@@ -196,4 +196,34 @@ public class CharacterTests {
 
         Assert.assertEquals("Character ChosenRaceBuffs should be empty after changing the race", character.getChosenRaceBuffs().size(), START_RACE_BUFFSIZE);
     }
+
+    @Test
+    public void testUpdateChosenRaceBuffs() {
+        //here only replacement will be tested, because setting is tested at testCharacterRace
+        Character character = new Character();
+        int CHOICENUMBER_ZERO = 0;
+        int CHOICENUMBER_ONE = 1;
+        String START_BUFF_ZERO = "Buff zero";
+        String START_BUFF_ONE = "Buff one";
+        character.updateChosenRaceBuffs(CHOICENUMBER_ZERO, START_BUFF_ZERO);
+        character.updateChosenRaceBuffs(CHOICENUMBER_ONE, START_BUFF_ONE);
+
+        String ERR_MESSAGE = "ChosenRaceBuff is wrong or in false order";
+
+        Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ZERO), START_BUFF_ZERO);
+        Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ONE), START_BUFF_ONE);
+
+        String NEW_BUFF_ZERO = "NEW Buff zero";
+        String NEW_BUFF_ONE = "NEW Buff one";
+
+        character.updateChosenRaceBuffs(CHOICENUMBER_ONE, NEW_BUFF_ONE);
+
+        Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ZERO), START_BUFF_ZERO);
+        Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ONE), NEW_BUFF_ONE);
+
+        character.updateChosenRaceBuffs(CHOICENUMBER_ZERO, NEW_BUFF_ZERO);
+
+        Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ZERO), NEW_BUFF_ZERO);
+        Assert.assertEquals(ERR_MESSAGE, character.getChosenRaceBuffs().get(CHOICENUMBER_ONE), NEW_BUFF_ONE);
+    }
 }
