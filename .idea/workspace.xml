@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for getAllBuffs">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for setRPGCLass">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGLevelChoicesComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGLevelChoicesComboBox.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,28 +55,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Application.MainFrame.executor": "Run",
-    "JUnit.CharacterTests.executor": "Run",
-    "JUnit.CharacterTests.testCharacterRace.executor": "Run",
-    "JUnit.CharacterTests.testGetAllbuffs.executor": "Run",
-    "JUnit.CharacterTests.testGetModifyValueByEnum.executor": "Run",
-    "JUnit.CharacterTests.testModifyStatValue.executor": "Run",
-    "JUnit.CharacterTests.testSetRpgClass.executor": "Run",
-    "JUnit.CharacterTests.testUpdateChosenRaceBuffs.executor": "Run",
-    "JUnit.LoadersTest.executor": "Run",
-    "JUnit.LoadersTest.testLoaderUtil.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "MavenSettings"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainFrame.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CharacterTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CharacterTests.testCharacterRace.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CharacterTests.testGetAllbuffs.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CharacterTests.testGetModifyValueByEnum.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CharacterTests.testModifyStatValue.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CharacterTests.testSetRpgClass.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CharacterTests.testUpdateChosenRaceBuffs.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LoadersTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.LoadersTest.testLoaderUtil.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\kunzd\IdeaProjects\PnPCharacterCreator\src\test\resources" />
@@ -87,7 +86,7 @@
       <recent name="org.example.mainframe" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CharacterTests.testSetRpgClass">
+  <component name="RunManager">
     <configuration name="CharacterTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PnPCharacterCreator" />
       <extension name="coverage">
@@ -185,14 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00012" summary="refactored to unified update system">
-      <option name="closed" value="true" />
-      <created>1717177631497</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1717177631497</updated>
     </task>
     <task id="LOCAL-00013" summary="improved race panel optic">
       <option name="closed" value="true" />
@@ -578,11 +569,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718446787080</updated>
     </task>
-    <option name="localTasksCounter" value="61" />
+    <task id="LOCAL-00061" summary="added character test for setRPGCLass">
+      <option name="closed" value="true" />
+      <created>1718447833008</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1718447833008</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="removed unused code" />
     <MESSAGE value="added export mechanism" />
     <MESSAGE value="sort spells by difficulty" />
     <MESSAGE value="write race, custom values, lvl, stats and talents inte exel sheet" />
@@ -607,7 +605,8 @@
     <MESSAGE value="added character test for changing race" />
     <MESSAGE value="added character test for updateChosenRaceBuffs" />
     <MESSAGE value="added character test for getAllBuffs" />
-    <option name="LAST_COMMIT_MESSAGE" value="added character test for getAllBuffs" />
+    <MESSAGE value="added character test for setRPGCLass" />
+    <option name="LAST_COMMIT_MESSAGE" value="added character test for setRPGCLass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

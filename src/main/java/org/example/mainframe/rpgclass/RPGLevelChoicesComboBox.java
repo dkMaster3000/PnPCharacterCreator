@@ -42,30 +42,34 @@ public class RPGLevelChoicesComboBox extends JComboBox<String> {
 
         //remove previous chooseable
         modifyChooseableFromCharacter(unselectedIndex,
-                unselectedChoosable -> chosenSpells.remove((Spell) unselectedChoosable),
-                unselectedChoosable -> chosenPassivs.remove((Passiv) unselectedChoosable)
+                chosenSpells::remove,
+                chosenPassivs::remove
         );
 
         //add new chooseable
         modifyChooseableFromCharacter(selectedIndex,
-                selectedChoosable -> chosenSpells.add((Spell) selectedChoosable),
-                selectedChoosable -> chosenPassivs.add((Passiv) selectedChoosable)
+                chosenSpells::add,
+                chosenPassivs::add
         );
     }
 
-    private interface ModifyCharacterChooseables {
+    @FunctionalInterface
+    private interface ModifyCharacterChooseables<T extends RPGClassChooseable> {
 
-        void modify(RPGClassChooseable selectedChoosable);
+        void modify(T selectedChoosable);
     }
 
-    private void modifyChooseableFromCharacter(int selectedIndex, ModifyCharacterChooseables spellModifier, ModifyCharacterChooseables passivModifier) {
+    private void modifyChooseableFromCharacter(int selectedIndex, ModifyCharacterChooseables<Spell> spellModifier, ModifyCharacterChooseables<Passiv> passivModifier) {
         RPGClassChooseable selectedChoosable = getChooseableByName(choicePossibilities[selectedIndex]);
 
-        switch (selectedChoosable) {
-            case Spell _ -> spellModifier.modify(selectedChoosable);
-            case Passiv _ -> passivModifier.modify(selectedChoosable);
-            default -> System.out.println("Choosable TypeMissMatch");
+        if (selectedChoosable instanceof Spell spellChoosable) {
+            spellModifier.modify(spellChoosable);
         }
+
+        if (selectedChoosable instanceof Passiv passivChoosable) {
+            passivModifier.modify(passivChoosable);
+        }
+
     }
 
     private RPGClassChooseable getChooseableByName(String chooseableName) {
