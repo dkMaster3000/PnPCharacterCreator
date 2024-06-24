@@ -1,7 +1,6 @@
 package org.example.models;
 
 import org.example.mainframe.MainFrame;
-import org.example.mainframe.UsedValues;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -10,6 +9,14 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Character {
+
+    //Character stats modifier per point spent
+    public static final int ADDEDHP_MODIFIER = 10;
+    public static final int NOT_HP_STAT_MODIFIER = 1;
+    //Statpoints values
+    public static final int STATPOINT_START = 2;
+    public static final int STATPOINT_PER_LEVEL = 3;
+    public static final int STATPOINT_SPENT = 1;
 
     private int lvl = 0;
     private int addedHP = 0;
@@ -20,7 +27,7 @@ public class Character {
 
     private Race race = null;
     private List<String> chosenRaceBuffs = new ArrayList<>();
-    
+
     private RPGClass rpgClass = null;
     private List<Spell> chosenSpells = new ArrayList<>();
     private List<Passiv> chosenPassivs = new ArrayList<>();
@@ -115,7 +122,7 @@ public class Character {
     }
 
     private int calculateStatPoints() {
-        return UsedValues.STATPOINT_START + (lvl * UsedValues.STATPOINT_PER_LEVEL);
+        return STATPOINT_START + (lvl * STATPOINT_PER_LEVEL);
     }
 
     public Race getRace() {
@@ -217,14 +224,14 @@ public class Character {
         if (modifyValue > 0) {
             if (statPoints > 0) {
                 statToModify += modifyValue;
-                statPoints -= UsedValues.STATPOINT_SPENT;
+                statPoints -= STATPOINT_SPENT;
             }
         }
 
         if (modifyValue < 0) {
             if (statToModify > 0) {
                 statToModify += modifyValue;
-                statPoints += UsedValues.STATPOINT_SPENT;
+                statPoints += STATPOINT_SPENT;
             }
         }
 
@@ -251,8 +258,8 @@ public class Character {
 
     public int getModifyValueByEnum(STATNAMES statname) {
         return switch (statname) {
-            case STATNAMES.HP -> UsedValues.ADDEDHP_MODIFIER;
-            case STATNAMES.STRENGTH, STATNAMES.DEXTERITY, STATNAMES.INTELLIGENCE -> UsedValues.NOT_HP_STAT_MODIFIER;
+            case STATNAMES.HP -> ADDEDHP_MODIFIER;
+            case STATNAMES.STRENGTH, STATNAMES.DEXTERITY, STATNAMES.INTELLIGENCE -> NOT_HP_STAT_MODIFIER;
         };
     }
 }

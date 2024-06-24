@@ -49,7 +49,7 @@ public class CharacterTests {
         int START_STATSVALUE = 0;
 
         Assert.assertEquals("Level should have an initial value of 0.", character.getLvl(), 0);
-        Assert.assertEquals("Statpoints should have an initial value of 2.", character.getStatPoints(), UsedValues.STATPOINT_START);
+        Assert.assertEquals("Statpoints should have an initial value of 2.", character.getStatPoints(), Character.STATPOINT_START);
         Assert.assertEquals("Stats should have an initial value of 0.", character.getAddedHP(), START_STATSVALUE);
         Assert.assertEquals("Stats should have an initial value of 0.", character.getStrength(), START_STATSVALUE);
         Assert.assertEquals("Stats should have an initial value of 0.", character.getIntelligence(), START_STATSVALUE);
@@ -85,7 +85,7 @@ public class CharacterTests {
         int NEW_LVL = 1;
         character.setLvl(NEW_LVL);
         Assert.assertEquals("Character Level should be the new lvl.", character.getLvl(), NEW_LVL);
-        Assert.assertEquals("Character statspoints should be calculated new after level change.", character.getStatPoints(), UsedValues.STATPOINT_START + UsedValues.STATPOINT_PER_LEVEL * NEW_LVL);
+        Assert.assertEquals("Character statspoints should be calculated new after level change.", character.getStatPoints(), Character.STATPOINT_START + Character.STATPOINT_PER_LEVEL * NEW_LVL);
 
         Assert.assertEquals("Stats should be reset and 0 after lvl change.", character.getAddedHP(), START_STATSVALUE);
         Assert.assertEquals("Stats should be reset and 0 after lvl change.", character.getStrength(), START_STATSVALUE);
@@ -114,10 +114,10 @@ public class CharacterTests {
 
     @Test
     public void testGetModifyValueByEnum() {
-        Assert.assertEquals("Stat modify value is not matched", UsedValues.ADDEDHP_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.HP));
-        Assert.assertEquals("Stat modify value is not matched", UsedValues.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.STRENGTH));
-        Assert.assertEquals("Stat modify value is not matched", UsedValues.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.INTELLIGENCE));
-        Assert.assertEquals("Stat modify value is not matched", UsedValues.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.DEXTERITY));
+        Assert.assertEquals("Stat modify value is not matched", Character.ADDEDHP_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.HP));
+        Assert.assertEquals("Stat modify value is not matched", Character.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.STRENGTH));
+        Assert.assertEquals("Stat modify value is not matched", Character.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.INTELLIGENCE));
+        Assert.assertEquals("Stat modify value is not matched", Character.NOT_HP_STAT_MODIFIER, character.getModifyValueByEnum(Character.STATNAMES.DEXTERITY));
 
     }
 
@@ -147,12 +147,12 @@ public class CharacterTests {
 
         ModifySpecificStatvalueTest modifySpecificStatvalue = (modifier, getter, startValue, modifyValue) -> {
             modifier.accept(modifyValue);
-            Assert.assertEquals(pointsSpentErr, START_STATPOINTS - UsedValues.STATPOINT_SPENT, character.getStatPoints());
+            Assert.assertEquals(pointsSpentErr, START_STATPOINTS - Character.STATPOINT_SPENT, character.getStatPoints());
             Assert.assertEquals(statIncreasedErr, Integer.valueOf(startValue + modifyValue), getter.get());
             int CURRENT_STATPOINTS_1 = character.getStatPoints();
             int CURRENT_DEXTERITY = getter.get();
             modifier.accept(-modifyValue);
-            Assert.assertEquals(pointsUnspentErr, CURRENT_STATPOINTS_1 + UsedValues.STATPOINT_SPENT, character.getStatPoints());
+            Assert.assertEquals(pointsUnspentErr, CURRENT_STATPOINTS_1 + Character.STATPOINT_SPENT, character.getStatPoints());
             Assert.assertEquals(statDecreaseErr, Integer.valueOf(CURRENT_DEXTERITY - modifyValue), getter.get());
         };
 
@@ -162,10 +162,10 @@ public class CharacterTests {
 
         List<ModifyStatValueSample> modifyStatValueSamples = new ArrayList<>();
 
-        ModifyStatValueSample modifyHP = new ModifyStatValueSample(character::modifyAddedHPValue, character::getAddedHP, NEW_ADDEDHP, UsedValues.ADDEDHP_MODIFIER);
-        ModifyStatValueSample modifyStrength = new ModifyStatValueSample(character::modifyStrengthValue, character::getStrength, NEW_STRENGTH, UsedValues.NOT_HP_STAT_MODIFIER);
-        ModifyStatValueSample modifyIntelligence = new ModifyStatValueSample(character::modifyIntelligenceValue, character::getIntelligence, NEW_INTELLIGENCE, UsedValues.NOT_HP_STAT_MODIFIER);
-        ModifyStatValueSample modifyDexterity = new ModifyStatValueSample(character::modifyDexterityValue, character::getDexterity, NEW_DEXTERITY, UsedValues.NOT_HP_STAT_MODIFIER);
+        ModifyStatValueSample modifyHP = new ModifyStatValueSample(character::modifyAddedHPValue, character::getAddedHP, NEW_ADDEDHP, Character.ADDEDHP_MODIFIER);
+        ModifyStatValueSample modifyStrength = new ModifyStatValueSample(character::modifyStrengthValue, character::getStrength, NEW_STRENGTH, Character.NOT_HP_STAT_MODIFIER);
+        ModifyStatValueSample modifyIntelligence = new ModifyStatValueSample(character::modifyIntelligenceValue, character::getIntelligence, NEW_INTELLIGENCE, Character.NOT_HP_STAT_MODIFIER);
+        ModifyStatValueSample modifyDexterity = new ModifyStatValueSample(character::modifyDexterityValue, character::getDexterity, NEW_DEXTERITY, Character.NOT_HP_STAT_MODIFIER);
         modifyStatValueSamples.add(modifyHP);
         modifyStatValueSamples.add(modifyStrength);
         modifyStatValueSamples.add(modifyIntelligence);

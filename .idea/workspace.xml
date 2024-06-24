@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added character test for setRPGCLass">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="refactored class choosables selection">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGLevelChoicesComboBox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/rpgclass/RPGLevelChoicesComboBox.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,6 +73,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;master&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/kunzd/IdeaProjects/PnPCharacterCreator&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
@@ -168,8 +171,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.CharacterTests.testSetRpgClass" />
         <item itemvalue="JUnit.CharacterTests" />
+        <item itemvalue="JUnit.CharacterTests.testSetRpgClass" />
         <item itemvalue="JUnit.CharacterTests.testGetAllbuffs" />
         <item itemvalue="JUnit.CharacterTests.testUpdateChosenRaceBuffs" />
         <item itemvalue="JUnit.CharacterTests.testCharacterRace" />
@@ -184,14 +187,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00013" summary="improved race panel optic">
-      <option name="closed" value="true" />
-      <created>1717177895842</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1717177895842</updated>
     </task>
     <task id="LOCAL-00014" summary="added lvl panel">
       <option name="closed" value="true" />
@@ -577,11 +572,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718447833008</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="refactored class choosables selection">
+      <option name="closed" value="true" />
+      <created>1718528440216</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1718528440216</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added export mechanism" />
     <MESSAGE value="sort spells by difficulty" />
     <MESSAGE value="write race, custom values, lvl, stats and talents inte exel sheet" />
     <MESSAGE value="quick fix" />
@@ -606,7 +608,8 @@
     <MESSAGE value="added character test for updateChosenRaceBuffs" />
     <MESSAGE value="added character test for getAllBuffs" />
     <MESSAGE value="added character test for setRPGCLass" />
-    <option name="LAST_COMMIT_MESSAGE" value="added character test for setRPGCLass" />
+    <MESSAGE value="refactored class choosables selection" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored class choosables selection" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
