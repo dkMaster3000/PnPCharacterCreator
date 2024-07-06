@@ -304,9 +304,10 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
         createTabel(IndexedColors.AQUA, () -> {
             int lvlCellColumn = cellShift + 1;
             int wisdomCellColumn = cellShift + 2;
-            int totalSlotsCellColumn = cellShift + 3;
+            int miscellaneousCellColumn = cellShift + 3;
+            int totalSlotsCellColumn = cellShift + 4;
 
-            String[] spellslotsHeader = new String[]{"Spellslots", "Level", "Wissen", "Gesamt"};
+            String[] spellslotsHeader = new String[]{"Spellslots", "Level", "Wissen", "Sonstiges", "Gesamt"};
             createRow(spellslotsHeader, true);
 
             SpellslotsMatrix spellslotsMatrix = MainFrame.spellslotsMatrix;
@@ -334,10 +335,14 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
                 wisdomValueCell.setCellStyle(lockedNumericStyle);
                 formulaEvaluator.evaluateFormulaCell(wisdomValueCell);
 
+                // create cell for miscellanious
+                @SuppressWarnings("unused")
+                XSSFCell miscellaneousValueCell = sheet.getRow(GetLastRow()).createCell(miscellaneousCellColumn);
+
                 // create formular cell for sum
                 XSSFCell spellSlotSumValueCell = sheet.getRow(GetLastRow()).createCell(totalSlotsCellColumn);
                 String startCalc = CellReference.convertNumToColString(lvlCellColumn) + GetDisplayedExcelRow(spellSlotSumValueCell);
-                String endCalc = CellReference.convertNumToColString(wisdomCellColumn) + GetDisplayedExcelRow(spellSlotSumValueCell);
+                String endCalc = CellReference.convertNumToColString(miscellaneousCellColumn) + GetDisplayedExcelRow(spellSlotSumValueCell);
                 spellSlotSumValueCell.setCellFormula("Sum(" + startCalc + ":" + endCalc + ")");
                 spellSlotSumValueCell.setCellStyle(lockedNumericStyle);
                 formulaEvaluator.evaluateFormulaCell(spellSlotSumValueCell);

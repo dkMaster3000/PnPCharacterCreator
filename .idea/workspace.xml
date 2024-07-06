@@ -9,11 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="refactored class choosables selection">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="refactored usedvalues in proper class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UsedValues.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/models/Character.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/models/CharacterTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +87,20 @@
       <recent name="org.example.mainframe" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MainFrame">
+    <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.mainframe.MainFrame" />
+      <module name="PnPCharacterCreator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.mainframe.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="CharacterTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="PnPCharacterCreator" />
       <extension name="coverage">
@@ -101,22 +112,6 @@
       <option name="PACKAGE_NAME" value="org.example.models" />
       <option name="MAIN_CLASS_NAME" value="org.example.models.CharacterTests" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="CharacterTests.testCharacterRace" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PnPCharacterCreator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.models" />
-      <option name="MAIN_CLASS_NAME" value="org.example.models.CharacterTests" />
-      <option name="METHOD_NAME" value="testCharacterRace" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -171,11 +166,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.MainFrame" />
         <item itemvalue="JUnit.CharacterTests" />
         <item itemvalue="JUnit.CharacterTests.testSetRpgClass" />
         <item itemvalue="JUnit.CharacterTests.testGetAllbuffs" />
         <item itemvalue="JUnit.CharacterTests.testUpdateChosenRaceBuffs" />
-        <item itemvalue="JUnit.CharacterTests.testCharacterRace" />
       </list>
     </recent_temporary>
   </component>
@@ -187,14 +182,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added lvl panel">
-      <option name="closed" value="true" />
-      <created>1717238098784</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1717238098784</updated>
     </task>
     <task id="LOCAL-00015" summary="added statchanging pannels">
       <option name="closed" value="true" />
@@ -580,11 +567,18 @@
       <option name="project" value="LOCAL" />
       <updated>1718528440216</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="refactored usedvalues in proper class">
+      <option name="closed" value="true" />
+      <created>1719226923245</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1719226923246</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="sort spells by difficulty" />
     <MESSAGE value="write race, custom values, lvl, stats and talents inte exel sheet" />
     <MESSAGE value="quick fix" />
     <MESSAGE value="exel file filled" />
@@ -609,7 +603,8 @@
     <MESSAGE value="added character test for getAllBuffs" />
     <MESSAGE value="added character test for setRPGCLass" />
     <MESSAGE value="refactored class choosables selection" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored class choosables selection" />
+    <MESSAGE value="refactored usedvalues in proper class" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactored usedvalues in proper class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
