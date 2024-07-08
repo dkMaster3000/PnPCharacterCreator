@@ -1,7 +1,7 @@
 package org.example.mainframe;
 
-import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.example.Main;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -41,6 +41,12 @@ public class UploadPanel extends JPanel implements ActionListener {
         uploadedLabel.setBounds(170, 10, 210, 40);
         uploadedLabel.setForeground(Color.RED);
         add(uploadedLabel);
+
+        // Create the toggle button for theme switch
+        JToggleButton themeToggleButton = new JToggleButton("Darkmode", Main.getIsDarkTheme());
+        themeToggleButton.setBounds(700, 10, 150, 40);
+        themeToggleButton.addActionListener(_ -> Main.switchTheme());
+        add(themeToggleButton);
     }
 
     @Override

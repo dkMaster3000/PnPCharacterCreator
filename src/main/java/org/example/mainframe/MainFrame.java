@@ -47,7 +47,7 @@ public class MainFrame extends JFrame {
     public static SpellslotsMatrix spellslotsMatrix = null;
 
     //STEP: 1
-    MainFrame() {
+    public MainFrame() {
         setTitle("PnP Character Creator");
         setSize(1430, 800);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -166,10 +166,6 @@ public class MainFrame extends JFrame {
         repaint();
 
         updatePanels();
-    }
-
-    public static void main(String[] args) {
-        new MainFrame();
     }
 
     private void updatePanels() {

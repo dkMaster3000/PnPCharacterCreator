@@ -9,9 +9,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="refactored usedvalues in proper class">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added toggle between dark and light mode">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/UploadPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +47,9 @@
     &quot;accountId&quot;: &quot;a7cf5a5d-dc10-4e4d-8310-78a3d757b24c&quot;
   }
 }</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 8
 }</component>
@@ -87,7 +93,20 @@
       <recent name="org.example.mainframe" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainFrame">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.example.Main" />
+      <module name="PnPCharacterCreator" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MainFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.example.mainframe.MainFrame" />
       <module name="PnPCharacterCreator" />
@@ -148,29 +167,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="CharacterTests.testUpdateChosenRaceBuffs" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="PnPCharacterCreator" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.models.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.example.models" />
-      <option name="MAIN_CLASS_NAME" value="org.example.models.CharacterTests" />
-      <option name="METHOD_NAME" value="testUpdateChosenRaceBuffs" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainFrame" />
         <item itemvalue="JUnit.CharacterTests" />
         <item itemvalue="JUnit.CharacterTests.testSetRpgClass" />
         <item itemvalue="JUnit.CharacterTests.testGetAllbuffs" />
-        <item itemvalue="JUnit.CharacterTests.testUpdateChosenRaceBuffs" />
       </list>
     </recent_temporary>
   </component>
@@ -182,14 +185,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00015" summary="added statchanging pannels">
-      <option name="closed" value="true" />
-      <created>1717249185059</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1717249185059</updated>
     </task>
     <task id="LOCAL-00016" summary="improved loader structure">
       <option name="closed" value="true" />
@@ -575,12 +570,18 @@
       <option name="project" value="LOCAL" />
       <updated>1719226923246</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="added miscellanious in spellslots calculator">
+      <option name="closed" value="true" />
+      <created>1720248075796</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1720248075797</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="write race, custom values, lvl, stats and talents inte exel sheet" />
-    <MESSAGE value="quick fix" />
     <MESSAGE value="exel file filled" />
     <MESSAGE value="paint table prototype working" />
     <MESSAGE value="create all tables with painted rim" />
@@ -604,7 +605,9 @@
     <MESSAGE value="added character test for setRPGCLass" />
     <MESSAGE value="refactored class choosables selection" />
     <MESSAGE value="refactored usedvalues in proper class" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactored usedvalues in proper class" />
+    <MESSAGE value="added miscellanious in spellslots calculator" />
+    <MESSAGE value="added toggle between dark and light mode" />
+    <option name="LAST_COMMIT_MESSAGE" value="added toggle between dark and light mode" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
