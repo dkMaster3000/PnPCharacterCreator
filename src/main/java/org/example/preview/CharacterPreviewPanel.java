@@ -35,6 +35,10 @@ public class CharacterPreviewPanel extends PanelContainer {
 
         addSpace();
 
+        addHeaderJLabel("Charakter Vorschau");
+
+        addSpace();
+
         addJLabel("Rasse: " + race.getName());
 
         addJLabel("Größe: " + race.getHeight());
@@ -133,8 +137,15 @@ public class CharacterPreviewPanel extends PanelContainer {
         add(newJLabel);
     }
 
+    public void addHeaderJLabel(String string) {
+        JLabel newHeaderLabel = new JLabel(string);
+        newHeaderLabel.setFont(new Font("Default", Font.BOLD, 14));
+        add(newHeaderLabel);
+    }
+
     public void addTable(String[][] data, String[] columnNames) {
         JTable newTable = new JTable(data, columnNames);
+        newTable.setEnabled(false);
 
         JScrollPane newScrollPane = new JScrollPane(newTable);
         newScrollPane.setMaximumSize(new Dimension(

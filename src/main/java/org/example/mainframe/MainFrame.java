@@ -17,8 +17,6 @@ import org.example.preview.CharacterPreviewPanel;
 
 import javax.swing.*;
 
-import java.awt.*;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -147,13 +145,7 @@ public class MainFrame extends JFrame {
 
         characterPreviewContainer = new JPanel();
         characterPreviewContainer.setBounds(860, 5, 550, 750);
-        characterPreviewContainer.setBackground(Color.lightGray);
-        characterPreviewContainer.setLayout(new BoxLayout(characterPreviewContainer, BoxLayout.Y_AXIS));
         add(characterPreviewContainer);
-
-        JLabel characterPreviewLabel = new JLabel("Charakter Vorschau");
-        characterPreviewLabel.setBounds(5, 5, 400, 10);
-        characterPreviewContainer.add(characterPreviewLabel);
 
         characterPreviewPanel = new CharacterPreviewPanel();
         characterPreviewPanel.setBounds(5, 20, 390, 700);
