@@ -9,10 +9,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added toggle between dark and light mode">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="made table non editable, fixed color and position of preview header">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/preview/CharacterPreviewPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,7 @@
       <module name="PnPCharacterCreator" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.example.mainframe.*" />
+          <option name="PATTERN" value="org.example.export.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -183,14 +183,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00017" summary="organize project into packages">
-      <option name="closed" value="true" />
-      <created>1717305409918</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1717305409918</updated>
     </task>
     <task id="LOCAL-00018" summary="creating talentmatrix and talentloader">
       <option name="closed" value="true" />
@@ -576,11 +568,18 @@
       <option name="project" value="LOCAL" />
       <updated>1720452216099</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="made table non editable, fixed color and position of preview header">
+      <option name="closed" value="true" />
+      <created>1720518338933</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1720518338933</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="exel file filled" />
     <MESSAGE value="paint table prototype working" />
     <MESSAGE value="create all tables with painted rim" />
     <MESSAGE value="added uuid to sheetname" />
@@ -605,7 +604,8 @@
     <MESSAGE value="refactored usedvalues in proper class" />
     <MESSAGE value="added miscellanious in spellslots calculator" />
     <MESSAGE value="added toggle between dark and light mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="added toggle between dark and light mode" />
+    <MESSAGE value="made table non editable, fixed color and position of preview header" />
+    <option name="LAST_COMMIT_MESSAGE" value="made table non editable, fixed color and position of preview header" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
