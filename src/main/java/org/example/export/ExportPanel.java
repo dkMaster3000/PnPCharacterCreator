@@ -6,6 +6,7 @@ import org.apache.poi.xssf.usermodel.*;
 
 import org.example.export.tables.GeneralTable;
 import org.example.export.tables.StatsTable;
+import org.example.export.tables.TalentTable;
 import org.example.mainframe.MainFrame;
 import org.example.mainframe.UpdatableByMainFrame;
 import org.example.mainframe.UsedValues;
@@ -113,26 +114,9 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
 
         new StatsTable(CUSTOM_SHEET, IndexedColors.LIGHT_YELLOW).generateTable();
 
+        new TalentTable(CUSTOM_SHEET, IndexedColors.LIGHT_CORNFLOWER_BLUE).generateTable();
 
-//
-//
-//        createTabel(IndexedColors.LIGHT_CORNFLOWER_BLUE, () -> {
-//            List<Talent> talents = character.getTalents();
-//            String[] talentsHeader = new String[]{"Talente", "Name", "Effekt"};
-//            if (!talents.isEmpty()) {
-//                createRow(talentsHeader, true);
-//                for (int i = 0; i < talents.size(); i++) {
-//                    Talent talent = talents.get(i);
-//                    createRow(new String[]{
-//                            String.valueOf(i + 1),
-//                            talent.name(),
-//                            talent.description(),
-//                    }, false);
-//                }
-//            }
-//
-//            return talentsHeader.length;
-//        });
+
 //
 //        createTabel(IndexedColors.LIGHT_GREEN, () -> {
 //            List<Passiv> allCharacterPassivs = character.getAllCharacterPassivs();

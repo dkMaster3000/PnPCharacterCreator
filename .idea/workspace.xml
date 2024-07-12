@@ -9,10 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="made table non editable, fixed color and position of preview header">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created statstable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,22 +182,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00018" summary="creating talentmatrix and talentloader">
-      <option name="closed" value="true" />
-      <created>1717307402264</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1717307402264</updated>
-    </task>
-    <task id="LOCAL-00019" summary="start creating talentpanel and combobox">
-      <option name="closed" value="true" />
-      <created>1717438489760</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1717438489760</updated>
     </task>
     <task id="LOCAL-00020" summary="created talentpanel and its combobox">
       <option name="closed" value="true" />
@@ -576,12 +559,26 @@
       <option name="project" value="LOCAL" />
       <updated>1720518338933</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="started refactor Export Panel">
+      <option name="closed" value="true" />
+      <created>1720707298200</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1720707298200</updated>
+    </task>
+    <task id="LOCAL-00068" summary="created statstable">
+      <option name="closed" value="true" />
+      <created>1720707318463</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1720707318463</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="paint table prototype working" />
-    <MESSAGE value="create all tables with painted rim" />
     <MESSAGE value="added uuid to sheetname" />
     <MESSAGE value="packaging manifest added" />
     <MESSAGE value="multiple character creations possible" />
@@ -605,7 +602,9 @@
     <MESSAGE value="added miscellanious in spellslots calculator" />
     <MESSAGE value="added toggle between dark and light mode" />
     <MESSAGE value="made table non editable, fixed color and position of preview header" />
-    <option name="LAST_COMMIT_MESSAGE" value="made table non editable, fixed color and position of preview header" />
+    <MESSAGE value="started refactor Export Panel" />
+    <MESSAGE value="created statstable" />
+    <option name="LAST_COMMIT_MESSAGE" value="created statstable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
