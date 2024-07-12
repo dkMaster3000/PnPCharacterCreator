@@ -16,7 +16,7 @@ public class EquipmentTable extends PaintedTable {
     @Override
     public void fillTable() {
 
-        String[] equipmentHeader = new String[]{"Ausrüstung", "HP", "Stärke", "Intelligenz", "Geschick", "Rüstung", "Magische Effekte"};
+        String[] equipmentHeader = new String[]{"Ausrüstung", "HP", "Stärke", "Intelligenz", "Geschick", "Rüstung", "Magische Effekte"}; //don't change order, in statstable there is dependency
         createRow(equipmentHeader, true);
 
         createRow("Kopf");

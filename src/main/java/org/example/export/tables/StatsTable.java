@@ -7,118 +7,103 @@ import org.example.export.CharacterSheet;
 import org.example.mainframe.MainFrame;
 import org.example.models.Character;
 
-import java.util.function.Supplier;
-
 public class StatsTable extends PaintedTable {
+
+    int cellShift;
+    int armorCellColumnIndex = 0;
+    int sumCellColumnIndex = 0;
 
     public StatsTable(CharacterSheet sheet, IndexedColors indexedColors) {
         super(sheet, indexedColors);
+
+        cellShift = sheet.getCellShift();
     }
 
     @Override
     public void fillTable() {
         Character character = MainFrame.character;
 
-        int cellShift = sheet.getCellShift();
-
         createRow("Level", character.getLvl());
-        sheet.setCurrentLevelCell(sheet.getRow(sheet.getRowCount() - 1).getCell(cellShift + 1));
+        sheet.setCurrentLevelCell(sheet.getRow(GetLastRowIndex()).getCell(cellShift + 1));
 
         createRow("Punkte zu Vergeben", String.valueOf(character.getStatPoints()));
 
         String[] statsHeaderValues = new String[]{"Stats", "Punkte", "Skills", "Ausrüstung", "Insgesamt"};
+        armorCellColumnIndex = 3; //safe the column index for "Ausrüstung"
+        sumCellColumnIndex = armorCellColumnIndex + 1; //safe the column index for "Insgesamt"
         createRow(statsHeaderValues, true);
 
-        //punkte + skill + ausrüstung = insgesammt
-        Runnable addSumCell = () -> {
-            int rowCount = sheet.getRowCount();
-            XSSFCell formulaCell = sheet.getRow(rowCount - 1).createCell(cellShift + statsHeaderValues.length - 1);
-            String startCountCell = CellReference.convertNumToColString(cellShift + 1) + rowCount;
-            String endCountCell = CellReference.convertNumToColString(cellShift + 3) + rowCount;
-            formulaCell.setCellFormula("SUM(" + startCountCell + ":" + endCountCell + ")");
-            formulaCell.setCellStyle(sheet.getLockedNumericStyle());
-            sheet.getFormulaEvaluator().evaluateFormulaCell(formulaCell);
-        };
-
-        Supplier<XSSFCell> getCurrentArmorSumCell = () -> sheet.getRow(sheet.getRowCount() - 1).createCell(cellShift + 3);
-
-        Supplier<XSSFCell> getCurrentTotalSumCell = () -> sheet.getRow(sheet.getRowCount() - 1).getCell(cellShift + statsHeaderValues.length - 1);
-
         int totalHP = character.getAddedHP() + Integer.parseInt(character.getRace().getHp());
-        createRow("HP", totalHP);
-        addSumCell.run();
-        //--?
-        sheet.setHpEquipmentCell(getCurrentArmorSumCell.get());
-        sheet.getEquipmentCells().put(1, sheet.getHpEquipmentCell());
+        createStatRow("HP", totalHP, 1);
 
-        createRow("Stärke", character.getStrength());
-        addSumCell.run();
-        sheet.setStrengthTotalSumCell(getCurrentTotalSumCell.get()); //remember for substats
-        sheet.setStrengthEquipmentCell(getCurrentArmorSumCell.get()); //TODO: maybe refactor
-        sheet.getEquipmentCells().put(2, sheet.getStrengthEquipmentCell());
+        createStatRow("Stärke", character.getStrength(), 2);
+        XSSFCell strengthTotalSumCell = getCurrentTotalSumCell(); //remember for substats
 
-        createRow("Intelligenz", character.getIntelligence());
-        addSumCell.run();
-        sheet.setIntelligenceTotalSumCell(getCurrentTotalSumCell.get()); //remember for substats
-        sheet.setIntelligenceEquipmentCell(getCurrentArmorSumCell.get()); //TODO: maybe refactor
-        sheet.getEquipmentCells().put(3, sheet.getIntelligenceEquipmentCell());
+        createStatRow("Intelligenz", character.getIntelligence(), 3);
+        sheet.setIntelligenceTotalSumCell(getCurrentTotalSumCell()); //remember for spellslots
 
-        createRow("Geschick", character.getDexterity());
-        addSumCell.run();
-        sheet.setDexTotalSumCell(getCurrentTotalSumCell.get()); //remember for substats
-        sheet.setDexEquipmentCell(getCurrentArmorSumCell.get()); //TODO: maybe refactor
-        sheet.getEquipmentCells().put(4, sheet.getDexEquipmentCell());
+        createStatRow("Geschick", character.getDexterity(), 4);
+        XSSFCell dexSumTotalCell = getCurrentTotalSumCell(); //remember for substats
 
         //calculatable substats ------------------------------------------------------------------
-        createRow("Substats");
+        String[] subStatsHeaderValues = new String[]{"Substats", "---", "---", "---", "---"};
+        createRow(subStatsHeaderValues, true);
 
-        int valueCellNumber = cellShift + 1;
+        //---positions---
+        String strengthSumCellPosition = getCellPosition(strengthTotalSumCell);
+        String dexTotalSumCellPosition = getCellPosition(dexSumTotalCell);
 
-        //--
-        createRow("Rüstung");
-        XSSFCell armorValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
+        //---rows---
+        String formulaArmor = "(" + strengthSumCellPosition + ")";
+        createSubstatRow("Rüstung", formulaArmor);
+        sheet.getEquipmentCells().put(5, getCurrentArmorSumCell()); //also column in equipment exist
 
-        XSSFCell strengthSumCell = sheet.getStrengthTotalSumCell();
-        String strengthSumCellPosition = CellReference.convertNumToColString(strengthSumCell.getColumnIndex()) + GetDisplayedExcelRow(strengthSumCell);
+        String formulaMovement = "ROUNDDOWN(" + (dexTotalSumCellPosition) + " / 10 + " + character.getRace().getMovement() + ", 0)";
+        createSubstatRow("Bewegung", formulaMovement);
 
-        armorValueCell.setCellFormula("(" + strengthSumCellPosition + ")");
-        armorValueCell.setCellStyle(sheet.getLockedNumericStyle());
-        sheet.getFormulaEvaluator().evaluateFormulaCell(armorValueCell);
-        addSumCell.run();
+        String formulaDodge = "(" + dexTotalSumCellPosition + ")";
+        createSubstatRow("Dodge in %", formulaDodge);
 
-        sheet.setArmorEquipmentCell(getCurrentArmorSumCell.get());
-        sheet.getEquipmentCells().put(5, sheet.getArmorEquipmentCell());
-
-
-        //--
-        createRow("Bewegung");
-        XSSFCell movementValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
-
-        XSSFCell dexSumCell = sheet.getDexTotalSumCell();
-        String dexTotalSumCellPosition = CellReference.convertNumToColString(dexSumCell.getColumnIndex()) + GetDisplayedExcelRow(dexSumCell);
-        movementValueCell.setCellFormula("ROUNDDOWN(" + (dexTotalSumCellPosition) + " / 10 + " + character.getRace().getMovement() + ", 0)");
-        movementValueCell.setCellStyle(sheet.getLockedNumericStyle());
-        sheet.getFormulaEvaluator().evaluateFormulaCell(movementValueCell);
-        addSumCell.run();
-
-
-        createRow("Dodge in %");
-        XSSFCell dodgeValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
-
-        dodgeValueCell.setCellFormula("(" + dexTotalSumCellPosition + ")");
-        dodgeValueCell.setCellStyle(sheet.getLockedNumericStyle());
-        sheet.getFormulaEvaluator().evaluateFormulaCell(dodgeValueCell);
-        addSumCell.run();
-
-        createRow("Ini-Bonus");
-        XSSFCell iniValueCell = sheet.getRow(GetLastRow()).createCell(valueCellNumber);
-        iniValueCell.setCellFormula("(" + dexTotalSumCellPosition + ")");
-        iniValueCell.setCellStyle(sheet.getLockedNumericStyle());
-        sheet.getFormulaEvaluator().evaluateFormulaCell(iniValueCell);
-        addSumCell.run();
+        String formulaIni = "(" + dexTotalSumCellPosition + ")";
+        createSubstatRow("Ini-Bonus", formulaIni);
 
         createRow("Charisma");
+        addSumCell();
+    }
 
+    private void createStatRow(String header, int pointsValue, int key) {
+        createRow(header, pointsValue);
+        addSumCell();
+        //key is the column of equipment
+        sheet.getEquipmentCells().put(key, getCurrentArmorSumCell());
+    }
 
+    private void createSubstatRow(String header, String formula) {
+        createRow(header);
+
+        XSSFCell armorValueCell = createCellInLastRow(cellShift + 1);
+        setFormulaWithLockedStyle(armorValueCell, formula);
+
+        addSumCell();
+    }
+
+    //creates a cell at the end of the row
+    //punkte + skill + ausrüstung = insgesammt
+    private void addSumCell() {
+        int rowCount = sheet.getRowCount();
+        XSSFCell formulaCell = sheet.getRow(GetLastRowIndex()).createCell(cellShift + sumCellColumnIndex);
+
+        String startCountCell = CellReference.convertNumToColString(cellShift + 1) + rowCount;
+        String endCountCell = CellReference.convertNumToColString(cellShift + armorCellColumnIndex) + rowCount;
+
+        setFormulaWithLockedStyle(formulaCell, ("SUM(" + startCountCell + ":" + endCountCell + ")"));
+    }
+
+    private XSSFCell getCurrentArmorSumCell() {
+        return sheet.getRow(GetLastRowIndex()).createCell(cellShift + armorCellColumnIndex);
+    }
+
+    private XSSFCell getCurrentTotalSumCell() {
+        return sheet.getRow(GetLastRowIndex()).getCell(cellShift + sumCellColumnIndex);
     }
 }

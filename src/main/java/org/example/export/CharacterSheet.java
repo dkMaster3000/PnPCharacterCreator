@@ -16,28 +16,21 @@ public class CharacterSheet {
 
     //startpoints
     private int rowCount = 2; //row startpoint, also rowTracker
+    @SuppressWarnings("FieldCanBeLocal")
     private final int cellShift = 2;
 
 
     XSSFWorkbook workbook;
-    private CellStyle headerStyle;
-    private CellStyle valueStyle;
-    private XSSFCellStyle lockedNumericStyle;
+    private final CellStyle headerStyle;
+    private final CellStyle valueStyle;
+    private final XSSFCellStyle lockedNumericStyle;
 
     //cells to remember
     //level cell
     XSSFCell currentLevelCell;
-    //stats equipmentcells
-    XSSFCell hpEquipmentCell;
-    XSSFCell strengthEquipmentCell;
-    XSSFCell intelligenceEquipmentCell;
-    XSSFCell dexEquipmentCell;
-    XSSFCell armorEquipmentCell;
-    //total sum of specific stats
-    XSSFCell strengthTotalSumCell;
+    //total sum of intelligence stat
     XSSFCell intelligenceTotalSumCell;
-    XSSFCell dexTotalSumCell;
-
+    //stats equipmentcells
     HashMap<Integer, XSSFCell> equipmentCells = new HashMap<>();
 
     XSSFFormulaEvaluator formulaEvaluator;
@@ -110,6 +103,24 @@ public class CharacterSheet {
         return font;
     }
 
+    public CellStyle getValueStyle() {
+        return valueStyle;
+    }
+
+    public CellStyle getHeaderStyle() {
+        return headerStyle;
+    }
+
+    public XSSFCellStyle getLockedNumericStyle() {
+        return lockedNumericStyle;
+    }
+
+    public XSSFFormulaEvaluator getFormulaEvaluator() {
+        return formulaEvaluator;
+    }
+
+    //---------------------------------ROW----------------------------------
+
     public int getRowCount() {
         return rowCount;
     }
@@ -122,17 +133,7 @@ public class CharacterSheet {
         return cellShift;
     }
 
-    public XSSFCellStyle getLockedNumericStyle() {
-        return lockedNumericStyle;
-    }
-
-    public CellStyle getValueStyle() {
-        return valueStyle;
-    }
-
-    public CellStyle getHeaderStyle() {
-        return headerStyle;
-    }
+    //---------------------------------SAVED CELLS----------------------------------
 
     public XSSFCell getCurrentLevelCell() {
         return currentLevelCell;
@@ -142,57 +143,6 @@ public class CharacterSheet {
         this.currentLevelCell = currentLevelCell;
     }
 
-    public XSSFFormulaEvaluator getFormulaEvaluator() {
-        return formulaEvaluator;
-    }
-
-    public XSSFCell getHpEquipmentCell() {
-        return hpEquipmentCell;
-    }
-
-    public void setHpEquipmentCell(XSSFCell hpEquipmentCell) {
-        this.hpEquipmentCell = hpEquipmentCell;
-    }
-
-    public XSSFCell getStrengthEquipmentCell() {
-        return strengthEquipmentCell;
-    }
-
-    public void setStrengthEquipmentCell(XSSFCell strengthEquipmentCell) {
-        this.strengthEquipmentCell = strengthEquipmentCell;
-    }
-
-    public XSSFCell getIntelligenceEquipmentCell() {
-        return intelligenceEquipmentCell;
-    }
-
-    public void setIntelligenceEquipmentCell(XSSFCell intelligenceEquipmentCell) {
-        this.intelligenceEquipmentCell = intelligenceEquipmentCell;
-    }
-
-    public XSSFCell getDexEquipmentCell() {
-        return dexEquipmentCell;
-    }
-
-    public void setDexEquipmentCell(XSSFCell dexEquipmentCell) {
-        this.dexEquipmentCell = dexEquipmentCell;
-    }
-
-    public XSSFCell getArmorEquipmentCell() {
-        return armorEquipmentCell;
-    }
-
-    public void setArmorEquipmentCell(XSSFCell armorEquipmentCell) {
-        this.armorEquipmentCell = armorEquipmentCell;
-    }
-
-    public XSSFCell getStrengthTotalSumCell() {
-        return strengthTotalSumCell;
-    }
-
-    public void setStrengthTotalSumCell(XSSFCell strengthTotalSumCell) {
-        this.strengthTotalSumCell = strengthTotalSumCell;
-    }
 
     public XSSFCell getIntelligenceTotalSumCell() {
         return intelligenceTotalSumCell;
@@ -200,14 +150,6 @@ public class CharacterSheet {
 
     public void setIntelligenceTotalSumCell(XSSFCell intelligenceTotalSumCell) {
         this.intelligenceTotalSumCell = intelligenceTotalSumCell;
-    }
-
-    public XSSFCell getDexTotalSumCell() {
-        return dexTotalSumCell;
-    }
-
-    public void setDexTotalSumCell(XSSFCell dexTotalSumCell) {
-        this.dexTotalSumCell = dexTotalSumCell;
     }
 
     public HashMap<Integer, XSSFCell> getEquipmentCells() {

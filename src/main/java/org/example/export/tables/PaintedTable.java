@@ -1,6 +1,7 @@
 package org.example.export.tables;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.example.export.CharacterSheet;
 import org.example.mainframe.MainFrame;
@@ -146,8 +147,17 @@ public abstract class PaintedTable {
         return cell.getRowIndex() + 1;
     }
 
-    protected int GetLastRow() {
+    protected int GetLastRowIndex() {
         return sheet.getRowCount() - 1;
+    }
+
+    protected XSSFCell createCellInLastRow(int index) {
+        return sheet.getRow(GetLastRowIndex()).createCell(index);
+    }
+
+    protected String getCellPosition(XSSFCell cell) {
+        return CellReference.convertNumToColString(cell.getColumnIndex()) + GetDisplayedExcelRow(cell);
+
     }
 
     protected void setFormulaWithLockedStyle(XSSFCell cell, String formula) {

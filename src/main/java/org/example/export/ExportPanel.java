@@ -1,10 +1,7 @@
 package org.example.export;
 
-import org.apache.poi.ss.usermodel.*;
-import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.*;
 
-import org.example.export.tables.*;
 import org.example.mainframe.MainFrame;
 import org.example.mainframe.UpdatableByMainFrame;
 import org.example.mainframe.UsedValues;
@@ -37,7 +34,6 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
         uploadedLabel.setBounds(170, 10, 210, 40);
         uploadedLabel.setForeground(Color.RED);
         add(uploadedLabel);
-
 
     }
 

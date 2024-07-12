@@ -58,7 +58,7 @@ public class SpellslotsTable extends PaintedTable {
 
         // create cell for miscellanious
         @SuppressWarnings("unused")
-        XSSFCell miscellaneousValueCell = createCellInRow(miscellaneousCellColumnIndex);
+        XSSFCell miscellaneousValueCell = createCellInLastRow(miscellaneousCellColumnIndex);
 
         createSpellslotsSumCell();
     }
@@ -66,7 +66,7 @@ public class SpellslotsTable extends PaintedTable {
 
     private void createLvlCell(String key) {
         //create formular cell for lvl
-        XSSFCell lvlValueCell = createCellInRow(lvlCellColumnIndex);
+        XSSFCell lvlValueCell = createCellInLastRow(lvlCellColumnIndex);
 
         XSSFCell currentLevelCell = sheet.getCurrentLevelCell();
         String currentLvlCellPosition = getCellPosition(currentLevelCell);
@@ -86,7 +86,7 @@ public class SpellslotsTable extends PaintedTable {
 
     private void createIntelligenceCell(Integer dividend) {
         //create formalur cell for int
-        XSSFCell wisdomValueCell = createCellInRow(wisdomCellColumnIndex);
+        XSSFCell wisdomValueCell = createCellInLastRow(wisdomCellColumnIndex);
 
         XSSFCell intelligenceTotalSumCell = sheet.getIntelligenceTotalSumCell();
         String intelligenceTotalSumCellPosition = getCellPosition(intelligenceTotalSumCell);
@@ -96,24 +96,12 @@ public class SpellslotsTable extends PaintedTable {
 
     private void createSpellslotsSumCell() {
         // create formular cell for sum
-        XSSFCell spellSlotSumValueCell = createCellInRow(totalSlotsCellColumnIndex);
+        XSSFCell spellSlotSumValueCell = createCellInLastRow(totalSlotsCellColumnIndex);
 
         String startCalc = CellReference.convertNumToColString(lvlCellColumnIndex) + GetDisplayedExcelRow(spellSlotSumValueCell);
         String endCalc = CellReference.convertNumToColString(miscellaneousCellColumnIndex) + GetDisplayedExcelRow(spellSlotSumValueCell);
 
         setFormulaWithLockedStyle(spellSlotSumValueCell, ("Sum(" + startCalc + ":" + endCalc + ")"));
     }
-
-    //--------------------HELPER--------------------
-
-    private XSSFCell createCellInRow(int index) {
-        return sheet.getRow(GetLastRow()).createCell(index);
-    }
-
-    private String getCellPosition(XSSFCell cell) {
-        return CellReference.convertNumToColString(cell.getColumnIndex()) + GetDisplayedExcelRow(cell);
-
-    }
-
 
 }
