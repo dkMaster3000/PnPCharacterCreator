@@ -9,9 +9,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created talenttable">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created passivetable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/tables/PassiveTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/tables/PassiveTable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/tables/TalentTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/tables/TalentTable.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,14 +184,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00021" summary="updated raceChoicesPanel">
-      <option name="closed" value="true" />
-      <created>1717480395200</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1717480395200</updated>
     </task>
     <task id="LOCAL-00022" summary="updated talentcombobox with unique attribute">
       <option name="closed" value="true" />
@@ -575,11 +569,18 @@
       <option name="project" value="LOCAL" />
       <updated>1720770647574</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="created passivetable">
+      <option name="closed" value="true" />
+      <created>1720771270814</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1720771270814</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="packaging manifest added" />
     <MESSAGE value="multiple character creations possible" />
     <MESSAGE value="improved ui" />
     <MESSAGE value="able to write formulas" />
@@ -604,7 +605,8 @@
     <MESSAGE value="started refactor Export Panel" />
     <MESSAGE value="created statstable" />
     <MESSAGE value="created talenttable" />
-    <option name="LAST_COMMIT_MESSAGE" value="created talenttable" />
+    <MESSAGE value="created passivetable" />
+    <option name="LAST_COMMIT_MESSAGE" value="created passivetable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

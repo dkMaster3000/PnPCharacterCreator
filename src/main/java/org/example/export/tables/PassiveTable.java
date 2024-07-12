@@ -17,9 +17,10 @@ public class PassiveTable extends PaintedTable {
     public void fillTable() {
 
         List<Passiv> allCharacterPassivs = MainFrame.character.getAllCharacterPassivs();
-        createRow("Passives");
+
         String[] passivsHeader = new String[]{"Name", "Effekt", "Reichweite"};
         if (!allCharacterPassivs.isEmpty()) {
+            createRow("Passivs");
             createRow(passivsHeader, true);
             for (Passiv passiv : allCharacterPassivs) {
                 createRow(new String[]{

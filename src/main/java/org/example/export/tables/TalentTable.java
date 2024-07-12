@@ -17,9 +17,10 @@ public class TalentTable extends PaintedTable {
     public void fillTable() {
 
         List<Talent> talents = MainFrame.character.getTalents();
-        createRow("Talente");
+
         String[] talentsHeader = new String[]{"Name", "Effekt"};
         if (!talents.isEmpty()) {
+            createRow("Talente");
             createRow(talentsHeader, true);
             for (Talent talent : talents) {
                 createRow(new String[]{

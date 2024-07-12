@@ -4,10 +4,7 @@ import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.*;
 
-import org.example.export.tables.GeneralTable;
-import org.example.export.tables.PassiveTable;
-import org.example.export.tables.StatsTable;
-import org.example.export.tables.TalentTable;
+import org.example.export.tables.*;
 import org.example.mainframe.MainFrame;
 import org.example.mainframe.UpdatableByMainFrame;
 import org.example.mainframe.UsedValues;
@@ -119,29 +116,8 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
 
         new PassiveTable(CUSTOM_SHEET, IndexedColors.LIGHT_GREEN).generateTable();
 
+        new SpellTable(CUSTOM_SHEET, IndexedColors.BLUE_GREY).generateTable();
 
-//
-//
-//        createTabel(IndexedColors.BLUE_GREY, () -> {
-//            List<Spell> allCharacterSpells = character.getAllCharacterSpells();
-//            String[] spellHeader = new String[]{"Zauber", "Name", "Art", "Schnelligkeit", "Effekt", "Reichweite"};
-//            if (!allCharacterSpells.isEmpty()) {
-//                createRow(spellHeader, true);
-//
-//                for (int i = 0; i < allCharacterSpells.size(); i++) {
-//                    Spell spell = allCharacterSpells.get(i);
-//                    createRow(new String[]{
-//                            String.valueOf(i + 1),
-//                            spell.getName(),
-//                            spell.getDifficulty(),
-//                            spell.getTempo(),
-//                            spell.getEffect(),
-//                            spell.getRange()}, false);
-//                }
-//            }
-//
-//            return spellHeader.length;
-//        });
 //
 //
 //        createTabel(IndexedColors.AQUA, () -> {
