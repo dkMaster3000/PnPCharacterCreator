@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created statstable">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created talenttable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" afterDir="false" />
     </list>
@@ -182,14 +182,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00020" summary="created talentpanel and its combobox">
-      <option name="closed" value="true" />
-      <created>1717479406459</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1717479406459</updated>
     </task>
     <task id="LOCAL-00021" summary="updated raceChoicesPanel">
       <option name="closed" value="true" />
@@ -575,11 +567,18 @@
       <option name="project" value="LOCAL" />
       <updated>1720707318463</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="created talenttable">
+      <option name="closed" value="true" />
+      <created>1720770647573</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1720770647574</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added uuid to sheetname" />
     <MESSAGE value="packaging manifest added" />
     <MESSAGE value="multiple character creations possible" />
     <MESSAGE value="improved ui" />
@@ -604,7 +603,8 @@
     <MESSAGE value="made table non editable, fixed color and position of preview header" />
     <MESSAGE value="started refactor Export Panel" />
     <MESSAGE value="created statstable" />
-    <option name="LAST_COMMIT_MESSAGE" value="created statstable" />
+    <MESSAGE value="created talenttable" />
+    <option name="LAST_COMMIT_MESSAGE" value="created talenttable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

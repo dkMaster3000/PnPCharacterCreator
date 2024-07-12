@@ -5,6 +5,7 @@ import org.apache.poi.ss.util.CellReference;
 import org.apache.poi.xssf.usermodel.*;
 
 import org.example.export.tables.GeneralTable;
+import org.example.export.tables.PassiveTable;
 import org.example.export.tables.StatsTable;
 import org.example.export.tables.TalentTable;
 import org.example.mainframe.MainFrame;
@@ -116,26 +117,9 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
 
         new TalentTable(CUSTOM_SHEET, IndexedColors.LIGHT_CORNFLOWER_BLUE).generateTable();
 
+        new PassiveTable(CUSTOM_SHEET, IndexedColors.LIGHT_GREEN).generateTable();
 
-//
-//        createTabel(IndexedColors.LIGHT_GREEN, () -> {
-//            List<Passiv> allCharacterPassivs = character.getAllCharacterPassivs();
-//            String[] passivsHeader = new String[]{"Passivs", "Name", "Effekt", "Reichweite"};
-//            if (!allCharacterPassivs.isEmpty()) {
-//                createRow(passivsHeader, true);
-//
-//                for (int i = 0; i < allCharacterPassivs.size(); i++) {
-//                    Passiv passiv = allCharacterPassivs.get(i);
-//                    createRow(new String[]{
-//                            String.valueOf(i + 1),
-//                            passiv.getName(),
-//                            passiv.getEffect(),
-//                            passiv.getRange()}, false);
-//                }
-//            }
-//
-//            return passivsHeader.length;
-//        });
+
 //
 //
 //        createTabel(IndexedColors.BLUE_GREY, () -> {
