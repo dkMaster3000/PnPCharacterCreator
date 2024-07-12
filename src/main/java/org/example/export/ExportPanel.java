@@ -120,29 +120,8 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
 
         new SpellslotsTable(CUSTOM_SHEET, IndexedColors.AQUA).generateTable();
 
+        new EquipmentTable(CUSTOM_SHEET, IndexedColors.CORAL).generateTable();
 
-//
-//        createTabel(IndexedColors.CORAL, () -> {
-//            String[] equipmentHeader = new String[]{"Ausrüstung", "HP", "Stärke", "Intelligenz", "Geschick", "Rüstung", "Magische Effekte"};
-//            createRow(equipmentHeader, true);
-//            createRow("Kopf");
-//            createRow("Brust");
-//            createRow("Arme");
-//            createRow("Beine");
-//            createRow("Ring");
-//            createRow("Amulett");
-//
-//            //add sum formular for values in stats
-//            for (Integer key : equipmentCells.keySet()) {
-//                String startCountCell = CellReference.convertNumToColString(cellShift + key) + (rowCount - 5);
-//                String endCountCell = CellReference.convertNumToColString(cellShift + key) + rowCount;
-//                equipmentCells.get(key).setCellFormula("SUM(" + startCountCell + ":" + endCountCell + ")");
-//                equipmentCells.get(key).setCellStyle(lockedNumericStyle);
-//                formulaEvaluator.evaluateFormulaCell(hpEquipment);
-//            }
-//
-//            return equipmentHeader.length;
-//        });
 //
 //        createTabel(IndexedColors.LIGHT_YELLOW, () -> {
 //            String[] inventoryHeader = new String[]{"Inventar", "Plätze", "5"};
