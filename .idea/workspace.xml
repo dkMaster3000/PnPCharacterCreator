@@ -9,8 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created spellsslotstable">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="created equipmenttable">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/CharacterSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/CharacterSheet.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/ExportPanel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -182,14 +183,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00024" summary="created models for RPGClass, created RPGCLassloader">
-      <option name="closed" value="true" />
-      <created>1717498156061</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1717498156061</updated>
     </task>
     <task id="LOCAL-00025" summary="modified character">
       <option name="closed" value="true" />
@@ -575,11 +568,18 @@
       <option name="project" value="LOCAL" />
       <updated>1720775721675</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="created equipmenttable">
+      <option name="closed" value="true" />
+      <created>1720777453503</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1720777453503</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="able to write formulas" />
     <MESSAGE value="movement as int" />
     <MESSAGE value="calculating all stats, together with armor working" />
     <MESSAGE value="added autocalculation spellslots, based on excel file spellslots" />
@@ -604,7 +604,8 @@
     <MESSAGE value="created passivetable" />
     <MESSAGE value="created spellstable" />
     <MESSAGE value="created spellsslotstable" />
-    <option name="LAST_COMMIT_MESSAGE" value="created spellsslotstable" />
+    <MESSAGE value="created equipmenttable" />
+    <option name="LAST_COMMIT_MESSAGE" value="created equipmenttable" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

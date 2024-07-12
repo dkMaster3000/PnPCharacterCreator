@@ -4,6 +4,7 @@ import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.IndexedColors;
 import org.apache.poi.xssf.usermodel.*;
+import org.example.export.tables.*;
 import org.example.mainframe.MainFrame;
 
 import java.util.HashMap;
@@ -63,6 +64,24 @@ public class CharacterSheet {
 
         formulaEvaluator =
                 workbook.getCreationHelper().createFormulaEvaluator();
+
+        //generate-------------------
+
+        new GeneralTable(this, IndexedColors.GREY_25_PERCENT).generateTable();
+
+        new StatsTable(this, IndexedColors.LIGHT_YELLOW).generateTable();
+
+        new TalentTable(this, IndexedColors.LIGHT_CORNFLOWER_BLUE).generateTable();
+
+        new PassiveTable(this, IndexedColors.LIGHT_GREEN).generateTable();
+
+        new SpellTable(this, IndexedColors.BLUE_GREY).generateTable();
+
+        new SpellslotsTable(this, IndexedColors.AQUA).generateTable();
+
+        new EquipmentTable(this, IndexedColors.CORAL).generateTable();
+
+        new InventoryTable(this, IndexedColors.LIGHT_YELLOW).generateTable();
     }
 
     //---------------------------------WRAPPER START----------------------------------
@@ -79,6 +98,8 @@ public class CharacterSheet {
     }
 
     //---------------------------------WRAPPER END----------------------------------
+
+    //---------------------------------STYLE----------------------------------
 
     private XSSFFont createFont(boolean bold) {
         XSSFFont font = workbook.createFont();
