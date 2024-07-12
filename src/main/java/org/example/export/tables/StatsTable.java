@@ -121,12 +121,4 @@ public class StatsTable extends PaintedTable {
 
 
     }
-
-    private int GetDisplayedExcelRow(XSSFCell cell) {
-        return cell.getRowIndex() + 1;
-    }
-
-    private int GetLastRow() {
-        return sheet.getRowCount() - 1;
-    }
 }

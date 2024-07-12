@@ -118,73 +118,9 @@ public class ExportPanel extends JPanel implements ActionListener, UpdatableByMa
 
         new SpellTable(CUSTOM_SHEET, IndexedColors.BLUE_GREY).generateTable();
 
-//
-//
-//        createTabel(IndexedColors.AQUA, () -> {
-//            int lvlCellColumn = cellShift + 1;
-//            int wisdomCellColumn = cellShift + 2;
-//            int miscellaneousCellColumn = cellShift + 3;
-//            int totalSlotsCellColumn = cellShift + 4;
-//
-//            String[] spellslotsHeader = new String[]{"Spellslots", "Level", "Wissen", "Sonstiges", "Gesamt"};
-//            createRow(spellslotsHeader, true);
-//
-//            SpellslotsMatrix spellslotsMatrix = MainFrame.spellslotsMatrix;
-//            BiConsumer<String, Integer> createSpellslotRow = (key, dividend) -> {
-//                //create formular cell for lvl
-//                XSSFCell lvlValueCell = sheet.getRow(GetLastRow()).createCell(lvlCellColumn);
-//                String currentLvlCellID = CellReference.convertNumToColString(currentLevelCell.getColumnIndex()) + GetDisplayedExcelRow(currentLevelCell);
-//                StringBuilder formularBuilder = new StringBuilder();
-//                for (Integer lvl : spellslotsMatrix.getSpellslotsMatrix().keySet()) {
-//                    formularBuilder.append("IF(").append(currentLvlCellID).append("=").append(lvl).append(", ").append(spellslotsMatrix.getSpellslotsMatrix().get(lvl).get(key)).append(", ");
-//                }
-//                formularBuilder.append("0");
-//                for (Integer _ : spellslotsMatrix.getSpellslotsMatrix().keySet()) {
-//                    formularBuilder.append(")");
-//                }
-//
-//                lvlValueCell.setCellFormula(formularBuilder.toString());
-//                lvlValueCell.setCellStyle(lockedNumericStyle);
-//                formulaEvaluator.evaluateFormulaCell(lvlValueCell);
-//
-//                //create formalur cell for int
-//                XSSFCell wisdomValueCell = sheet.getRow(GetLastRow()).createCell(wisdomCellColumn);
-//                String intelligenceTotalSumCellID = CellReference.convertNumToColString(intelligenceTotalSum.getColumnIndex()) + GetDisplayedExcelRow(intelligenceTotalSum);
-//                wisdomValueCell.setCellFormula("ROUNDDOWN(" + (intelligenceTotalSumCellID) + " / " + dividend + " , 0)");
-//                wisdomValueCell.setCellStyle(lockedNumericStyle);
-//                formulaEvaluator.evaluateFormulaCell(wisdomValueCell);
-//
-//                // create cell for miscellanious
-//                @SuppressWarnings("unused")
-//                XSSFCell miscellaneousValueCell = sheet.getRow(GetLastRow()).createCell(miscellaneousCellColumn);
-//
-//                // create formular cell for sum
-//                XSSFCell spellSlotSumValueCell = sheet.getRow(GetLastRow()).createCell(totalSlotsCellColumn);
-//                String startCalc = CellReference.convertNumToColString(lvlCellColumn) + GetDisplayedExcelRow(spellSlotSumValueCell);
-//                String endCalc = CellReference.convertNumToColString(miscellaneousCellColumn) + GetDisplayedExcelRow(spellSlotSumValueCell);
-//                spellSlotSumValueCell.setCellFormula("Sum(" + startCalc + ":" + endCalc + ")");
-//                spellSlotSumValueCell.setCellStyle(lockedNumericStyle);
-//                formulaEvaluator.evaluateFormulaCell(spellSlotSumValueCell);
-//            };
-//
-//            createRow("Einfache");
-//
-//            createSpellslotRow.accept(spellslotsMatrix.getSimpleKey(), spellslotsMatrix.getSimpleDivider());
-//
-//            createRow("Fortgeschrittene");
-//
-//            createSpellslotRow.accept(spellslotsMatrix.getAdvancedkey(), spellslotsMatrix.getAdvancedDivider());
-//
-//            createRow("Expert");
-//
-//            createSpellslotRow.accept(spellslotsMatrix.getExpertKey(), spellslotsMatrix.getExpertDivider());
-//
-//            createRow("Legendäre");
-//
-//            createSpellslotRow.accept(spellslotsMatrix.getLegendaryKey(), spellslotsMatrix.getLegendarDivider());
-//
-//            return spellslotsHeader.length;
-//        });
+        new SpellslotsTable(CUSTOM_SHEET, IndexedColors.AQUA).generateTable();
+
+
 //
 //        createTabel(IndexedColors.CORAL, () -> {
 //            String[] equipmentHeader = new String[]{"Ausrüstung", "HP", "Stärke", "Intelligenz", "Geschick", "Rüstung", "Magische Effekte"};

@@ -62,7 +62,7 @@ public class SpellslotsMatrix {
         return expertDivider;
     }
 
-    public int getLegendarDivider() {
+    public int getLegendaryDivider() {
         return legendarDivider;
     }
 

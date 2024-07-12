@@ -1,6 +1,7 @@
 package org.example.export.tables;
 
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.example.export.CharacterSheet;
 import org.example.mainframe.MainFrame;
 
@@ -44,7 +45,7 @@ public abstract class PaintedTable {
     private void endTable() {
         endPaintRowIndex = sheet.getRowCount();
         endPaintCellIndex += 1;
-        
+
         paintTable();
     }
 
@@ -137,6 +138,22 @@ public abstract class PaintedTable {
         endPaintCellIndex = Math.max(endPaintCellIndex, index); //-> auto check where is the end point in width
 
         return row.createCell(index);
+    }
+
+    //-----------------HELPER
+
+    protected int GetDisplayedExcelRow(XSSFCell cell) {
+        return cell.getRowIndex() + 1;
+    }
+
+    protected int GetLastRow() {
+        return sheet.getRowCount() - 1;
+    }
+
+    protected void setFormulaWithLockedStyle(XSSFCell cell, String formula) {
+        cell.setCellFormula(formula);
+        cell.setCellStyle(sheet.getLockedNumericStyle());
+        sheet.getFormulaEvaluator().evaluateFormulaCell(cell);
     }
 
 }
