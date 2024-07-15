@@ -18,6 +18,7 @@ import org.example.preview.CharacterPreviewPanel;
 
 import javax.swing.*;
 
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -145,16 +146,18 @@ public class MainFrame extends JFrame {
         // ----------------------------------------------------------- RIGHT HALF -----------------------------------------------------------
 
         characterPreviewContainer = new JPanel();
+        characterPreviewContainer.setLayout(new BorderLayout());
         characterPreviewContainer.setBounds(860, 5, 550, 750);
         add(characterPreviewContainer);
 
         characterPreviewPanel = new CharacterPreviewPanel();
-        characterPreviewPanel.setBounds(5, 20, 390, 700);
+        characterPreviewPanel.setBounds(5, 20, 500, 700);
+        characterPreviewPanel.setPreferredSize(new Dimension(500, 1000));
 
         JScrollPane scrollPane = new JScrollPane(characterPreviewPanel);
         scrollPane.getVerticalScrollBar().setUnitIncrement(16);
 
-        characterPreviewContainer.add(scrollPane);
+        characterPreviewContainer.add(scrollPane, BorderLayout.CENTER);
 
         repaint();
 
