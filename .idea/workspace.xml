@@ -9,9 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="cleaned up table">
+    <list default="true" id="be7f81cb-d416-42e0-a291-65edf3111f7a" name="Changes" comment="added size limits to preview panel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/mainframe/MainFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/export/CharacterSheet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/export/CharacterSheet.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,14 +182,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1717062887747</updated>
-    </task>
-    <task id="LOCAL-00027" summary="added select rpgClass">
-      <option name="closed" value="true" />
-      <created>1717515451546</created>
-      <option name="number" value="00027" />
-      <option name="presentableId" value="LOCAL-00027" />
-      <option name="project" value="LOCAL" />
-      <updated>1717515451546</updated>
     </task>
     <task id="LOCAL-00028" summary="added select rpgClassLvlChoices">
       <option name="closed" value="true" />
@@ -575,11 +567,18 @@
       <option name="project" value="LOCAL" />
       <updated>1720788763873</updated>
     </task>
-    <option name="localTasksCounter" value="76" />
+    <task id="LOCAL-00076" summary="added size limits to preview panel">
+      <option name="closed" value="true" />
+      <created>1721028343943</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1721028343944</updated>
+    </task>
+    <option name="localTasksCounter" value="77" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="added autocalculation spellslots, based on excel file spellslots" />
     <MESSAGE value="implemented an interface for all panels that are updateable by mainframe" />
     <MESSAGE value="deleted unused files" />
     <MESSAGE value="added raceloaderUtils tests" />
@@ -604,7 +603,8 @@
     <MESSAGE value="created equipmenttable" />
     <MESSAGE value="created inventorytable" />
     <MESSAGE value="cleaned up table" />
-    <option name="LAST_COMMIT_MESSAGE" value="cleaned up table" />
+    <MESSAGE value="added size limits to preview panel" />
+    <option name="LAST_COMMIT_MESSAGE" value="added size limits to preview panel" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

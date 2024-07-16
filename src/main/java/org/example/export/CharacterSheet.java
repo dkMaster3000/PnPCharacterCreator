@@ -55,6 +55,10 @@ public class CharacterSheet {
         lockedNumericStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
         lockedNumericStyle.setLocked(true);
 
+        for (int i = cellShift - 1; i < 10; i++) {
+            sheet.setColumnWidth(i, 20 * 256);
+        }
+
         formulaEvaluator =
                 workbook.getCreationHelper().createFormulaEvaluator();
 
